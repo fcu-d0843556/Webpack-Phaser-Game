@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/static/css/login.css">
+    <title>upload</title>
+
+</head>
+<body>
+    <!-- upper bar V -->
+    <div class="top">
+        <a href="/" class="bar white">Home</a>
+        <a href="/upload" class="bar">Upload</a>
+        <a href="/index" class="bar">Games</a>
+        <a href="/login" class="bar barRight">Login</a>
+
+    </div>
+
+    <div class="loginBox">
+        <form action="/doUpload" method="post" enctype="multipart/form-data">
+            遊 戲 背 景  ： <input type="file" name="background" >
+            <br><br>
+            製 作 桶      ： <input type="file" name="foodCan" >
+            <br><br>
+            製 作 食 物： <input type="file" name="rawFood">
+            <br><br>
+
+            <!-- 描 述 ： <textarea name="desc" id="desc" cols="30" rows="10"></textarea> -->
+            <br><br>
+            <input type="submit" value="提交資料">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/static/css/login.css">
+    <title>登入系統</title>
+
+</head>
+<body>
+    <!-- upper bar V -->
+    <div class="top">
+        <a href="/" class="bar white">Home</a>
+        <a href="/upload" class="bar">Upload</a>
+        <a href="/index" class="bar">Games</a>
+        <a href="/login" class="bar barRight">Login</a>
+
+    </div>
+
+    <div class="loginBox">
+        <div class="loginTitle">登入</div>
+        <form action="/doLogin" method="post">
+            <input type="text" name="username" class="textbar" placeholder="輸入帳號">
+            <br><br>
+            <input type="password" name="password" class="textbar" placeholder="輸入密碼">
+            <br><br>
+            <!-- <button id="lineLoginBtn" >註冊</button> -->
+            <input type="submit" class="textbar" value="登入">
+        </form>
+        <input type="submit" onclick="location.href='register'" class="textbar" value="註冊">
+
+        <div class="LineLogin">
+            <div class="LineBotton" id="lineLoginBtn"></div>
+            <!-- LINE 登入</button> -->
+
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+            <script>
+                $('#lineLoginBtn').on('click', function(e) {
+                    let client_id = '1656452766';
+                    let redirect_uri = 'http://localhost:3000/';
+                    let link = 'https://access.line.me/oauth2/v2.1/authorize?';
+                    link += 'response_type=code';
+                    link += '&client_id=' + client_id;
+                    link += '&redirect_uri=' + redirect_uri;
+                    link += '&state=login';
+                    link += '&scope=openid%20profile';
+                    window.location.href = link;
+                });
+            </script>
+        </div>
+    </div>
+
+</body>
+</html>

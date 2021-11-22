@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="48" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
+ <editorsettings>
+  <export target="../tiles/balloonss.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="balloon" tilewidth="70" tileheight="90" spacing="20" tilecount="6" columns="6">
+  <properties>
+   <property name="collides" type="bool" value="false"/>
+  </properties>
+  <image source="balloon.png" width="524" height="98"/>
+  <tile id="0">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="4">
+    <object id="14" x="42.4342" y="126.316" width="1.64474" height="0.328947"/>
+    <object id="18" x="1.1102" y="-1.1102" width="70" height="90"/>
+   </objectgroup>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="1.52276" y="0.787442" width="68.665" height="75.3988" rotation="359.858">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <ellipse/>
+    </object>
+    <object id="2" x="3.90187" y="51.7252">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <polygon points="0,0 1.31579,5.59211 6.57895,15.4605 13.8158,25.3289 25,33.2237 28.6184,33.5526 33.2237,33.5526 45.7237,25.3289 55.9211,15.4605 61.1842,6.90789"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="2.18066" y="1.11639" width="68.665" height="75.3988" rotation="359.858">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <ellipse/>
+    </object>
+    <object id="2" x="4.55977" y="52.0541">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <polygon points="0,0 1.31579,5.59211 6.57895,15.4605 13.8158,25.3289 25,33.2237 28.6184,33.5526 33.2237,33.5526 45.7237,25.3289 55.9211,15.4605 61.1842,6.90789"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="1.84988" y="-0.279798" width="69.407" height="76.1371" rotation="359.858">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <ellipse/>
+    </object>
+    <object id="2" x="4.23082" y="51.3962">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <polygon points="0,0 1.31579,5.59211 6.57895,15.4605 13.8158,25.3289 25,33.2237 28.6184,33.5526 33.2237,33.5526 45.7237,25.3289 55.9211,15.4605 61.1842,6.90789"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="2.83855" y="1.77428" width="68.665" height="75.3988" rotation="359.858">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <ellipse/>
+    </object>
+    <object id="2" x="5.21766" y="52.712">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <polygon points="0,0 1.31579,5.59211 6.57895,15.4605 13.8158,25.3289 25,33.2237 28.6184,33.5526 33.2237,33.5526 45.7237,25.3289 55.9211,15.4605 61.1842,6.90789"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="3.1675" y="1.44534" width="68.665" height="75.3988" rotation="359.858">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <ellipse/>
+    </object>
+    <object id="2" x="5.54661" y="52.3831">
+     <properties>
+      <property name="collides" type="bool" value="true"/>
+     </properties>
+     <polygon points="0,0 1.31579,5.59211 6.57895,15.4605 13.8158,25.3289 25,33.2237 28.6184,33.5526 33.2237,33.5526 45.7237,25.3289 55.9211,15.4605 61.1842,6.90789"/>
+    </object>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <layer id="1" name="walls" width="16" height="16">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+5,0,0,0,6,0,0,0,4,0,0,0,3,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,2,0,0,0,1,0,0,0,5,0,0,0,6,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+4,0,0,0,3,0,0,0,1,0,0,0,2,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

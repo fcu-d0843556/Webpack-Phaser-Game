@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Phaser3 + Parceljs Template</title>
+    <script type="text/javascript" src="index.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+
+	<link rel="stylesheet" href="/src/static/css/game.css">
+</head>
+<body style="background-color: orange;">
+	<!-- upper bar V -->
+
+
+    <div class="top">
+        <a href="/" class="bar white">Home</a>
+        <a href="/upload" class="bar">Upload</a>
+        <a href="/index" class="bar">Games</a>
+        <a href="/login" class="bar barRight">Login</a>
+        <input id="changeScene" type = "button" value = "changeScene">
+        <input id="goBackSetting" type = "button" value = "goBackSetting">
+        <input id="getUserId" type = "hidden" value = "<%= username%>">
+    </div>
+    <div id="phaser-app"></div>
+    <script>
+        // let p = <%= username%>
+        // console.log("name : " + p)
+        let gameNum = 1
+        function counting(){
+            gameNum++
+            if(gameNum>=4){
+                gameNum=1
+            }
+            console.log("html side" + gameNum)
+        }
+    </script>
+</body>
+</html>

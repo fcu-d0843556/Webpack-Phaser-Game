@@ -1,0 +1,32 @@
+{
+    "background": [{
+        "fieldname": "background",
+        "originalname": "food1.png",
+        "encoding": "7bit",
+        "mimetype": "image/png",
+        "destination": "src\\static\\upload\\333",
+        "filename": "food1.png",
+        "path": "src\\static\\upload\\333\\food1.png",
+        "size": 14317
+    }],
+    "dude": [{
+        "fieldname": "dude",
+        "originalname": "btn_login_base.png",
+        "encoding": "7bit",
+        "mimetype": "image/png",
+        "destination": "src\\static\\upload\\333",
+        "filename": "btn_login_base.png",
+        "path": "src\\static\\upload\\333\\btn_login_base.png",
+        "size": 1482
+    }],
+    "star": [{
+        "fieldname": "star",
+        "originalname": "view2.png",
+        "encoding": "7bit",
+        "mimetype": "image/png",
+        "destination": "src\\static\\upload\\333",
+        "filename": "view2.png",
+        "path": "src\\static\\upload\\333\\view2.png",
+        "size": 16266
+    }]
+}
