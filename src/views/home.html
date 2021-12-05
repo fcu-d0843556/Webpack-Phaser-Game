@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phaser Games</title>
     <link rel="stylesheet" href="/src/static/css/phaserWebStyle.css">
+    <link rel="stylesheet" href="/src/static/bootstrap/css/bootstrap.min.css">
 
     <script>
         var nowSquareSpot = 1
@@ -58,83 +59,83 @@
 </head>
 
 <body style="display: block; margin: 0px; ">
+    <div class="container">
+        <!-- upper bar V -->
+        <div class="top">
+            <a href="/" class="bar white">Home</a>
+            <a href="/upload" class="bar">Upload</a>
+            <a href="/index" class="bar">Games</a>
+            <a href="/login" class="bar barRight">Login</a>
 
-    <!-- upper bar V -->
-    <div class="top">
-        <a href="/" class="bar white">Home</a>
-        <a href="/upload" class="bar">Upload</a>
-        <a href="/index" class="bar">Games</a>
-        <a href="/login" class="bar barRight">Login</a>
-
-    </div>
-
-
-    <!-- big intro V -->
-    <header class="container">
-        <h1 class="containerText">HELLO!</h1>
-        <p>In this website, you can make your own games!</p>
-        <p onclick="location.href='/uploadFile';" class="startbutton">Let's Start !</p>
-    </header>
-
-
-
-    <!-- pictures V -->
-    <h2 style="background-color: rgb(255, 255, 255); padding: 20px; margin:0px; border: 10px orange groove;">Picture</h2>
-
-    <div style="display: flex;">
-        <div style="width: 35%; background-color: rgb(0, 0, 0); color: white;">
-            <h1 style="text-align: center;">Catch Fruit Game:</h1>
-            <p style="text-align: center;">.......</p>
         </div>
-        <div style="width: 65%;">
-            <div class="preview" style="opacity: 0.9; background-color: black;">
-                <img style="width: 100%;" id="squareImage" src="./src/static/img/view1.png">
+
+        <!-- big intro V -->
+        <header class="container">
+            <h1 class="containerText">HELLO!</h1>
+            <p>In this website, you can make your own games!</p>
+            <p onclick="location.href='/uploadFile';" class="startbutton">Let's Start !</p>
+        </header>
+
+
+
+        <!-- pictures V -->
+        <h2 style="background-color: rgb(255, 255, 255); padding: 20px; margin:0px; border: 10px orange groove;">Picture</h2>
+
+        <div style="display: flex;">
+            <div style="width: 35%; background-color: rgb(0, 0, 0); color: white;">
+                <h1 style="text-align: center;">Catch Fruit Game:</h1>
+                <p style="text-align: center;">.......</p>
+            </div>
+            <div style="width: 65%;">
+                <div class="preview" style="opacity: 0.9; background-color: black;">
+                    <img style="width: 100%;" id="squareImage" src="./src/static/img/view1.png">
+                </div>
+
+                <div class="select" style="background-color: rgb(160, 72, 0);">
+                    <div style="float: left;" onclick="nextSquare(-1)">
+                        <i class="arrow arrowL" ></i>
+                    </div>
+
+                    <div style="float: right;" onclick="nextSquare(1)">
+                        <i class="arrow arrowR"></i>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <span id="square1" class="square" style="background-color:white" onclick="changeSquare(1)"></span>
+                        <span id="square2" class="square" onclick="changeSquare(2)"></span>
+                        <span id="square3" class="square" onclick="changeSquare(3)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- three boxes -->
+        <div class="boxes">
+            <div class="threeBox sideRightBox">
+                <p><%= username%></p>
+                <h1>Choose!</h1>
+                <p>Use our already complete game</p>
+                <p>..............</p>
             </div>
 
-            <div class="select" style="background-color: rgb(160, 72, 0);">
-                <div style="float: left;" onclick="nextSquare(-1)">
-                    <i class="arrow arrowL" ></i>
-                </div>
+            <div class="threeBox">
+                <h1>Modify!</h1>
+                <p>Change game's data to your own style !</p>
+                <p>we use very simple way to let you create games </p>
+            </div>
 
-                <div style="float: right;" onclick="nextSquare(1)">
-                    <i class="arrow arrowR"></i>
-                </div>
-
-                <div style="text-align: center;">
-                    <span id="square1" class="square" style="background-color:white" onclick="changeSquare(1)"></span>
-                    <span id="square2" class="square" onclick="changeSquare(2)"></span>
-                    <span id="square3" class="square" onclick="changeSquare(3)"></span>
-                </div>
+            <div class="threeBox sideLeftBox">
+                <h1>Enjoy!</h1>
+                <p>Give your friend this game !</p>
+                <p>Enjoy !</p>
             </div>
         </div>
+
+
+        <!-- footer -->
+        <div class="footer"></div>
     </div>
-
-
-
-    <!-- three boxes -->
-    <div class="boxes">
-        <div class="threeBox sideRightBox">
-            <p><%= username%></p>
-            <h1>Choose!</h1>
-            <p>Use our already complete game</p>
-            <p>..............</p>
-        </div>
-
-        <div class="threeBox">
-            <h1>Modify!</h1>
-            <p>Change game's data to your own style !</p>
-            <p>we use very simple way to let you create games </p>
-        </div>
-
-        <div class="threeBox sideLeftBox">
-            <h1>Enjoy!</h1>
-            <p>Give your friend this game !</p>
-            <p>Enjoy !</p>
-        </div>
-    </div>
-
-
-    <!-- footer -->
-    <div class="footer"></div>
 </body>
 </html>

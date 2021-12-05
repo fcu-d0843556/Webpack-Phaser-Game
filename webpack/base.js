@@ -122,7 +122,7 @@ module.exports = {
       })
 
       app.post("/doLogin",function(req,res){
-        console.debug(req.body)
+        // console.debug(req.body)
 
         Models.userModel.findOne({
           username: req.body.username,
@@ -136,6 +136,8 @@ module.exports = {
             tools.getUserId()
             req.session.username = userID
             res.redirect('/')
+          }else{
+
           }
         })
       })
