@@ -11,8 +11,8 @@ export default {
 	  createContainer: true,
 	},
 	scale:{
-		autoCenter: Phaser.Scale.CENTER_BOTH,
-		mode:Phaser.Scale.ScaleModes.FIT
+		//autoCenter: Phaser.Scale.CENTER_BOTH,
+		//mode:Phaser.Scale.ScaleModes.FIT
 	},
 	physics: {
 	  default: 'arcade',

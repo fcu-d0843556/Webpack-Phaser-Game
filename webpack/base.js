@@ -155,8 +155,8 @@ module.exports = {
         res.render("success")
       })
 
-      app.get('/upload', function (req, res) {
-        res.render("upload")
+      app.get('/uploadFile', function (req, res) {
+        res.render("uploadFile")
       })
 
       let uploadFiles = [
@@ -215,10 +215,10 @@ module.exports = {
       CANVAS_RENDERER: JSON.stringify(true),
       WEBGL_RENDERER: JSON.stringify(true)
     }),
-    new HtmlWebpackPlugin({
-      filename: 'uploadFile',
-      template: "./src/views/uploadFile.html",
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'uploadFile',
+    //   template: "./src/views/uploadFile.html",
+    // }),
     // new HtmlWebpackPlugin({
     //   filename: 'index',
     //   template: "./src/views/index.html",

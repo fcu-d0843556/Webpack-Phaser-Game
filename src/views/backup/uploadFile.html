@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/src/static/css/login.css">
-    <title>upload</title>
+    <title>增加導航</title>
 
 </head>
 <body>
@@ -19,15 +19,15 @@
     </div>
 
     <div class="loginBox">
-        <form action="/doUpload" method="post" enctype="multipart/form-data">
-            遊 戲 背 景  ： <input type="file" name="background" >
+        <form action="/modifyFile" method="post" enctype="multipart/form-data">
+            標 題 ： <input type="text" name="title" id="title">
             <br><br>
-            製 作 桶      ： <input type="file" name="foodCan" >
+            圖 片 1 ： <input type="file" name="pic1" id="pic1">
             <br><br>
-            製 作 食 物： <input type="file" name="rawFood">
+            圖 片 2 ： <input type="file" name="pic2" id="pic2">
             <br><br>
 
-            <!-- 描 述 ： <textarea name="desc" id="desc" cols="30" rows="10"></textarea> -->
+            描 述 ： <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
             <br><br>
             <input type="submit" value="提交資料">
         </form>

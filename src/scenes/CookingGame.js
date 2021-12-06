@@ -11,6 +11,9 @@ console.log("CookIng : " + userPath)
 console.log("out" + userID)
 var zone
 
+
+
+
 export default class CookingGame extends Phaser.Scene{
     constructor(){
         super('cooking')
@@ -24,6 +27,9 @@ export default class CookingGame extends Phaser.Scene{
 
     preload(){
 
+        if(true){
+            console.log("HELLO")
+        }
         this.load.image('half','src/assets/halfFood.png')
         this.load.image('flip','src/assets/halfFlipFood.png')
         this.load.image('well','src/assets/wellFood.png')
@@ -33,7 +39,7 @@ export default class CookingGame extends Phaser.Scene{
         // this.load.image('foodCan',`src/assets/foodCan.png`)
         this.load.image('raw',`src/static/upload/${userPath}/rawFood.png`)
         this.load.image('background',`src/static/upload/${userPath}/background.png`)
-        this.load.image('foodCan',`src/static/upload/${userPath}/foodCan.png`)
+        this.load.image('foodCan',`src/static/upload/${userPath}/foodCan.jpg`)
 
 
     }
@@ -141,3 +147,4 @@ export default class CookingGame extends Phaser.Scene{
         // this.scene.start("bangbangShooting")
     }
 }
+

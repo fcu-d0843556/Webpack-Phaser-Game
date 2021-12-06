@@ -4,33 +4,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/static/css/login.css">
-    <title>增加導航</title>
+    <link rel="stylesheet" href="/src/static/css/uploadFile.css">
+    <link rel="stylesheet" href="/src/static/bootstrap/css/bootstrap.min.css">
+    <script src="/src/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/src/static/js/upload.js"></script>
+
+    <title>upload</title>
 
 </head>
 <body>
-    <!-- upper bar V -->
-    <div class="top">
-        <a href="/" class="bar white">Home</a>
-        <a href="/upload" class="bar">Upload</a>
-        <a href="/index" class="bar">Games</a>
-        <a href="/login" class="bar barRight">Login</a>
 
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/uploadFile">Upload</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div class="loginBox">
-        <form action="/modifyFile" method="post" enctype="multipart/form-data">
-            標 題 ： <input type="text" name="title" id="title">
-            <br><br>
-            圖 片 1 ： <input type="file" name="pic1" id="pic1">
-            <br><br>
-            圖 片 2 ： <input type="file" name="pic2" id="pic2">
-            <br><br>
+    <form action="/doUpload" method="post" enctype="multipart/form-data">
 
-            描 述 ： <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
-            <br><br>
-            <input type="submit" value="提交資料">
-        </form>
-    </div>
+        <div class="card text-center loginBox" style="background-color: orange;">
+            <div class="card-header">
+                <div class="mb-3">
+                    <label class="form-label">製 作 桶</label>
+                    <input class="form-control" type="file" name="foodCan" id="foodCan">
+                </div>
+            </div>
+            <div  class="card-body">
+            <h5 class="card-title">預覽圖</h5>
+            <img style="width: 75%; height: 75%;" id="foodCanImage">
+            </div>
+            <div class="card-footer text-muted">
+            </div>
+        </div>
+
+
+        <div class="card text-center loginBox" style="background-color: orange;">
+            <div class="card-header">
+                <div class="mb-3">
+                    <label class="form-label">遊 戲 背 景</label>
+                    <input class="form-control" type="file" name="background" id="background">
+                </div>
+            </div>
+            <div  class="card-body">
+            <h5 class="card-title">預覽圖</h5>
+            <img style="width: 75%; height: 75%;" id="backgroundImage">
+            </div>
+            <div class="card-footer text-muted">
+            </div>
+        </div>
+
+
+        <div class="card text-center loginBox" style="background-color: orange;">
+            <div class="card-header">
+                <div class="mb-3">
+                    <label for="rawFood" class="form-label">製 作 食 物</label>
+                    <input class="form-control" type="file" name="rawFood" id="rawFood">
+                </div>
+            </div>
+            <div  class="card-body">
+            <h5 class="card-title">預覽圖</h5>
+            <img style="width: 75%; height: 75%;" id="rawFoodImage">
+            </div>
+            <div class="card-footer text-muted">
+            </div>
+        </div>
+
+        <div class="card-footer text-muted">
+            <button type="submit" class="btn btn-dark">提交資料</button>
+        </div>
+    </form>
+
 </body>
 </html>

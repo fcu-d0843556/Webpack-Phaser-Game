@@ -32,12 +32,7 @@ export default class CookingGame extends Phaser.Scene{
 
     hello(){
         OK = true
-        $(document).ready(function() {
-            if(location.href.indexOf("#reloaded")==-1){
-                location.href=location.href + "#reloaded"
-                location.reload()
-            }
-        });
+
         // if(!userPath){
         //     location.reload()
         // }
