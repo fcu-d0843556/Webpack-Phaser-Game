@@ -31,7 +31,8 @@ module.exports = {
     index: './src/index.js',
     change: './src/static/js/change.js',
     click: './src/static/js/clicked.js',
-    tools: './src/model/tools.js'
+    tools: './src/model/tools.js',
+    preloadImage: './src/static/js/preloadImage.js'
   },
   //devServer既可做到app.js的功能，其他的require也是寫在這裡
   devServer: {
@@ -50,7 +51,10 @@ module.exports = {
         extended: false
       }))
       app.use(express.json())
-      app.use("/static", express.static('./static/'));
+      app.use('/src',express.static(path.join(__dirname,'/src')));
+
+      // app.use("/static", express.static('./static/'));
+      // app.use(express.static(path.join(__dirname, '/node_modules')));
 
       app.use(session({
         secret: 'this is session', //服務器端生成 session 的簽名
@@ -66,7 +70,7 @@ module.exports = {
 
       app.get("/", function (req, res) {
         if(req.session.username){
-          //console.debug(req.session.username)
+          console.debug(req.session.username)
         }else{
           //console.debug("not")
         }
@@ -113,6 +117,10 @@ module.exports = {
 
       app.get("/login", function (req, res) {
         res.render("login")
+      })
+
+      app.get("/chooseGame",function(req,res){
+        res.render("chooseGame")
       })
 
       app.get("/index",function(req,res){
@@ -169,21 +177,13 @@ module.exports = {
         }, {
           name: 'rawFood',
           maxCount: 1
+        },{
+          name: 'test',
+          maxCount: 1
         }
       ]
       // tools.multer().single('avater')
       app.post('/doUpload',tools.multer().fields(uploadFiles), function (req, res) {
-
-        // console.dir(req.files)
-        // Models.fileModel.insertMany(req.files)
-        //   .then(function(docs){
-        //     console.debug("data Insert OK : " + docs)
-        //   })
-        //   .catch(function(err){
-        //     console.debug(err)
-        //   })
-
-
         res.redirect('/index');
       })
 

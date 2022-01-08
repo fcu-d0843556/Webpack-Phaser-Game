@@ -3,7 +3,6 @@ const path = require('path') //獲取文件名用
 const sd = require('silly-datetime')
 const mkdirp = require('mkdirp')
 
-
 let userID
 
 let tools = {
@@ -26,6 +25,7 @@ let tools = {
 
             //配置上傳的目錄
             destination: async (req, file, cb) => {
+
                 //1.獲取當前日期 20211016
                 let day = sd.format(new Date(), 'YYYYMMDD')
 
@@ -40,6 +40,8 @@ let tools = {
                 //1.獲取後綴名
                 // file.fieldname 獲取html sumbit後的name
                 // file.originalname 獲取原本上傳檔案的名字
+
+
                 let extname = path.extname(file.originalname)
 
                 //2.根據時間戳生成文件名
@@ -67,5 +69,6 @@ let tools = {
 
 
 }
+
 
 module.exports = tools

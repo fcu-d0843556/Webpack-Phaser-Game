@@ -6,11 +6,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Phaser3 + Parceljs Template</title>
 
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <!-- bootstrap function and css style -->
     <link rel="stylesheet" href="/src/static/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/src/static/css/game.css">
-    <script type="text/javascript" src="index.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
     <script src="/src/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- this html css style -->
+	<link rel="stylesheet" href="/src/static/css/game.css">
+
+    <!-- upload and modify function -->
+    <script type="text/javascript" src="/src/static/js/upload.js"></script>
+    <script type="text/javascript" src="/src/static/js/preloadImage.js"></script>
+
+    <!-- Loading Game  -->
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 
 </head>
 <body style="background-color: orange;">
@@ -40,67 +53,124 @@
         </div>
     </nav>
 
-
+    <!-- <div id="hello-vue" class="demo">
+        {{ message }}
+    </div> -->
     <!-- main content -->
-    <div>
-        <!-- left select bar -->
 
-        <div class="bd-link">
-            <form action="/doUpload" method="post" enctype="multipart/form-data">
-                <div class="card text-center loginBox" style="background-color: orange;">
-                    <div class="card-header">
-                        <div class="mb-3">
-                            <label class="form-label">製 作 桶</label>
-                            <input class="form-control" type="file" name="foodCan" id="foodCan">
-                        </div>
-                    </div>
-                    <div  class="card-body">
-                    <h5 class="card-title">預覽圖</h5>
-                    <img style="width: 75%; height: 75%;" id="foodCanImage">
-                    </div>
-                    <div class="card-footer text-muted">
-                    </div>
-                </div>
+    <div class="container-fluid">
 
-                <div class="card text-center loginBox" style="background-color: orange;">
-                    <div class="card-header">
-                        <div class="mb-3">
-                            <label class="form-label">遊 戲 背 景</label>
-                            <input class="form-control" type="file" name="background" id="background">
-                        </div>
-                    </div>
-                    <div  class="card-body">
-                    <h5 class="card-title">預覽圖</h5>
-                    <img style="width: 75%; height: 75%;" id="backgroundImage">
-                    </div>
-                    <div class="card-footer text-muted">
-                    </div>
-                </div>
-
-
-                <div class="card text-center loginBox" style="background-color: orange;">
-                    <div class="card-header">
-                        <div class="mb-3">
-                            <label for="rawFood" class="form-label">製 作 食 物</label>
-                            <input class="form-control" type="file" name="rawFood" id="rawFood">
-                        </div>
-                    </div>
-                    <div  class="card-body">
-                    <h5 class="card-title">預覽圖</h5>
-                    <img style="width: 75%; height: 75%;" id="rawFoodImage">
-                    </div>
-                    <div class="card-footer text-muted">
-                    </div>
-                </div>
-
-                <div class="card-footer text-muted">
-                    <button type="submit" class="btn btn-dark">提交資料</button>
-                </div>
-            </form>
+        <!-- left game bar -->
+        <div class="phone-style">
+            <div class="phone" id="phaser-app"></div>
         </div>
 
-        <!-- right game bar -->
-        <div class="phone" id="phaser-app"></div>
+
+        <div class="row justify-content-end right-select-bar">
+            <div class="col-4"></div>
+
+            <!-- middle detail form -->
+            <div class="col-8">
+                <div class="row">
+                    <div id="detailCard" class="overflow col-7">
+                        <div>
+                            <div class="row row-cols-1 row-cols-md-2 g-4 " >
+                                <div class="col">
+                                <div id="defaultCard1" class="card">
+                                    <img id="defaultPic1" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col">
+                                <div class="card">
+                                    <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col">
+                                <div class="card">
+                                    <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col">
+                                <div class="card">
+                                    <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- right select bar -->
+                    <div class="col-5">
+                        <div class="bd-link">
+                            <form action="/doUpload" id="dataForm" method="post" enctype="multipart/form-data">
+                                <div id="chooseCard1" class="card text-center loginBox">
+                                    <div class="card-header">
+                                        <div class="mb-3">
+                                            <label class="form-label">製 作 桶</label>
+                                            <input class="form-control" type="file" name="foodCan" id="foodCan">
+                                        </div>
+                                    </div>
+                                    <div  class="card-body">
+                                    <h5 class="card-title">預覽圖</h5>
+                                    <img style="width: 50%; height: 50%;" id="foodCanImage">
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                    </div>
+                                </div>
+
+                                <div id="chooseCard2" class="card text-center loginBox" style="background-color: orange;">
+                                    <div class="card-header">
+                                        <div class="mb-3">
+                                            <label class="form-label">遊 戲 背 景</label>
+                                            <input class="form-control" type="file" name="background" id="background">
+                                        </div>
+                                    </div>
+                                    <div  class="card-body">
+                                    <h5 class="card-title">預覽圖</h5>
+                                    <img style="width: 50%; height: 50%;" id="backgroundImage">
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                    </div>
+                                </div>
+
+
+                                <div id="chooseCard3" class="card text-center loginBox" style="background-color: orange;">
+                                    <div class="card-header">
+                                        <div class="mb-3">
+                                            <label for="rawFood" class="form-label">製 作 食 物</label>
+                                            <input class="form-control" type="file" name="rawFood" id="rawFood">
+                                        </div>
+                                    </div>
+                                    <div  class="card-body">
+                                    <h5 class="card-title">預覽圖</h5>
+                                    <img style="width: 50%; height: 50%;" id="rawFoodImage">
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                    </div>
+                                </div>
+
+                                <div class="card-footer text-muted">
+                                    <button type="submit" onclick="saveFormData()" class="btn btn-dark">提交資料</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
 

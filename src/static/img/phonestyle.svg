@@ -1,0 +1,15 @@
+<svg width="450" height="750" xmlns="http://www.w3.org/2000/svg">
+ <title>PhoneStyle</title>
+
+ <g>
+  <title>Layer 1</title>
+  <rect rx="6" id="svg_13" height="100" width="7" y="274" x="420" stroke="#000" fill="#7c7c7c"/>
+  <rect rx="6" id="svg_12" height="50" width="7" y="179" x="420" stroke="#000" fill="#727272"/>
+  <path stroke="#000" id="svg_4" d="m27.99998,34.5c0,-13.58447 10.94336,-25 23.96594,-25l346.06814,0c13.02258,0 23.96594,11.41553 23.96594,25l0,681c0,13.58447 -10.94336,25 -23.96594,25l-346.06814,0c-13.02258,0 -23.96594,-11.41553 -23.96594,-25l0,-681z" opacity="undefined" stroke-width="4" fill="#b7b7b7"/>
+  <rect stroke-width="2" rx="10" id="svg_1" height="640" width="360" y="55" x="45" stroke="#000" fill="#fcfcfc"/>
+  <rect stroke="#000" id="svg_5" height="2" width="3" y="655.5" x="397.5" fill="#005fbf"/>
+  <rect rx="5" id="svg_8" height="7" width="170" y="21" x="140" stroke="#000" fill="#ffffff"/>
+  <ellipse ry="6" rx="6" id="svg_9" cy="33" cx="79" stroke="#000" fill="#ffffff"/>
+  <rect rx="5" id="svg_11" height="7" width="170" y="723" x="140" stroke="#000" fill="#ffffff"/>
+ </g>
+</svg>

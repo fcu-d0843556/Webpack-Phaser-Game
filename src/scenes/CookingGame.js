@@ -39,7 +39,7 @@ export default class CookingGame extends Phaser.Scene{
         // this.load.image('foodCan',`src/assets/foodCan.png`)
         this.load.image('raw',`src/static/upload/${userPath}/rawFood.png`)
         this.load.image('background',`src/static/upload/${userPath}/background.png`)
-        this.load.image('foodCan',`src/static/upload/${userPath}/foodCan.jpg`)
+        this.load.image('foodCan',`src/static/upload/${userPath}/foodCan.png`)
 
 
     }
@@ -142,7 +142,7 @@ export default class CookingGame extends Phaser.Scene{
         for(var i= 0 ;i<this.foodGroup.length;i++){
             this.foodGroup[i].timer.update()
         }
-        console.log(userID)
+        // console.log(userID)
         zone.body.debugBodyColor = zone.body.touching.none ? 0x00ffff : 0xffff00
         // this.scene.start("bangbangShooting")
     }

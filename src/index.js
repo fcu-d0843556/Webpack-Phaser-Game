@@ -27,15 +27,15 @@ class Game extends Phaser.Game {
 const game = new Game(); /* eslint-disable-line */
 
 
+
 //addEventListener
-window.onload = function(){
+window.addEventListener("load",function(){
   let findChangeID = document.getElementById("changeScene")
   let findGoBackID = document.getElementById("goBackSetting")
   let findGetUserID = document.getElementById("getUserId")
-  // let p = <%= username%>
-  // console.log()
 
   if(findChangeID){
+
     findChangeID.addEventListener('click',()=>{
       counting();
       changeScene(gameNum);
@@ -55,7 +55,7 @@ window.onload = function(){
     console.log("userID is : " + userPath)
 
   }
-}
+})
 
 
 

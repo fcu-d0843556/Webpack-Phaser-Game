@@ -1,0 +1,30 @@
+body{
+    background-color: rebeccapurple;
+}
+
+.phone-style{
+    background-image: url('../img/phonestyleDis.svg');
+    width: 410px;
+    height: 740px;
+    position: absolute;
+}
+
+.translate-mid{
+    transform: translateX(-50%) !important;
+}
+
+.center-position{
+    left: 50% !important;
+}
+
+.img-center{
+    margin-left: auto;
+    margin-top: 50px;
+    margin-right: auto;
+}
+
+.main{
+    width: 600px;
+    height: 750px;
+    position: absolute;
+}
