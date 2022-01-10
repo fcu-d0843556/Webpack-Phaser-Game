@@ -183,7 +183,7 @@ module.exports = {
         }
       ]
       // tools.multer().single('avater')
-      app.post('/doUpload',tools.multer().fields(uploadFiles), function (req, res) {
+      app.post('/doUpload',tools.multer().fields(uploadFiles) ,function (req, res) {
         res.redirect('/index');
       })
 

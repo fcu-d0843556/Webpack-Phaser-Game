@@ -7,12 +7,8 @@ const userPath = sessionStorage.getItem("userID");
 
 console.log("CookIng : " + userPath)
 
-
 console.log("out" + userID)
 var zone
-
-
-
 
 export default class CookingGame extends Phaser.Scene{
     constructor(){
@@ -26,10 +22,10 @@ export default class CookingGame extends Phaser.Scene{
     }
 
     preload(){
+        this.load.json('jsonData',`src/static/upload/user/try.json`)
+        this.jsonData = this.cache.json.get('jsonData');
+        console.log(this.jsonData)
 
-        if(true){
-            console.log("HELLO")
-        }
         this.load.image('half','src/assets/halfFood.png')
         this.load.image('flip','src/assets/halfFlipFood.png')
         this.load.image('well','src/assets/wellFood.png')
@@ -37,9 +33,9 @@ export default class CookingGame extends Phaser.Scene{
         this.load.image('cookSpot','src/assets/cookSpot.png')
         // this.load.image('raw','src/assets/rawFood.png')
         // this.load.image('foodCan',`src/assets/foodCan.png`)
-        this.load.image('raw',`src/static/upload/${userPath}/rawFood.png`)
-        this.load.image('background',`src/static/upload/${userPath}/background.png`)
-        this.load.image('foodCan',`src/static/upload/${userPath}/foodCan.png`)
+        for(let t=0;t<this.jsonData.length;t++){
+            this.load.image(this.jsonData[t].name,this.jsonData[t].src)
+        }
 
 
     }

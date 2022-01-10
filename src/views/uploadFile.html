@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/src/static/css/uploadFile.css">
     <link rel="stylesheet" href="/src/static/bootstrap/css/bootstrap.min.css">
     <script src="/src/static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/src/static/js/upload.js"></script>
+    <script src="/src/static/js/moblie.js"></script>
 
     <title>upload</title>
 
@@ -37,6 +37,7 @@
     </nav>
 
     <form action="/doUpload" method="post" enctype="multipart/form-data">
+        <input class="form-control" type="text" name="test" id="test">
 
         <div class="card text-center loginBox" style="background-color: orange;">
             <div class="card-header">
@@ -47,6 +48,7 @@
             </div>
             <div  class="card-body">
             <h5 class="card-title">預覽圖</h5>
+            <input type="image" name="foodCanImage" style="display: none;" id="foodCanImage">
             <img style="width: 75%; height: 75%;" id="foodCanImage">
             </div>
             <div class="card-footer text-muted">

@@ -17,6 +17,11 @@ let tools = {
                 cb(new Error('Please upload an image'))
                 cb(null, false)
             }
+            console.debug("fileFilter")
+            console.debug(req.data)
+            console.debug(file)
+
+
 
             cb(null, true)
         }
@@ -28,6 +33,8 @@ let tools = {
 
                 //1.獲取當前日期 20211016
                 let day = sd.format(new Date(), 'YYYYMMDD')
+                // console.debug("destination")
+                // console.debug(req)
 
                 //2.按照日期生成圖片存儲目錄，mkdirp是一個異步的方法
                 let dir = path.join("src/static/upload", req.session.username)
@@ -41,6 +48,8 @@ let tools = {
                 // file.fieldname 獲取html sumbit後的name
                 // file.originalname 獲取原本上傳檔案的名字
 
+                // console.debug("filename")
+                // console.debug(req)
 
                 let extname = path.extname(file.originalname)
 

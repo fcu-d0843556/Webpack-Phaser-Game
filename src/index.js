@@ -13,6 +13,7 @@ class Game extends Phaser.Game {
     // this.scene.add('catch-fruit', new CatchFruitGame());
     // this.scene.add('loading')
     this.id = userID
+
     console.log("this.id :" + this.id)
     this.scene.add('loading', new Loading())
     this.scene.add('cooking', new CookingGame());
@@ -25,7 +26,6 @@ class Game extends Phaser.Game {
 }
 
 const game = new Game(); /* eslint-disable-line */
-
 
 
 //addEventListener
@@ -53,7 +53,7 @@ window.addEventListener("load",function(){
     sessionStorage.setItem('userID',userID);
     const userPath = sessionStorage.getItem("userID");
     console.log("userID is : " + userPath)
-
+    console.log(game)
   }
 })
 

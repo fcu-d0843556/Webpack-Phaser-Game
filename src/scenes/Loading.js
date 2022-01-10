@@ -2,12 +2,13 @@ import Phaser from "phaser"
 const userPath = sessionStorage.getItem("userID");
 let num = 0;
 let OK = false
-export default class CookingGame extends Phaser.Scene{
+export default class Loading extends Phaser.Scene{
     constructor(){
         super('loading')
     }
 
     preload(){
+        this.load.json('jsonData',`src/static/upload/user/try.json`)
 
         // 'src/assets/sky.png'
         // this.load.image('sky',`../static/upload//view1.png`)
@@ -25,7 +26,8 @@ export default class CookingGame extends Phaser.Scene{
     }
 
     create(){
-
+        console.log("now is json time")
+        console.log(this.cache.json.get('jsonData'))
         this.add.text(40,250,'Loading...',{fontSize:50,fill:'#fff'})
         setTimeout(this.hello,2000)
     }
