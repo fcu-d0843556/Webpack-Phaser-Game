@@ -2,6 +2,7 @@ const multer = require('multer')
 const path = require('path') //獲取文件名用
 const sd = require('silly-datetime')
 const mkdirp = require('mkdirp')
+const fs = require('fs')
 
 let userID
 
@@ -51,6 +52,7 @@ let tools = {
                 // console.debug("filename")
                 // console.debug(req)
 
+
                 let extname = path.extname(file.originalname)
 
                 //2.根據時間戳生成文件名
@@ -76,8 +78,60 @@ let tools = {
         return userID
     },
 
+    writeJSONFile : function(userID){
 
+        fs.mkdir(`./src/static/upload/${userID}/`, { recursive: true }, (err) => {
+            if (err) {
+                return console.error(err);
+            }
+            console.log('Directory created successfully!');
+        });
+
+        let allItem = [
+
+        ]
+
+        let getFiles
+        fs.readdir(`./src/static/upload/${userID}/`,function(err,files){
+            if (err) {
+                console.error(err);
+                return
+            }
+            getFiles = files
+            console.log("getFiles :  ")
+            console.log(getFiles)
+
+            for(let num=1;num<=getFiles.length;num++){
+                if(getFiles[num-1]!="userModifyData.json"){
+                    const item = {
+                        name: getFiles[num-1],
+                        src: `src/static/upload/${userID}/${getFiles[num-1]}`
+                    }
+                    allItem.push(item)
+                }
+            }
+
+            console.debug(allItem)
+
+            const user = {
+                userName: userID,
+                items: allItem
+            }
+
+            let JSONObject = JSON.stringify(user)
+
+            console.debug(JSONObject)
+
+            fs.writeFile(`./src/static/upload/${userID}/userModifyData.json`,JSONObject, function(err){
+                if(err){
+                    console.error(err)
+                }
+                console.log("OKOK")
+            })
+        })
+
+    }
 }
 
-
 module.exports = tools
+

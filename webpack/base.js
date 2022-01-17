@@ -70,7 +70,7 @@ module.exports = {
 
       app.get("/", function (req, res) {
         if(req.session.username){
-          console.debug(req.session.username)
+          console.debug("user is : " + req.session.username)
         }else{
           //console.debug("not")
         }
@@ -140,8 +140,6 @@ module.exports = {
 
           if(userInstance){
             userID = req.body.username
-            tools.setUserId(userID)
-            tools.getUserId()
             req.session.username = userID
             res.redirect('/')
           }else{
@@ -184,6 +182,8 @@ module.exports = {
       ]
       // tools.multer().single('avater')
       app.post('/doUpload',tools.multer().fields(uploadFiles) ,function (req, res) {
+        console.debug(req)
+        tools.writeJSONFile(req.session.username);
         res.redirect('/index');
       })
 
