@@ -18,9 +18,9 @@ let tools = {
                 cb(new Error('Please upload an image'))
                 cb(null, false)
             }
-            console.debug("fileFilter")
-            console.debug(req.data)
-            console.debug(file)
+            // console.debug("fileFilter")
+            // console.debug(req.data)
+            // console.debug(file)
 
 
 
@@ -78,7 +78,8 @@ let tools = {
         return userID
     },
 
-    writeJSONFile : function(userID){
+    writeJSONFile : function(userID,uploadFiles){
+
 
         fs.mkdir(`./src/static/upload/${userID}/`, { recursive: true }, (err) => {
             if (err) {
@@ -91,32 +92,57 @@ let tools = {
 
         ]
 
-        let getFiles
-        fs.readdir(`./src/static/upload/${userID}/`,function(err,files){
-            if (err) {
-                console.error(err);
-                return
-            }
-            getFiles = files
-            console.log("getFiles :  ")
-            console.log(getFiles)
 
-            for(let num=1;num<=getFiles.length;num++){
-                if(getFiles[num-1]!="userModifyData.json"){
-                    const item = {
-                        name: getFiles[num-1],
-                        src: `src/static/upload/${userID}/${getFiles[num-1]}`
-                    }
-                    allItem.push(item)
-                }
-            }
 
-            console.debug(allItem)
+        fs.readFile(`./src/static/defaultData/defaultModifyData.json`,function(err,files){
+            console.log("defaultData is : ")
+            let defaultData = JSON.parse(files)
+
+            console.log(defaultData)
+            console.log("len = " +defaultData.length)
 
             const user = {
                 userName: userID,
-                items: allItem
+                items: defaultData
             }
+
+
+            for (const [key, value] of Object.entries(uploadFiles)) {
+                console.debug(key);
+                console.debug(value);
+
+                for(let num = 0; num<=defaultData.length; num++){
+                    if(key == defaultData[num].name){
+
+                        console.log("find!!")
+                        console.log(key)
+                        let getSpiltName = value[0].filename.split('.')
+
+                        user.items[num].name = key
+                        user.items[num].type = getSpiltName[1]
+                        user.items[num].src = `src/static/upload/${userID}/${value[0].filename}`
+                        break
+                    }
+
+                }
+            }
+
+
+            // for(let num=1;num<=defaultData.length;num++){
+            //     let getSpiltName = uploadFiles[num-1].split('.')
+            //     // console.log("getSpiltName is :  "+getSpiltName)
+            //     const item = {
+            //         name: getSpiltName[0],
+            //         type: getSpiltName[1],
+            //         src: `src/static/upload/${userID}/${uploadFiles[num-1]}`
+            //     }
+            //     allItem.push(item)
+
+            // }
+
+            // console.debug(allItem)
+
+
 
             let JSONObject = JSON.stringify(user)
 
@@ -128,8 +154,8 @@ let tools = {
                 }
                 console.log("OKOK")
             })
-        })
 
+        })
     }
 }
 

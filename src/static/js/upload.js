@@ -41,7 +41,6 @@ window.addEventListener("load",function(){
 
     })
 
-
     if(foodCan){
         foodCan.addEventListener("change",function(event){
             console.log(event)

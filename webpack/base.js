@@ -175,15 +175,11 @@ module.exports = {
         }, {
           name: 'rawFood',
           maxCount: 1
-        },{
-          name: 'test',
-          maxCount: 1
         }
       ]
       // tools.multer().single('avater')
       app.post('/doUpload',tools.multer().fields(uploadFiles) ,function (req, res) {
-        console.debug(req)
-        tools.writeJSONFile(req.session.username);
+        tools.writeJSONFile(req.session.username,req.files);
         res.redirect('/index');
       })
 

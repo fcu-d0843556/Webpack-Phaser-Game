@@ -1,1 +1,1 @@
-{"userName":"1","items":[{"name":"foodCan.png","src":"src/static/upload/1/foodCan.png"}]}
+{"userName":"1","items":[{"name":"background","type":"png","src":"src/static/upload/1/background.png"},{"name":"foodCan","type":"png","src":"src/static/upload/1/foodCan.png"},{"name":"rawFood","type":"png","src":"src/static/upload/1/rawFood.png"}]}

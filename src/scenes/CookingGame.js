@@ -22,8 +22,8 @@ export default class CookingGame extends Phaser.Scene{
     }
 
     preload(){
-        this.load.json('jsonData',`src/static/upload/user/try.json`)
         this.jsonData = this.cache.json.get('jsonData');
+        console.log("find jsonData")
         console.log(this.jsonData)
 
         this.load.image('half','src/assets/halfFood.png')
@@ -31,10 +31,12 @@ export default class CookingGame extends Phaser.Scene{
         this.load.image('well','src/assets/wellFood.png')
         this.load.image('panel','src/assets/cookpanel.png')
         this.load.image('cookSpot','src/assets/cookSpot.png')
-        // this.load.image('raw','src/assets/rawFood.png')
-        // this.load.image('foodCan',`src/assets/foodCan.png`)
-        for(let t=0;t<this.jsonData.length;t++){
-            this.load.image(this.jsonData[t].name,this.jsonData[t].src)
+        const items = this.jsonData.items
+        console.log("items =")
+        console.log(items)
+
+        for(let t=0; t<items.length; t++){
+            this.load.image(items[t].name, items[t].src)
         }
 
 
@@ -44,7 +46,6 @@ export default class CookingGame extends Phaser.Scene{
     create(){
 
         console.log("create" + userID)
-        //this.load.image('foodCan',`src/static/upload/333/btn_login_hover.png`)
 
         this.add.image(400,300,'background')
         this.add.image(400,480,'panel')
@@ -59,13 +60,13 @@ export default class CookingGame extends Phaser.Scene{
         // ha = this.physics.add.sprite(300,300,'well')
         // ha.setInteractive()
         // this.input.setDraggable(ha)
-        this.food = new foodSpawner(this,'raw')
+        this.food = new foodSpawner(this,'rawFood')
         var id = 0
         this.foodGroup = []
         this.cookGroup = this.createFoodSpot()
         this.foodCan = this.physics.add.sprite(130,340,'foodCan')
         this.foodCan.setInteractive().on('pointerdown',function(){
-            this.food = new foodSpawner(this,'raw',id)
+            this.food = new foodSpawner(this,'rawFood',id)
             this.foodGroup.push(this.food)
             this.foodGroup[id].spawn()
             id++

@@ -27,6 +27,19 @@
 
 </head>
 <body style="background-color: orange;">
+    <script>
+        // let p = <%= username%>
+        // console.log("name : " + p)
+        let gameNum = 1
+        function counting(){
+            gameNum++
+            if(gameNum>=4){
+                gameNum=1
+            }
+            console.log("html side" + gameNum)
+        }
+    </script>
+
 	<!-- upper bar V -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
         <div class="container-fluid">
@@ -53,11 +66,6 @@
         </div>
     </nav>
 
-    <!-- <div id="hello-vue" class="demo">
-        {{ message }}
-    </div> -->
-    <!-- main content -->
-
     <div class="container-fluid">
 
         <!-- left game bar -->
@@ -70,6 +78,8 @@
             <!-- middle detail form -->
             <div class="col-8">
                 <div class="row">
+
+                    <!-- middle red show bar -->
                     <div id="detailCard" class="overflow col-7">
                         <div>
                             <div class="row row-cols-1 row-cols-md-2 g-4 " >
@@ -108,6 +118,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <!-- right select bar -->
                     <div class="col-5">
                         <div class="bd-link">
@@ -116,14 +128,13 @@
                                     <div class="card-header">
                                         <div class="mb-3">
                                             <label class="form-label">製 作 桶</label>
+                                            <input name="DefaultfoodCan" id="DefaultfoodCan" class="card-img-top" alt="...">
                                             <input class="form-control" type="file" name="foodCan" id="foodCan">
                                         </div>
                                     </div>
                                     <div  class="card-body">
                                     <h5 class="card-title">預覽圖</h5>
-                                    <input class="form-control" type="text" name="zzzz" id="zzzz" value="lololololololo">
 
-                                    <input type="image" style="display: none;" id="foodCanImage">
                                     <img style="width: 50%; height: 50%;" id="foodCanImage">
                                     </div>
                                     <div class="card-footer text-muted">
@@ -163,8 +174,10 @@
 
                                 <div class="card-footer text-muted">
                                     <button type="submit" onclick="saveFormData()" class="btn btn-dark">提交資料</button>
+
                                 </div>
                             </form>
+                            <button onclick="clear()" class="btn btn-dark">clear1</button>
                         </div>
                     </div>
                 </div>
@@ -175,17 +188,6 @@
     </div>
 
 
-    <script>
-        // let p = <%= username%>
-        // console.log("name : " + p)
-        let gameNum = 1
-        function counting(){
-            gameNum++
-            if(gameNum>=4){
-                gameNum=1
-            }
-            console.log("html side" + gameNum)
-        }
-    </script>
+
 </body>
 </html>
