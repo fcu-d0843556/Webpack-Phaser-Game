@@ -118,7 +118,7 @@ let tools = {
             }
 
             for(let num = 0; num<=defaultData.length; num++){
-                if(inputData[ key + "_default" ]){
+                if(inputData[ defaultData[num].name + "_default" ]){
                     console.debug("find " + key + "_default");
                     user.items[num].src = inputData[key+"_default"]
                     break
