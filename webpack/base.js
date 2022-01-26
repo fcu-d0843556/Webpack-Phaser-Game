@@ -6,6 +6,7 @@ const {  CleanWebpackPlugin } = require("clean-webpack-plugin");
 const session = require('express-session')
 const Models = require('../src/mongo.js')
 const mongoose = require('mongoose')
+// const bootstrap = require('bootstrap')
 
 mongoose.connect('mongodb://127.0.0.1:27017/PhaserGame', function (err) {
   if (err) {
@@ -28,11 +29,11 @@ module.exports = {
     fs: "empty"
   },
   entry: {
-    index: './src/index.js',
-    change: './src/static/js/change.js',
-    click: './src/static/js/clicked.js',
-    tools: './src/model/tools.js',
-    preloadImage: './src/static/js/preloadImage.js'
+    index: './src/index.js'
+    // change: './src/static/js/change.js',
+    // click: './src/static/js/clicked.js',
+    // tools: './src/model/tools.js',
+    // preloadImage: './src/static/js/preloadImage.js'
   },
   //devServer既可做到app.js的功能，其他的require也是寫在這裡
   devServer: {
@@ -200,6 +201,13 @@ module.exports = {
       {
         test: /\.(gif|png|jpe?g|svg|xml)$/i,
         use: "file-loader"
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       }
     ]
   },

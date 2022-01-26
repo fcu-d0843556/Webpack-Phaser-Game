@@ -101,13 +101,13 @@ let tools = {
                 userName: userID,
                 items: defaultData
             }
-
+            console.debug(defaultData);
 
             for (const [key, value] of Object.entries(uploadFiles)) {
                 // console.debug(key);
                 // console.debug(value);
                 console.debug("find" + key );
-                for(let num = 0; num<=defaultData.length; num++){
+                for(let num = 0; num<defaultData.length; num++){
                     if(key == defaultData[num].name){
                         let getSpiltName = value[0].filename.split('.')
                         user.items[num].type = getSpiltName[1]
@@ -117,11 +117,11 @@ let tools = {
                 }
             }
 
-            for(let num = 0; num<=defaultData.length; num++){
-                if(inputData[ defaultData[num].name + "_default" ]){
-                    console.debug("find " + key + "_default");
-                    user.items[num].src = inputData[key+"_default"]
-                    break
+            for(let num = 0; num<defaultData.length; num++){
+                console.debug(defaultData[num].name);
+                if(inputData[ defaultData[num].name + "_default" ] && inputData[ defaultData[num].name + "_default" ] != ""){
+                    console.debug("find " + defaultData[num].name + "_default");
+                    user.items[num].src = inputData[defaultData[num].name+"_default"]
                 }
             }
 
