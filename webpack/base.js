@@ -179,7 +179,7 @@ module.exports = {
       ]
       // tools.multer().single('avater')
       app.post('/doUpload',tools.multer().fields(uploadFiles) ,function (req, res) {
-        tools.writeJSONFile(req.session.username,req.files);
+        tools.writeJSONFile(req.session.username,req.files,req.body);
         res.redirect('/index');
       })
 

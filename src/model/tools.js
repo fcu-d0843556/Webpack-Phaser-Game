@@ -78,9 +78,9 @@ let tools = {
         return userID
     },
 
-    writeJSONFile : function(userID,uploadFiles){
+    writeJSONFile : function(userID,uploadFiles,inputData){
 
-
+        console.log(inputData)
         fs.mkdir(`./src/static/upload/${userID}/`, { recursive: true }, (err) => {
             if (err) {
                 return console.error(err);
@@ -95,11 +95,7 @@ let tools = {
 
 
         fs.readFile(`./src/static/defaultData/defaultModifyData.json`,function(err,files){
-            console.log("defaultData is : ")
             let defaultData = JSON.parse(files)
-
-            console.log(defaultData)
-            console.log("len = " +defaultData.length)
 
             const user = {
                 userName: userID,
@@ -108,45 +104,31 @@ let tools = {
 
 
             for (const [key, value] of Object.entries(uploadFiles)) {
-                console.debug(key);
-                console.debug(value);
-
+                // console.debug(key);
+                // console.debug(value);
+                console.debug("find" + key );
                 for(let num = 0; num<=defaultData.length; num++){
                     if(key == defaultData[num].name){
-
-                        console.log("find!!")
-                        console.log(key)
                         let getSpiltName = value[0].filename.split('.')
-
-                        user.items[num].name = key
                         user.items[num].type = getSpiltName[1]
                         user.items[num].src = `src/static/upload/${userID}/${value[0].filename}`
                         break
                     }
+                }
+            }
 
+            for(let num = 0; num<=defaultData.length; num++){
+                if(inputData[ key + "_default" ]){
+                    console.debug("find " + key + "_default");
+                    user.items[num].src = inputData[key+"_default"]
+                    break
                 }
             }
 
 
-            // for(let num=1;num<=defaultData.length;num++){
-            //     let getSpiltName = uploadFiles[num-1].split('.')
-            //     // console.log("getSpiltName is :  "+getSpiltName)
-            //     const item = {
-            //         name: getSpiltName[0],
-            //         type: getSpiltName[1],
-            //         src: `src/static/upload/${userID}/${uploadFiles[num-1]}`
-            //     }
-            //     allItem.push(item)
-
-            // }
-
-            // console.debug(allItem)
-
-
-
             let JSONObject = JSON.stringify(user)
 
-            console.debug(JSONObject)
+            // console.debug(JSONObject)
 
             fs.writeFile(`./src/static/upload/${userID}/userModifyData.json`,JSONObject, function(err){
                 if(err){

@@ -1,3 +1,6 @@
+const uploadList = {
+
+}
 
 window.addEventListener("load",function(){
     const chooseCard1 = document.getElementById("chooseCard1");
@@ -35,46 +38,59 @@ window.addEventListener("load",function(){
     })
 
     defaultCard1.addEventListener('click',function(){
-        defaultCard1.style.border = "5px #0d6efd solid";
-        const pic = document.getElementById( "foodCan" + "Image");
-        pic.src = "/src/static/img/view1.png";
-
+        if(defaultCard1.style.border == ""){
+            defaultCard1.style.border = "5px #0d6efd solid";
+            showPicDefault("/src/static/img/view1.png", "foodCan")
+        }else{
+            defaultCard1.style.border = "";
+            showPicDefault("", "foodCan")
+        }
     })
 
     if(foodCan){
         foodCan.addEventListener("change",function(event){
             console.log(event)
-            showPic(event,"foodCan")
+            showPicFile(event,"foodCan")
         })
     }
 
     if(rawFood){
         rawFood.addEventListener("change",function(event){
-            showPic(event,"rawFood")
+            showPicFile(event,"rawFood")
         })
     }
 
     if(background){
         background.addEventListener("change",function(event){
-            showPic(event,"background")
+            showPicFile(event,"background")
         })
     }
-
-    // const HelloVueApp = {
-    //     data() {
-    //         return {
-    //         message: 'Hello Vue!!'
-    //         }
-    //     }
-    // }
-    // Vue.createApp(HelloVueApp).mount('#hello-vue')
 })
 
 
-const showPic = function(event, keyword){
+const showPicFile = function(event, keyword){
+    console.log("showPic type " + keyword)
     const file = event.target.files;
-    const pic = document.getElementById( keyword + "Image");
+
+    const pic = document.getElementById( keyword + "_image");
+
     pic.src = URL.createObjectURL(file[0])
+    uploadList[keyword] = pic.src
+}
+
+const showPicDefault = function(src , keyword){
+    console.log("showPic type " + keyword)
+    const defaultText = document.getElementById( keyword + "_default" )
+    defaultText.value = src;
+    const pic = document.getElementById( keyword + "_image")
+
+    pic.src = src
+
+    if(uploadList[keyword]&&src == ""){
+        pic.src = uploadList[keyword]
+    }
+
+
 }
 
 const highlightCard = function(item){
