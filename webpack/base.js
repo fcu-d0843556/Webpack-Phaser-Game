@@ -40,7 +40,7 @@ module.exports = {
     inline: true,
 
     port: 3000,
-
+    disableHostCheck: true,
     publicPath: '/',
 
     setup(app) {
@@ -125,8 +125,11 @@ module.exports = {
       })
 
       app.get("/index",function(req,res){
+        console.log("userJsonData is : ")
+        console.log(tools.readUserJsonFiles())
         res.render("index",{
-          username: req.session.username
+          username: req.session.username,
+          userJsonData: tools.readUserJsonFiles()
         })
       })
 

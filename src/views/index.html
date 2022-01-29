@@ -30,6 +30,8 @@
     <script>
         // let p = <%= username%>
         // console.log("name : " + p)
+        console.log("look me")
+        console.log("look me!!!")
         let gameNum = 1
         function counting(){
             gameNum++
@@ -60,7 +62,8 @@
                     </li>
                     <input id="changeScene" type = "button" value = "changeScene">
                     <input id="goBackSetting" type = "button" value = "goBackSetting">
-                    <input id="getUserId" type = "hidden" value = "<%= username%>">
+                    <input id="getUserId" type = "button" value = "<%= username%>">
+                    <input id="getUserIdz" type = "text" value = "<%= userJsonData.items[0].name%>">
                 </ul>
             </div>
         </div>

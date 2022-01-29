@@ -138,6 +138,12 @@ let tools = {
             })
 
         })
+    },
+
+    readUserJsonFiles : function(){
+        let userData = fs.readFileSync(`./src/static/upload/${userID}/userModifyData.json`)
+        userData = JSON.parse(userData)
+        return userData
     }
 }
 
