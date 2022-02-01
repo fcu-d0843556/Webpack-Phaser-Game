@@ -13,11 +13,8 @@ var zone
 export default class CookingGame extends Phaser.Scene{
     constructor(){
         super('cooking')
-        console.log("aa : " + this.id)
 
         this.food = undefined
-        console.log("c" + userID)
-
 
     }
 

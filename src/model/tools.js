@@ -18,11 +18,6 @@ let tools = {
                 cb(new Error('Please upload an image'))
                 cb(null, false)
             }
-            // console.debug("fileFilter")
-            // console.debug(req.data)
-            // console.debug(file)
-
-
 
             cb(null, true)
         }
@@ -34,8 +29,6 @@ let tools = {
 
                 //1.獲取當前日期 20211016
                 let day = sd.format(new Date(), 'YYYYMMDD')
-                // console.debug("destination")
-                // console.debug(req)
 
                 //2.按照日期生成圖片存儲目錄，mkdirp是一個異步的方法
                 let dir = path.join("src/static/upload", req.session.username)
@@ -101,7 +94,7 @@ let tools = {
                 userName: userID,
                 items: defaultData
             }
-            console.debug(defaultData);
+            // console.debug(defaultData);
 
             for (const [key, value] of Object.entries(uploadFiles)) {
                 // console.debug(key);
@@ -118,9 +111,9 @@ let tools = {
             }
 
             for(let num = 0; num<defaultData.length; num++){
-                console.debug(defaultData[num].name);
+                // console.debug(defaultData[num].name);
                 if(inputData[ defaultData[num].name + "_default" ] && inputData[ defaultData[num].name + "_default" ] != ""){
-                    console.debug("find " + defaultData[num].name + "_default");
+                    // console.debug("find " + defaultData[num].name + "_default");
                     user.items[num].src = inputData[defaultData[num].name+"_default"]
                 }
             }
@@ -140,7 +133,8 @@ let tools = {
         })
     },
 
-    readUserJsonFiles : function(){
+    readUserJsonFiles : function(userID){
+        console.log("load readUser : " + userID)
         let userData = fs.readFileSync(`./src/static/upload/${userID}/userModifyData.json`)
         userData = JSON.parse(userData)
         return userData

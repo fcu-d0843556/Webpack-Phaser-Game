@@ -1,6 +1,7 @@
 const uploadList = {
 
 }
+let cardSpot = 0
 
 window.addEventListener("load",function(){
     const chooseCard1 = document.getElementById("chooseCard1");
@@ -40,10 +41,37 @@ window.addEventListener("load",function(){
     defaultCard1.addEventListener('click',function(){
         if(defaultCard1.style.border == ""){
             defaultCard1.style.border = "5px #0d6efd solid";
-            showPicDefault("/src/static/img/view1.png", "foodCan")
+            switch(cardSpot){
+                case 1:
+                    showPicDefault("/src/static/img/view1.png", "foodCan")
+                    break
+                case 2:
+                    showPicDefault("/src/static/img/view2.png", "background")
+                    break
+                case 3:
+                    showPicDefault("/src/static/img/view3.png", "rawFood")
+                    break
+                default:
+                    console.log("default")
+                    break
+            }
+
         }else{
             defaultCard1.style.border = "";
-            showPicDefault("", "foodCan")
+            switch(cardSpot){
+                case 1:
+                    showPicDefault("", "foodCan")
+                    break
+                case 2:
+                    showPicDefault("", "background")
+                    break
+                case 3:
+                    showPicDefault("", "rawFood")
+                    break
+                default:
+                    console.log("default")
+                    break
+            }
         }
     })
 
@@ -89,8 +117,6 @@ const showPicDefault = function(src , keyword){
     if(uploadList[keyword]&&src == ""){
         pic.src = uploadList[keyword]
     }
-
-
 }
 
 const highlightCard = function(item){
@@ -107,10 +133,13 @@ const highlightCard = function(item){
 
     defaultCard1.style.border = "";
     if(item == chooseCard1){
+        cardSpot = 1
         defaultPic1.src = "/src/static/img/view1.png"
     }else if(item == chooseCard2){
+        cardSpot = 2
         defaultPic1.src = "/src/static/img/view2.png"
     }else if(item == chooseCard3){
+        cardSpot = 3
         defaultPic1.src = "/src/static/img/view3.png"
     }
 
@@ -118,5 +147,10 @@ const highlightCard = function(item){
 
 const saveFormData = function(){
     console.log("hello!")
+}
+
+const test = function(){
+    console.log("test: ")
+    console.log(uploadList)
 }
 

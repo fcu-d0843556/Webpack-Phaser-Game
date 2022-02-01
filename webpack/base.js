@@ -126,10 +126,10 @@ module.exports = {
 
       app.get("/index",function(req,res){
         console.log("userJsonData is : ")
-        console.log(tools.readUserJsonFiles())
+        console.log(tools.readUserJsonFiles(req.session.username))
         res.render("index",{
           username: req.session.username,
-          userJsonData: tools.readUserJsonFiles()
+          userJsonData: tools.readUserJsonFiles(req.session.username)
         })
       })
 
