@@ -1,21 +1,13 @@
-import {userID} from "../index"
 import Phaser from "phaser"
 import foodSpawner from "../firstGameSystem/foodSpawner"
 
-const userPath = sessionStorage.getItem("userID");
-
-
-console.log("CookIng : " + userPath)
-
-console.log("out" + userID)
 var zone
 
 export default class CookingGame extends Phaser.Scene{
-    constructor(){
+    constructor(userID){
         super('cooking')
-
+        this.userID = userID
         this.food = undefined
-
     }
 
     preload(){
@@ -42,7 +34,6 @@ export default class CookingGame extends Phaser.Scene{
 
     create(){
 
-        console.log("create" + userID)
 
         this.add.image(400,300,'background')
         this.add.image(400,480,'panel')
@@ -136,9 +127,7 @@ export default class CookingGame extends Phaser.Scene{
         for(var i= 0 ;i<this.foodGroup.length;i++){
             this.foodGroup[i].timer.update()
         }
-        // console.log(userID)
         zone.body.debugBodyColor = zone.body.touching.none ? 0x00ffff : 0xffff00
-        // this.scene.start("bangbangShooting")
     }
 }
 

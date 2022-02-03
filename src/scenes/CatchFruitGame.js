@@ -9,7 +9,6 @@ import BombSpawner from "../firstGameSystem/BombSpawner"
 const userPath = sessionStorage.getItem("userID");
 
 
-
 const BombKey = 'bomb'
 const StarKey = 'star'
 /* G:\FCU\大專生報告\20210705後\Games\phaser3-parcel-template-master
@@ -30,9 +29,9 @@ export default class CatchFruitGame extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image('background',`src/static/upload/${userPath}/background.png`);
-        this.load.image('star',`src/static/upload/${userPath}/star.png`);
-        this.load.spritesheet('dude',`src/static/upload/${userPath}/dude.png`,{
+        this.load.image('background',`src/static/upload/${userPath}/catch-fruit/background.png`);
+        this.load.image('star',`src/static/upload/${userPath}/catch-fruit//star.png`);
+        this.load.spritesheet('dude',`src/static/upload/${userPath}/catch-fruit//dude.png`,{
             frameWidth: 32, frameHeight:48
         });
         this.load.image('ground','src/assets/platform.png');

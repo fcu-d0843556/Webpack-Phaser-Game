@@ -11,7 +11,14 @@
 
     <script src="/src/static/bootstrap/js/bootstrap.min.js"></script>
 
-
+    <script>
+        let setGameID = function(ID){
+            let text = document.getElementById("getGameID")
+            text.value = ID
+            let form = document.getElementById("submit")
+            form.submit()
+        }
+    </script>
 </head>
 <body>
     <!-- upper bar V -->
@@ -45,20 +52,23 @@
         </button>
 
         <div class="phone-style translate-mid center-position">
-
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                    <img src="/src/static/img/P1.png" class="d-block img-center" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                    <img src="/src/static/img/P2.png" class="d-block img-center" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                    <img src="/src/static/img/P3.png" class="d-block img-center" alt="...">
+            <form id="submit" method="post" action="/chooseGame">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/src/static/img/P1.png" onclick="setGameID('cooking')" class="d-block img-center">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/src/static/img/P2.png" onclick="setGameID('catch-fruit')" class="d-block img-center">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/src/static/img/P3.png" onclick="setGameID('bangbangShooting')" class="d-block img-center">
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <input type="text" id="getGameID" name="getGameID">
+            </form>
         </div>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>

@@ -30,8 +30,7 @@
     <script>
         // let p = <%= username%>
         // console.log("name : " + p)
-        console.log("look me")
-        console.log("look me!!!")
+
         let gameNum = 1
         function counting(){
             gameNum++
@@ -60,9 +59,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
-                    <input id="changeScene" type = "button" value = "changeScene">
-                    <input id="goBackSetting" type = "button" value = "goBackSetting">
-                    <input id="getUserId" type = "button" value = "<%= username%>">
+                    <input id="getUserID" type = "text" value = "<%= username%>">
+                    <input id="getGameID" type = "text" value = "<%= gameID%>">
                     <input id="getUserIdz" type = "text" value = "<%= userJsonData.items[1].src%>">
                 </ul>
             </div>

@@ -2,17 +2,20 @@ import Phaser from "phaser"
 import getMouseSpot from "../firstGameSystem/getMouseSpot"
 
 export default class ShootingGame extends Phaser.Scene{
-    constructor(){
+    constructor(userID){
         super("bangbangShooting")
+        this.userID = userID
     }
 
 
     preload(){
+        console.log("bangbang userID is :" + this.userID)
+
         // this.load.tilemapTiledJSON('b1','tiles/balloonss.json')
         for(var i=1;i<6;i++){
             this.load.image('balloon' + i,'src/assets/balloon' + i + '.png')
         }
-        this.load.image('sky','src/assets/sky.png')
+        this.load.image('background','src/assets/background.png')
         this.load.image('star','src/assets/star.png')
         this.load.image('gun','src/assets/gun.png')
         this.load.image('target','src/assets/targetS.png')
@@ -23,7 +26,7 @@ export default class ShootingGame extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(400,300,'sky')
+        this.add.image(400,300,'background')
 
         this.cursor = this.input.keyboard.createCursorKeys()
         this.add.image(400,520,'gun').setScale(0.21,0.21)

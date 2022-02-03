@@ -124,12 +124,23 @@ module.exports = {
         res.render("chooseGame")
       })
 
+      app.post("/chooseGame",function(req,res){
+        console.log("chooseGame!")
+        console.log(req.body)
+        req.session.gameID = req.body.getGameID
+        tools.createDefaultJsonFile(userID,req.session.gameID)
+        console.log("lookme")
+        res.redirect('/index')
+      })
+
       app.get("/index",function(req,res){
-        console.log("userJsonData is : ")
-        console.log(tools.readUserJsonFiles(req.session.username))
+        // console.log("userJsonData is : ")
+        // console.log(req.body)
+        // console.log(tools.readUserJsonFiles(req.session.username,req.session.gameID))
         res.render("index",{
           username: req.session.username,
-          userJsonData: tools.readUserJsonFiles(req.session.username)
+          gameID: req.session.gameID,
+          userJsonData: tools.readUserJsonFiles(req.session.username,req.session.gameID)
         })
       })
 
@@ -183,7 +194,7 @@ module.exports = {
       ]
       // tools.multer().single('avater')
       app.post('/doUpload',tools.multer().fields(uploadFiles) ,function (req, res) {
-        tools.writeJSONFile(req.session.username,req.files,req.body);
+        tools.writeJSONFile(req.session.username,req.session.gameID,req.files,req.body);
         res.redirect('/index');
       })
 

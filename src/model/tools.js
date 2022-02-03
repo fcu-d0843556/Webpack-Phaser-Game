@@ -31,7 +31,7 @@ let tools = {
                 let day = sd.format(new Date(), 'YYYYMMDD')
 
                 //2.按照日期生成圖片存儲目錄，mkdirp是一個異步的方法
-                let dir = path.join("src/static/upload", req.session.username)
+                let dir = path.join("src/static/upload", req.session.username,req.session.gameID)
                 await mkdirp(dir)
 
                 cb(null, dir) //上傳之前目錄必須存在
@@ -71,10 +71,10 @@ let tools = {
         return userID
     },
 
-    writeJSONFile : function(userID,uploadFiles,inputData){
+    writeJSONFile : function(userID,gameID,uploadFiles,inputData){
 
         console.log(inputData)
-        fs.mkdir(`./src/static/upload/${userID}/`, { recursive: true }, (err) => {
+        fs.mkdir(`./src/static/upload/${userID}/${gameID}`, { recursive: true }, (err) => {
             if (err) {
                 return console.error(err);
             }
@@ -87,29 +87,17 @@ let tools = {
 
 
 
-        fs.readFile(`./src/static/defaultData/defaultModifyData.json`,function(err,files){
+        fs.readFile(`./src/static/defaultData/${gameID}/defaultModifyData.json`,function(err,files){
             let defaultData = JSON.parse(files)
-
+            //先寫入默認的檔案
             const user = {
                 userName: userID,
                 items: defaultData
             }
             // console.debug(defaultData);
 
-            for (const [key, value] of Object.entries(uploadFiles)) {
-                // console.debug(key);
-                // console.debug(value);
-                console.debug("find" + key );
-                for(let num = 0; num<defaultData.length; num++){
-                    if(key == defaultData[num].name){
-                        let getSpiltName = value[0].filename.split('.')
-                        user.items[num].type = getSpiltName[1]
-                        user.items[num].src = `src/static/upload/${userID}/${value[0].filename}`
-                        break
-                    }
-                }
-            }
 
+            //可用預設圖片的覆蓋
             for(let num = 0; num<defaultData.length; num++){
                 // console.debug(defaultData[num].name);
                 if(inputData[ defaultData[num].name + "_default" ] && inputData[ defaultData[num].name + "_default" ] != ""){
@@ -118,12 +106,29 @@ let tools = {
                 }
             }
 
+            //上傳檔案的覆蓋
+            for (const [key, value] of Object.entries(uploadFiles)) {
+                // console.debug(key);
+                // console.debug(value);
+                console.debug("find" + key );
+                for(let num = 0; num<defaultData.length; num++){
+                    if(key == defaultData[num].name){
+                        let getSpiltName = value[0].filename.split('.')
+                        user.items[num].type = getSpiltName[1]
+                        user.items[num].src = `src/static/upload/${userID}/${gameID}/${value[0].filename}`
+                        break
+                    }
+                }
+            }
+
+
+
 
             let JSONObject = JSON.stringify(user)
 
             // console.debug(JSONObject)
 
-            fs.writeFile(`./src/static/upload/${userID}/userModifyData.json`,JSONObject, function(err){
+            fs.writeFile(`./src/static/upload/${userID}/${gameID}/userModifyData.json`,JSONObject, function(err){
                 if(err){
                     console.error(err)
                 }
@@ -133,11 +138,42 @@ let tools = {
         })
     },
 
-    readUserJsonFiles : function(userID){
-        console.log("load readUser : " + userID)
-        let userData = fs.readFileSync(`./src/static/upload/${userID}/userModifyData.json`)
+    readUserJsonFiles : function(userID,gameID){
+        console.log("load readUser userID : " + userID + " gameID :" + gameID)
+        let userData
+        userData = fs.readFileSync(`./src/static/upload/${userID}/${gameID}/userModifyData.json`)
+
         userData = JSON.parse(userData)
         return userData
+    },
+
+    createDefaultJsonFile : function(userID,gameID){
+        fs.mkdirSync(`./src/static/upload/${userID}/${gameID}`, { recursive: true }, (err) => {
+            if (err) {
+                return console.error(err);
+            }
+            console.log('createDefaultJsonFile successfully!');
+        });
+
+        fs.readFile(`./src/static/defaultData/${gameID}/defaultModifyData.json`,function(err,files){
+            let defaultData = JSON.parse(files)
+
+            const user = {
+                userName: userID,
+                items: defaultData
+            }
+
+            let JSONObject = JSON.stringify(user)
+
+            fs.writeFile(`./src/static/upload/${userID}/${gameID}/userModifyData.json`,JSONObject, function(err){
+                if(err){
+                    console.error(err)
+                }
+                console.log("OKOK")
+            })
+
+        })
+        console.log('createDefaultJsonFile end!');
     }
 }
 

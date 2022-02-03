@@ -1,1 +1,16 @@
-{"userName":"1","items":[{"name":"background","type":"png","src":"/src/static/img/view2.png"},{"name":"foodCan","type":"png","src":"/src/static/img/view1.png"},{"name":"rawFood","type":"png","src":"/src/static/img/view3.png"}]}
+{
+    "userName": "1",
+    "items": [{
+        "name": "background",
+        "type": "png",
+        "src": "/src/static/img/view2.png"
+    }, {
+        "name": "foodCan",
+        "type": "png",
+        "src": "/src/static/img/view1.png"
+    }, {
+        "name": "rawFood",
+        "type": "png",
+        "src": "/src/static/img/view3.png"
+    }]
+}
