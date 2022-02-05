@@ -63,7 +63,7 @@ module.exports = {
         resave: false,             //強制保存 session 即使它並沒有變化
         saveUninitialized: true,   //強制將未初始化的 session 存儲
         cookie:{
-            maxAge: 3*60*1000,
+            maxAge: 10*60*1000,
             secure: false          //true表只有https協議才能訪問cookie
         },
         rolling:true               //在每次請求時強行設置 cookie, 這將重置 cookie 過期時間（默認：false）

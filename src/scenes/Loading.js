@@ -44,6 +44,10 @@ export default class Loading extends Phaser.Scene{
                     console.log("start catch-fruit !")
                     this.scene.start("catch-fruit")
                     break
+                case 'chuochuole':
+                    console.log("start chuochuole !")
+                    this.scene.start("chuochuole")
+                    break
                 default:
                     console.log("still loading !")
                     this.scene.start("loading")
