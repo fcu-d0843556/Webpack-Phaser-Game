@@ -40,7 +40,7 @@ module.exports = {
     inline: true,
 
     port: 3000,
-    disableHostCheck: true,
+
     publicPath: '/',
 
     setup(app) {
