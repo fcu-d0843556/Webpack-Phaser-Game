@@ -45,10 +45,7 @@ export default class CookingGame extends Phaser.Scene{
         zone.body.setAllowGravity(false)
         zone.body.moves = false
 
-        // ha = this.physics.add.sprite(300,300,'well')
-        // ha.setInteractive()
-        // this.input.setDraggable(ha)
-        this.food = new foodSpawner(this,'rawFood')
+
         var id = 0
         this.foodGroup = []
         this.cookGroup = this.createFoodSpot()
@@ -69,7 +66,7 @@ export default class CookingGame extends Phaser.Scene{
         // return this.food
         this.input.on('dragover', function (pointer, gameObject, dropZone) {
             dropZone.setTint(0xffffff);
-            // console.log('in')
+            console.log('name : ' + gameObject.name)
             var name = parseInt(gameObject.name)
 
             this.foodGroup[name].timer.label.x = gameObject.x

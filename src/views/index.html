@@ -6,8 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Phaser3 + Parceljs Template</title>
 
-    <!-- Vue -->
-    <script src="https://unpkg.com/vue@next"></script>
 
 
     <!-- bootstrap function and css style -->
@@ -27,19 +25,9 @@
 
 </head>
 <body style="background-color: orange;">
-    <script>
-        // let p = <%= username%>
-        // console.log("name : " + p)
 
-        let gameNum = 1
-        function counting(){
-            gameNum++
-            if(gameNum>=4){
-                gameNum=1
-            }
-            console.log("html side" + gameNum)
-        }
-    </script>
+
+    <div id="root"></div>
 
 	<!-- upper bar V -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
@@ -82,39 +70,44 @@
 
                     <!-- middle red show bar -->
                     <div id="detailCard" class="overflow col-7">
+                        <h2 style="text-align:center;">使用預設圖片</h1>
                         <div>
                             <div class="row row-cols-1 row-cols-md-2 g-4 " >
+
                                 <div class="col">
-                                <div id="defaultCard1" class="card">
-                                    <img id="defaultPic1" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
+                                    <div id="defaultCard1" class="card">
+                                        <img id="defaultPic1" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
+
                                 <div class="col">
-                                <div class="card">
-                                    <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
+                                    <div class="card">
+                                        <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
+
                                 <div class="col">
-                                <div class="card">
-                                    <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
+                                    <div class="card">
+                                        <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
+
                                 <div class="col">
-                                <div class="card">
-                                    <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
+                                    <div class="card">
+                                        <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -191,6 +184,12 @@
     </div>
 
 
-
+    <!-- 載入 React。 -->
+    <!-- 注意：在發佈應用程式前，請把「development.js」替換成「production.min.js」。 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <!-- 載入我們的 React component。-->
+    <script type="text/babel" src="/src/static/js/renderModifyBox.js"></script>
 </body>
 </html>

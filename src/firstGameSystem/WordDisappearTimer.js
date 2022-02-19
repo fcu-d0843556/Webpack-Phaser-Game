@@ -35,6 +35,10 @@ export default class WordDisappearTimer {
     }
 
     breakStart(callback,duration){
+        this.heart = this.scene.physics.add.image(this.x,this.y,'heart')
+
+        this.scene.physics.moveToObject(this.heart, {x:this.x,y:this.y-10}, 50);
+
         this.textTimer = this.scene.add.text(20,130,this.text,{fontSize:25,fill:'#fff',backgroundColor:'rgba(0,255,0,0.25)'})
         this.BreakTimerEvent = this.scene.time.addEvent({
             delay: duration,
@@ -51,6 +55,7 @@ export default class WordDisappearTimer {
     breakStop(){
         if(this.BreakTimerEvent){
             this.BreakTimerEvent.destroy()
+            this.heart.destroy()
             this.BreakTimerEvent = undefined
             this.textTimer.destroy(true,true)
         }

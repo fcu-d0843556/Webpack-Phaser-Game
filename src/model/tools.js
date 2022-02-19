@@ -148,32 +148,38 @@ let tools = {
     },
 
     createDefaultJsonFile : function(userID,gameID){
-        fs.mkdirSync(`./src/static/upload/${userID}/${gameID}`, { recursive: true }, (err) => {
-            if (err) {
-                return console.error(err);
-            }
-            console.log('createDefaultJsonFile successfully!');
-        });
-
-        fs.readFile(`./src/static/defaultData/${gameID}/defaultModifyData.json`,function(err,files){
-            let defaultData = JSON.parse(files)
-
-            const user = {
-                userName: userID,
-                items: defaultData
-            }
-
-            let JSONObject = JSON.stringify(user)
-
-            fs.writeFile(`./src/static/upload/${userID}/${gameID}/userModifyData.json`,JSONObject, function(err){
-                if(err){
-                    console.error(err)
+        console.log("createDefaultJsonFile")
+        if(!fs.readFileSync(`./src/static/upload/${userID}/${gameID}/userModifyData.json`)){
+            console.log("not found save json")
+            fs.mkdirSync(`./src/static/upload/${userID}/${gameID}`, { recursive: true }, (err) => {
+                if (err) {
+                    return console.error(err);
                 }
-                console.log("OKOK")
-            })
+                console.log('createDefaultJsonFile successfully!');
+            });
 
-        })
-        console.log('createDefaultJsonFile end!');
+            fs.readFile(`./src/static/defaultData/${gameID}/defaultModifyData.json`,function(err,files){
+                let defaultData = JSON.parse(files)
+
+                const user = {
+                    userName: userID,
+                    items: defaultData
+                }
+
+                let JSONObject = JSON.stringify(user)
+
+                fs.writeFile(`./src/static/upload/${userID}/${gameID}/userModifyData.json`,JSONObject, function(err){
+                    if(err){
+                        console.error(err)
+                    }
+                    console.log("OKOK")
+                })
+
+            })
+            console.log('createDefaultJsonFile end!');
+        }else{
+            console.log("found save json!")
+        }
     }
 }
 
