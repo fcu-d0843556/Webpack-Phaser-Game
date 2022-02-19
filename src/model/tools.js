@@ -149,7 +149,10 @@ let tools = {
 
     createDefaultJsonFile : function(userID,gameID){
         console.log("createDefaultJsonFile")
-        if(!fs.readFileSync(`./src/static/upload/${userID}/${gameID}/userModifyData.json`)){
+        try{
+            fs.readFileSync(`./src/static/upload/${userID}/${gameID}/userModifyData.json`)
+            console.log("found save json!")
+        }catch{
             console.log("not found save json")
             fs.mkdirSync(`./src/static/upload/${userID}/${gameID}`, { recursive: true }, (err) => {
                 if (err) {
@@ -177,9 +180,10 @@ let tools = {
 
             })
             console.log('createDefaultJsonFile end!');
-        }else{
-            console.log("found save json!")
+
         }
+
+
     }
 }
 
