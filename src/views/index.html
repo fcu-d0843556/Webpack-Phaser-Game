@@ -54,7 +54,6 @@
             </div>
         </div>
     </nav>
-    <p>123</p>
     <div class="container-fluid">
 
         <!-- left game bar -->
@@ -122,8 +121,20 @@
                                     <div class="card-header">
                                         <div class="mb-3">
                                             <label class="form-label">製 作 桶</label>
-                                            <input type="text" name="foodCan_default" id="foodCan_default" class="card-img-top" value="<%= userJsonData.items[1].src%>">
-                                            <input class="form-control" type="file" name="foodCan" id="foodCan">
+                                            <input type="hidden" name="foodCan_default" id="foodCan_default" class="card-img-top" value="<%= userJsonData.items[1].src%>"/>
+                                            <input class="form-control" type="file" name="foodCan" id="foodCan"/>
+
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label class="form-label">生成的X位置</label>
+                                                    <input class="form-control" type="number" name="foodCan_position_x" id="foodCan_position_x" value="<%= userJsonData.items[1].position.x%>"/>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label">生成的Y位置</label>
+                                                    <input class="form-control" type="number" name="foodCan_position_y" id="foodCan_position_y" value="<%= userJsonData.items[1].position.y%>"/>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div  class="card-body">
@@ -163,6 +174,22 @@
                                     <div  class="card-body">
                                     <h5 class="card-title">預覽圖</h5>
                                     <img style="width: 50%; height: 50%;" id="rawFood_image" src="<%= userJsonData.items[2].src%>">
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                    </div>
+                                </div>
+
+                                <div id="chooseCard4" class="card text-center loginBox" style="background-color: orange;">
+                                    <div class="card-header">
+                                        <div class="mb-3">
+                                            <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                            <input type="text" name="getItemText_text" id="getItemText_text" class="card-img-top" value="<%= userJsonData.items[3].text%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <p>說明：</p>
+                                        <p>當戳到某個盒子時，會出現的文字</p>
                                     </div>
                                     <div class="card-footer text-muted">
                                     </div>

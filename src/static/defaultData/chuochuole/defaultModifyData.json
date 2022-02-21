@@ -2,16 +2,32 @@
     {
         "name": "background",
         "type": "png",
-        "src": "src/assets/background.png"
+        "src": "src/assets/background.png",
+        "position": {
+            "x": 400,
+            "y": 320
+        }
     },
     {
         "name": "foodCan",
         "type": "png",
-        "src": "src/assets/foodCan.png"
+        "src": "src/assets/foodCan.png",
+        "position": {
+            "x": 130,
+            "y": 340
+        }
     },
     {
         "name": "rawFood",
         "type": "png",
-        "src": "src/assets/rawFood.png"
+        "src": "src/assets/rawFood.png",
+        "position": {
+            "x": 200,
+            "y": 350
+        }
+    },
+    {
+        "name": "getItemText",
+        "text": "你獲得了xxx！"
     }
 ]

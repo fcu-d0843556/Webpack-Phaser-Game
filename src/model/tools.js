@@ -104,6 +104,18 @@ let tools = {
                     // console.debug("find " + defaultData[num].name + "_default");
                     user.items[num].src = inputData[defaultData[num].name+"_default"]
                 }
+
+                if(inputData[ defaultData[num].name + "_position_x" ]){
+                    user.items[num].position.x = parseInt(inputData[ defaultData[num].name + "_position_x" ],10)
+                }else if(inputData[ defaultData[num].name + "_position_y" ]){
+                    user.items[num].position.y = parseInt(inputData[ defaultData[num].name + "_position_y" ],10)
+                }
+
+                if(inputData[ defaultData[num].name + "_text" ]){
+                    console.log("find texttext!")
+                    user.items[num].text = inputData[ defaultData[num].name + "_text" ]
+                    console.log(user.items[num].text)
+                }
             }
 
             //上傳檔案的覆蓋

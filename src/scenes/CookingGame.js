@@ -8,6 +8,7 @@ export default class CookingGame extends Phaser.Scene{
         super('cooking')
         this.userID = userID
         this.food = undefined
+        this.allJsonData = []
     }
 
     preload(){
@@ -26,16 +27,15 @@ export default class CookingGame extends Phaser.Scene{
 
         for(let t=0; t<items.length; t++){
             this.load.image(items[t].name, items[t].src)
+            this.allJsonData[items[t].name] = items[t]
         }
-
-
     }
 
 
     create(){
 
 
-        this.add.image(400,300,'background')
+        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background')
         this.add.image(400,480,'panel')
 
 
@@ -49,9 +49,9 @@ export default class CookingGame extends Phaser.Scene{
         var id = 0
         this.foodGroup = []
         this.cookGroup = this.createFoodSpot()
-        this.foodCan = this.physics.add.sprite(130,340,'foodCan')
+        this.foodCan = this.physics.add.sprite(this.allJsonData.foodCan.position.x,this.allJsonData.foodCan.position.y,'foodCan')
         this.foodCan.setInteractive().on('pointerdown',function(){
-            this.food = new foodSpawner(this,'rawFood',id)
+            this.food = new foodSpawner(this, 'rawFood', id, this.allJsonData.rawFood)
             this.foodGroup.push(this.food)
             this.foodGroup[id].spawn()
             id++

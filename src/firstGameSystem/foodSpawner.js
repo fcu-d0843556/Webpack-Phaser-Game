@@ -3,10 +3,11 @@ import CookingTimer from "./CookingTimer"
 
 
 export default class foodSpawner{
-    constructor(scene, Key = 'rawFood',id) {
+    constructor(scene, Key = 'rawFood',id,data) {
         this.scene = scene
         this.key = Key
         this.id = id
+        this.data = data
         this.foodcountdown = 1
         const cookTimeLabel = this.scene.add.text(200,350,'',{fontSize:32,fill:'#000'})
 
@@ -18,7 +19,7 @@ export default class foodSpawner{
         return this.timer
     }
     spawn(){
-        this.food = this.scene.add.sprite(200,350,'rawFood')
+        this.food = this.scene.add.sprite(this.data.position.x,this.data.position.y,'rawFood')
         this.food.setInteractive()
         this.scene.input.setDraggable(this.food)
         this.food.setName(this.id)

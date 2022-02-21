@@ -1,4 +1,4 @@
-import Phaser, { Physics } from "phaser";
+import Phaser from "phaser";
 import getMouseSpot from "../firstGameSystem/getMouseSpot"
 import WordDisappearTimer from '../firstGameSystem/WordDisappearTimer';
 
@@ -6,20 +6,35 @@ export default class chuochuole extends Phaser.Scene{
     constructor(userID){
         super('chuochuole')
         this.userID = userID
+        this.allJsonData = []
     }
 
     preload(){
-        this.load.image('background', 'src/assets/background.png')
+        this.jsonData = this.cache.json.get('jsonData');
+        console.log("find jsonData")
+        console.log(this.jsonData)
+
+        // this.load.image('background', 'src/assets/background.png')
         this.load.image('box','src/assets/chuochuobox.png')
         this.load.image('smallBox','src/assets/smallBox.png')
         this.load.image('smallBoxBreak','src/assets/smallBoxBreak.png')
         this.load.image('finger','src/assets/finger.png')
         this.load.image('heart','src/assets/heart.png')
 
+        const items = this.jsonData.items
+        console.log("items =")
+        console.log(items)
+
+        for(let t=0; t<items.length; t++){
+            if(items[t].src){
+                this.load.image(items[t].name, items[t].src)
+            }
+            this.allJsonData[items[t].name] = items[t]
+        }
     }
 
     create(){
-        this.add.image(400,320,'background')
+        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background')
         this.add.image(180,400,'box')
         this.add.text(20,70,'選個洞戳戳看有什麼獎品吧！',{fontSize:25,fill:'#fff',backgroundColor:'rgba(0,255,0,0.25)'})
 
@@ -35,7 +50,7 @@ export default class chuochuole extends Phaser.Scene{
             child.setInteractive()
             child.on('pointerdown',function(){
                 console.log('you distroy ' + child.texture.key)
-                this.getItemTimer = new WordDisappearTimer(this,'你獲得了xxx！',child)
+                this.getItemTimer = new WordDisappearTimer(this,this.allJsonData.getItemText.text,child)
                 this.getItemTimer.fingerStart(this.getItemTimer.fingerStop(),1000)
                 child.disableInteractive()
             },this)
