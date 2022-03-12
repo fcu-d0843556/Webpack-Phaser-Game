@@ -1,1 +1,28 @@
-{"userName":"3","items":[{"name":"background","type":"png","src":"src/static/upload/3/cooking/background.png"},{"name":"foodCan","type":"png","src":"src/static/upload/3/cooking/foodCan.png"},{"name":"rawFood","type":"png","src":"/src/static/img/view3.png"}]}
+{
+    "userName": "3",
+    "items": [{
+        "name": "background",
+        "type": "png",
+        "src": "src/assets/background.png",
+        "position": {
+            "x": 400,
+            "y": 300
+        }
+    }, {
+        "name": "foodCan",
+        "type": "png",
+        "src": "src/assets/foodCan.png",
+        "position": {
+            "x": 130,
+            "y": 340
+        }
+    }, {
+        "name": "rawFood",
+        "type": "png",
+        "src": "src/assets/rawFood.png",
+        "position": {
+            "x": 200,
+            "y": 350
+        }
+    }]
+}

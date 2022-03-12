@@ -2,15 +2,19 @@ const uploadList = {
 
 }
 let cardSpot = 0
+let boxSpot = 0
+let chooseCardBoxs = []
 
 window.addEventListener("load",function(){
     const chooseCard1 = document.getElementById("chooseCard1");
     const chooseCard2 = document.getElementById("chooseCard2");
     const chooseCard3 = document.getElementById("chooseCard3");
-    const detailCard = document.getElementById("detailCard");
 
+    for(let v=1;v<10;v++){
+        let chooseCardBox = document.getElementById("chooseCardBox" + v);
+        chooseCardBoxs.push(chooseCardBox)
+    }
 
-    const defaultPic1 = document.getElementById("defaultPic1");
 
 
     const defaultCard1 = document.getElementById("defaultCard1");
@@ -95,6 +99,19 @@ window.addEventListener("load",function(){
     }
 })
 
+const switchNextBox = function(type){
+    
+    if(type == 'next' && boxSpot<8){
+        chooseCardBoxs[boxSpot].style.display = 'none'
+        chooseCardBoxs[boxSpot+1].style.display = 'block'
+        boxSpot++
+    }else if(type == 'pre' && boxSpot>0){
+        chooseCardBoxs[boxSpot].style.display = 'none'
+        chooseCardBoxs[boxSpot-1].style.display = 'block'
+        boxSpot--
+    }
+
+}
 
 const showPicFile = function(event, keyword){
     console.log("showPic type " + keyword)

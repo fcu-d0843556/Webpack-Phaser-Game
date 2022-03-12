@@ -26,10 +26,10 @@ export default class ShootingGame extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(400,300,'background')
+        this.add.image(400,320,'background')
 
         this.cursor = this.input.keyboard.createCursorKeys()
-        this.add.image(400,520,'gun').setScale(0.21,0.21)
+        this.add.image(170,550,'gun').setScale(0.21,0.21)
 
         var balloon = this.physics.add.group()
         for(var i=1,x=100;i<=5;i++,x+=150){

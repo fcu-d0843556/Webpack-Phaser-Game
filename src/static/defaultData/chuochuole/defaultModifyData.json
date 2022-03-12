@@ -27,7 +27,43 @@
         }
     },
     {
-        "name": "getItemText",
-        "text": "你獲得了xxx！"
+        "name": "boxObject",
+        "items": [{
+            "name": "balloons",
+            "text": "你獲得了balloons！",
+            "src": "src/assets/balloons.png"
+        }, {
+            "name": "moonYellow",
+            "text": "你獲得了moonYellow！",
+            "src": "src/assets/moonYellow.png"
+        }, {
+            "name": "heartRed",
+            "text": "你獲得了heartRed！",
+            "src": "src/assets/heartRed.png"
+        }, {
+            "name": "heartYellow",
+            "text": "你獲得了heartYellow！",
+            "src": "src/assets/heartYellow.png"
+        }, {
+            "name": "heartAqua",
+            "text": "你獲得了heartAqua！",
+            "src": "src/assets/heartAqua.png"
+        }, {
+            "name": "heartOrange",
+            "text": "你獲得了heartOrange！",
+            "src": "src/assets/heartOrange.png"
+        }, {
+            "name": "heartPink",
+            "text": "你獲得了heartPink！",
+            "src": "src/assets/heartPink.png"
+        }, {
+            "name": "starYellow",
+            "text": "你獲得了starYellow！",
+            "src": "src/assets/starYellow.png"
+        }, {
+            "name": "smile",
+            "text": "你獲得了smile！",
+            "src": "src/assets/smile.png"
+        }]
     }
 ]

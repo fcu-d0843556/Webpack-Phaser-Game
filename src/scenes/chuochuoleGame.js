@@ -22,15 +22,27 @@ export default class chuochuole extends Phaser.Scene{
         this.load.image('heart','src/assets/heart.png')
 
         const items = this.jsonData.items
-        console.log("items =")
+        console.log("all items = ")
         console.log(items)
 
         for(let t=0; t<items.length; t++){
-            if(items[t].src){
-                this.load.image(items[t].name, items[t].src)
+            if(items[t].items){
+                for(let s=0; s<items[t].items.length; s++){
+                    this.load.image(items[t].items[s].name, items[t].items[s].src)
+                }
+                this.allJsonData[items[t].name] = items[t]
+            }else{
+                if(items[t].src){
+                    this.load.image(items[t].name, items[t].src)
+                }
+                this.allJsonData[items[t].name] = items[t]
             }
-            this.allJsonData[items[t].name] = items[t]
+            
         }
+
+        console.log("all allJsonData = ")
+        console.log(this.allJsonData)
+
     }
 
     create(){
@@ -40,17 +52,22 @@ export default class chuochuole extends Phaser.Scene{
 
 
         let smallBoxs = this.physics.add.group()
+        let smallBoxsTimes = 0
         for(let y = 300,timesY = 0;timesY<3; y+= 100,timesY++){
             for(let x = 80,timesX = 0;timesX<3; x+= 100,timesX++){
-                smallBoxs.create(x,y,'smallBox')
-            }
+                let smallBox = this.physics.add.sprite(x,y,'smallBox')
+                smallBox.setData('text',this.allJsonData.boxObject.items[smallBoxsTimes].text)
+                smallBox.setData('name',this.allJsonData.boxObject.items[smallBoxsTimes].name)
+                smallBoxs.add(smallBox)
+                smallBoxsTimes++
+            }   
         }
 
         Phaser.Actions.Call(smallBoxs.getChildren(),function(child){
             child.setInteractive()
             child.on('pointerdown',function(){
                 console.log('you distroy ' + child.texture.key)
-                this.getItemTimer = new WordDisappearTimer(this,this.allJsonData.getItemText.text,child)
+                this.getItemTimer = new WordDisappearTimer(this,child.getData('text'),child,child.getData('name'))
                 this.getItemTimer.fingerStart(this.getItemTimer.fingerStop(),1000)
                 child.disableInteractive()
             },this)

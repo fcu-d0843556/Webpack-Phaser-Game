@@ -1,7 +1,8 @@
 export default class WordDisappearTimer {
-    constructor(scene,text,child){
+    constructor(scene,text,child,image){
         this.scene = scene
         this.text = text
+        this.image = image
         this.child = child
         this.x = child.x
         this.y = child.y
@@ -35,7 +36,9 @@ export default class WordDisappearTimer {
     }
 
     breakStart(callback,duration){
-        this.heart = this.scene.physics.add.image(this.x,this.y,'heart')
+        
+
+        this.heart = this.scene.physics.add.image(this.x,this.y,this.image)
 
         this.scene.physics.moveToObject(this.heart, {x:this.x,y:this.y-10}, 50);
 
