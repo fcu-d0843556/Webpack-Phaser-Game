@@ -22,25 +22,29 @@ window.addEventListener("load",function(){
     const foodCan = document.getElementById("foodCan");
     const rawFood = document.getElementById("rawFood");
     const background = document.getElementById("background");
-
-    chooseCard1.addEventListener('click',function(){
-        highlightCard(chooseCard1);
-        chooseCard2.style.border = "";
-        chooseCard3.style.border = "";
-    })
+    const boxObject_balloons = document.getElementById("boxObject_balloons");
+    const boxObject_heartRed = document.getElementById("boxObject_heartRed");
+    const boxObject_heartAqua = document.getElementById("boxObject_heartAqua");
 
 
-    chooseCard2.addEventListener('click',function(){
-        highlightCard(chooseCard2);
-        chooseCard1.style.border = "";
-        chooseCard3.style.border = "";
-    })
+    // chooseCard1.addEventListener('click',function(){
+    //     highlightCard(chooseCard1);
+    //     chooseCard2.style.border = "";
+    //     chooseCard3.style.border = "";
+    // })
 
-    chooseCard3.addEventListener('click',function(){
-        highlightCard(chooseCard3);
-        chooseCard1.style.border = "";
-        chooseCard2.style.border = "";
-    })
+
+    // chooseCard2.addEventListener('click',function(){
+    //     highlightCard(chooseCard2);
+    //     chooseCard1.style.border = "";
+    //     chooseCard3.style.border = "";
+    // })
+
+    // chooseCard3.addEventListener('click',function(){
+    //     highlightCard(chooseCard3);
+    //     chooseCard1.style.border = "";
+    //     chooseCard2.style.border = "";
+    // })
 
     defaultCard1.addEventListener('click',function(){
         if(defaultCard1.style.border == ""){
@@ -92,9 +96,32 @@ window.addEventListener("load",function(){
         })
     }
 
+    console.log(boxObject_balloons)
+    console.log(boxObject_heartRed)
+
+    console.log(boxObject_heartAqua)
+
     if(background){
         background.addEventListener("change",function(event){
             showPicFile(event,"background")
+        })
+    }
+
+    if(boxObject_balloons){
+        boxObject_balloons.addEventListener("change",function(event){
+            showPicFile(event,"boxObject_balloons")
+        })
+    }
+
+    if(boxObject_heartRed){
+        boxObject_heartRed.addEventListener("change",function(event){
+            showPicFile(event,"boxObject_heartRed")
+        })
+    }
+
+    if(boxObject_heartAqua){
+        boxObject_heartAqua.addEventListener("change",function(event){
+            showPicFile(event,"boxObject_heartAqua")
         })
     }
 })

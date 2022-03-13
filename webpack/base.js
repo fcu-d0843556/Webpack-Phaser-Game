@@ -180,20 +180,7 @@ module.exports = {
         res.render("uploadFile")
       })
 
-      let uploadFiles = [
-        {
-          name: 'background',
-          maxCount: 1
-        }, {
-          name: 'foodCan',
-          maxCount: 1
-        }, {
-          name: 'rawFood',
-          maxCount: 1
-        }
-      ]
-      // tools.multer().single('avater')
-      app.post('/doUpload',tools.multer().fields(uploadFiles) ,function (req, res) {
+      app.post('/doUpload',tools.multer().any() ,function (req, res) {
         tools.writeJSONFile(req.session.username,req.session.gameID,req.files,req.body);
         res.redirect('/index');
       })
