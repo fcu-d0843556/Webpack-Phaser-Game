@@ -45,7 +45,6 @@ window.addEventListener("load",function(){
     //     chooseCard1.style.border = "";
     //     chooseCard2.style.border = "";
     // })
-
     defaultCard1.addEventListener('click',function(){
         if(defaultCard1.style.border == ""){
             defaultCard1.style.border = "5px #0d6efd solid";
