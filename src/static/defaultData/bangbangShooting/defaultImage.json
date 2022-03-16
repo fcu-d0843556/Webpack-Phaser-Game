@@ -1,0 +1,40 @@
+{
+    "background": {
+        "modifyTitle": "遊 戲 背 景",
+        "name": "background",
+        "items": [
+            {
+                "type": "png",
+                "src": "src/assets/background.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "src": "src/assets/view1.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "src": "src/assets/view2.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "src": "src/assets/view3.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            }
+        ]
+    }
+}

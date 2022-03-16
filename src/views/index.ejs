@@ -116,7 +116,7 @@
                     <div class="col-5">
                         <div class="bd-link">
                             <form action="/doUpload" id="dataForm" method="post" enctype="multipart/form-data">
-                                
+                                <div id="allCards">
                                 <% for(let i=0; i< userJsonData.items.length; i++) { %>
                                     <% if(userJsonData.items[i].items){ %>
                                         <div id="allBox">
@@ -153,6 +153,7 @@
                                                         </div>
                 
                                                         <div class="card-footer text-muted">
+                                                            <button type="button" onclick="defaultPicShow(<%= userJsonData.items[i].items.name %>)" class="btn btn-dark">使用其他提供的圖片</button>
                                                         </div>
 
                                                     </div>
@@ -186,11 +187,12 @@
                                             </div>
 
                                             <div class="card-footer text-muted">
-                                            </div>
+                                                <button type="button" onclick="defaultPicShow('<%= userJsonData.items[i].name %>')" class="btn btn-dark">使用其他提供的圖片</button>
+                                            </div
                                         </div>
                                     <% } %>
                                 <% } %>
-                                
+                                </div>
 
                                 
 

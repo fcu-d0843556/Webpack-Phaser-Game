@@ -6,6 +6,8 @@ let boxSpot = 0
 let chooseCardBoxs = []
 
 window.addEventListener("load",function(){
+    let allCards = document.getElementById("allCards");
+    
     const chooseCard1 = document.getElementById("chooseCard1");
     const chooseCard2 = document.getElementById("chooseCard2");
     const chooseCard3 = document.getElementById("chooseCard3");
@@ -124,6 +126,10 @@ window.addEventListener("load",function(){
         })
     }
 })
+
+const defaultPicShow = function(key){
+    
+}
 
 const switchNextBox = function(type){
     
