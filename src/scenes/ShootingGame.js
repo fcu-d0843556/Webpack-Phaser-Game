@@ -1,5 +1,9 @@
 import Phaser from "phaser"
 import getMouseSpot from "../firstGameSystem/getMouseSpot"
+import GameTimer from "../firstGameSystem/GameTimer"
+import Score from "../firstGameSystem/ScoreText"
+import ballonSpawner from "../firstGameSystem/ballonSpawner"
+import DropTimeCounter from "../firstGameSystem/DropTimeCounter"
 
 export default class ShootingGame extends Phaser.Scene{
     constructor(userID){
@@ -26,31 +30,29 @@ export default class ShootingGame extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(400,320,'background')
+        this.add.image(400,320,'background').setScale(1.1)
 
         this.cursor = this.input.keyboard.createCursorKeys()
-        this.add.image(170,550,'gun').setScale(0.21,0.21)
+        this.add.image(170,550,'gun').setScale(0.21,0.21).setDepth(1);
 
-        var balloon = this.physics.add.group()
-        for(var i=1,x=100;i<=5;i++,x+=150){
-            for(var j=1,y=200;j<=2;j++,y+=150){
-                balloon.create(x,y,'balloon' + i).setScale(0.55,0.55)
-            }
-        }
+        
 
-        Phaser.Actions.Call(balloon.getChildren(),function(child){
-            child.setInteractive()
-            child.on('pointerdown',function(){
-                console.log('you distroy ' + child.texture.key)
-                child.destroy(true,true)
-            },this)
-        }, this)
+        this.scoreText = this.createScoreText(16,16,0)
+        const timerLabel2 = this.add.text(16, 54, 'Time : ', {fontSize:32,fill:'#000'})
+        this.gameTimer = new GameTimer(this,timerLabel2)
+        this.gameTimer.start(this.gameover.bind(this),10000)//5s
 
-        const moveSpotLabel = this.add.text(10,580,'moveSpot: ',{fontSize:12,fill:'#000'})
-        const clickSpotLabel = this.add.text(10,550,'clickSpot: ',{fontSize:12,fill:'#000'})
+        this.balloon = new ballonSpawner(this,this.scoreText) 
 
-        this.mouseSpot = new getMouseSpot(this,moveSpotLabel)
-        this.clickMouseSpot = new getMouseSpot(this,clickSpotLabel)
+        this.starCoolDown = new DropTimeCounter(this,"")
+        this.starCoolDown.start(this.createBalloon.bind(this),500)//5s
+ 
+
+        // const moveSpotLabel = this.add.text(10,580,'moveSpot: ',{fontSize:12,fill:'#000'})
+        // const clickSpotLabel = this.add.text(10,550,'clickSpot: ',{fontSize:12,fill:'#000'})
+
+        this.mouseSpot = new getMouseSpot(this,"")
+        this.clickMouseSpot = new getMouseSpot(this,"")
 
 
 
@@ -63,26 +65,32 @@ export default class ShootingGame extends Phaser.Scene{
             this.target.y = pointer.y
         },this)
 
-        this.input.on('pointerdown',function(pointer){
-            this.clickMouseSpot.get(pointer)
+        // this.input.on('pointerdown',function(pointer){
+        //     this.clickMouseSpot.get(pointer)
 
-        },this)
+        // },this)
 
 
+    }
+
+    gameover(){
+        this.physics.pause()
+        this.gameOver = true
+    }
+
+    createScoreText(x,y,score){
+        const style = {fontSize:'32px', fill:'#000'}
+        const label = new Score(this,x,y,score,style)
+        this.add.existing(label)
+        return label
     }
 
     createBalloon(){
-
-        const balloon = this.add.group();
-        balloon.create(400,200,'balloon')
-        balloon.create(400,350,'balloon')
-        balloon.enableBody = true;
-        return balloon
+        this.balloon.spawn()
     }
 
     update(){
-
-
+        this.gameTimer.update()
     }
 
 }

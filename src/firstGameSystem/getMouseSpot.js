@@ -7,6 +7,8 @@ export default class getMouseSpot{
         this.line = this.label.text
     }
     get(pointer){
-        this.label.text = this.line + pointer.x + ',' + pointer.y
+        if(this.label){
+            this.label.text = this.line + pointer.x + ',' + pointer.y
+        }
     }
 }

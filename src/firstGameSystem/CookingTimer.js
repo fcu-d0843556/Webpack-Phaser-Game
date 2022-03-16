@@ -49,7 +49,9 @@ export default class CookingTimer{
         const remaining = this.duration - elapsed
         const seconds = remaining/1000
         // this.label.text = 'cookTime : ' + seconds.toFixed(2)
-        this.label.text = seconds.toFixed(2)
+        if(this.label){
+            this.label.text = seconds.toFixed(2)
+        }
 
     }
 

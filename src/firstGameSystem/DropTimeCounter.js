@@ -34,12 +34,6 @@ export default class DropTimeCounter {
         this.timerEvent = this.scene.time.addEvent({
             delay: duration,
             callback: () => {       // 時間到了之後執行的事件
-                // nowTime++
-                // console.log(nowTime + ' , '+fruitDropTime)
-                // if(nowTime >= fruitDropTime){
-                //     this.stop()
-                // }
-
                 if(callback){
                     callback()
                 }
@@ -67,11 +61,11 @@ export default class DropTimeCounter {
         }
 
 
-        const elapsed = this.timerEvent.getElapsed()  //從0開始，計算過程中跑的時間   碼錶
-        // time = elapsed
-        const remaining = this.duration - elapsed   //反著來 等於 設定時間 - 經過時間 倒數計時
-        const seconds = remaining / 1000            //把 毫秒 換算為 秒
-        this.label.text = 'StarDropTime: ' + seconds.toFixed(2)        //到小數點 2 位數
+        // const elapsed = this.timerEvent.getElapsed()  //從0開始，計算過程中跑的時間   碼錶
+        // // time = elapsed
+        // const remaining = this.duration - elapsed   //反著來 等於 設定時間 - 經過時間 倒數計時
+        // const seconds = remaining / 1000            //把 毫秒 換算為 秒
+        // this.label.text = 'StarDropTime: ' + seconds.toFixed(2)        //到小數點 2 位數
         // console.log(remaining)
     }
 

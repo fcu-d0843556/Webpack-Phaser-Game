@@ -6,12 +6,13 @@ export default class WordDisappearTimer {
         this.child = child
         this.x = child.x
         this.y = child.y
-        this.finger = this.scene.physics.add.sprite(this.x,this.y-250,'finger').setScale(0.75,0.75)
     }
 
 
 
     fingerStart(callback,duration){
+        this.finger = this.scene.physics.add.sprite(this.x,this.y-250,'finger').setScale(0.75,0.75)
+
         this.fingerStop()
         this.finger.setGravity(0,200)
         this.fingerTimerEvent = this.scene.time.addEvent({

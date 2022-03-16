@@ -11,7 +11,7 @@ export default class foodSpawner{
         this.foodcountdown = 1
         const cookTimeLabel = this.scene.add.text(200,350,'',{fontSize:32,fill:'#000'})
 
-        this.timer = new CookingTimer(scene,cookTimeLabel)
+        this.timer = new CookingTimer(scene,"")
 
     }
 
@@ -28,31 +28,7 @@ export default class foodSpawner{
             gameObject.x = dragX
             gameObject.y = dragY
         });
-        // // return this.food
-        // this.scene.input.on('dragover', function (pointer, gameObject, dropZone) {
-        //     dropZone.setTint(0xffffff);
-        //     // console.log('in')
-        //     this.timer.label.x = gameObject.x
-        //     this.timer.label.y = gameObject.y
-
-        //     if(this.timer.timerEvent){
-        //         // console.log('wow!!')
-        //         this.timer.keepStart()
-        //     }
-        // },this);
-
-        // this.scene.input.on('dragleave', function (pointer, gameObject, dropZone) {
-        //     dropZone.clearTint();
-        //     // console.log('out')
-        //     this.timer.label.x = gameObject.x
-        //     this.timer.label.y = gameObject.y
-        //     console.log(gameObject)
-        //     if(this.timer.timerEvent){
-        //         // console.log('wow!!')
-
-        //         this.timer.pause()
-        //     }
-        // },this);    //寫function 時一定要加這裡的 ,this
+       
     }
 
     countEnd(){

@@ -1,5 +1,8 @@
 import Phaser from "phaser"
+import maskManSpawner from "../firstGameSystem/maskManSpawner"
 import foodSpawner from "../firstGameSystem/foodSpawner"
+import GameTimer from "../firstGameSystem/GameTimer"
+import Score from "../firstGameSystem/ScoreText"
 
 var zone
 
@@ -9,6 +12,8 @@ export default class CookingGame extends Phaser.Scene{
         this.userID = userID
         this.food = undefined
         this.allJsonData = []
+        this.scoreText = undefined
+        this.gameOver = false
     }
 
     preload(){
@@ -21,6 +26,12 @@ export default class CookingGame extends Phaser.Scene{
         this.load.image('well','src/assets/wellFood.png')
         this.load.image('panel','src/assets/cookpanel.png')
         this.load.image('cookSpot','src/assets/cookSpot.png')
+        this.load.image('maskMan','src/assets/maskMan.png')
+        this.load.image('maskManSmile','src/assets/maskManSmile.png')
+        this.load.image('maskManAngry','src/assets/maskManAngry.png')
+
+        this.load.image('wantedItem','src/assets/wantedItem.png')
+
         const items = this.jsonData.items
         console.log("items =")
         console.log(items)
@@ -34,11 +45,19 @@ export default class CookingGame extends Phaser.Scene{
 
     create(){
 
+        
 
-        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background')
+        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background').setScale(1.1)
         this.add.image(400,480,'panel')
 
+        this.scoreText = this.createScoreText(16,16,0)
+        const timerLabel2 = this.add.text(16, 54, 'Time : ', {fontSize:32,fill:'#000'})
+        this.gameTimer = new GameTimer(this,timerLabel2)
+        this.gameTimer.start(this.gameover.bind(this),10000)//5s
 
+
+        this.maskMan = new maskManSpawner(this,'maskMan',this.scoreText)
+        this.maskMan.spawn()
         zone = this.add.zone(200,350,50,50)
 
         this.physics.world.enable(zone)
@@ -58,40 +77,77 @@ export default class CookingGame extends Phaser.Scene{
 
         },this)
 
+        this.setInputInteractive()
+        
+        
+    }
 
-
-
-
-
+    setInputInteractive(){
         // return this.food
         this.input.on('dragover', function (pointer, gameObject, dropZone) {
-            dropZone.setTint(0xffffff);
-            console.log('name : ' + gameObject.name)
-            var name = parseInt(gameObject.name)
-
-            this.foodGroup[name].timer.label.x = gameObject.x
-            this.foodGroup[name].timer.label.y = gameObject.y
-
-            if(this.foodGroup[name].timer.timerEvent){
-                // console.log('wow!!')
-                this.foodGroup[name].timer.keepStart()
+            if(dropZone.texture.key == "cookSpot"){
+                dropZone.setTint(0xffffff);
+                console.log('name : ' + gameObject.name)
+                var name = parseInt(gameObject.name)
+                if(this.foodGroup[name].timer.label){
+                    this.foodGroup[name].timer.label.x = gameObject.x
+                    this.foodGroup[name].timer.label.y = gameObject.y
+                }
+                if(this.foodGroup[name].timer.timerEvent){
+                    // console.log('wow!!')
+                    this.foodGroup[name].timer.keepStart()
+                }
             }
+            
         },this);
 
         this.input.on('dragleave', function (pointer, gameObject, dropZone) {
-            dropZone.clearTint();
-            // console.log('out')
-            var name = parseInt(gameObject.name)
+            
+            if(dropZone.texture.key == "cookSpot"){
+                dropZone.clearTint();
+                var name = parseInt(gameObject.name)
+                if(this.foodGroup[name].timer.label){
+                    this.foodGroup[name].timer.label.x = gameObject.x
+                    this.foodGroup[name].timer.label.y = gameObject.y
+                }
+                
+                if(this.foodGroup[name].timer.timerEvent){
+                    // console.log('wow!!')
 
-            this.foodGroup[name].timer.label.x = gameObject.x
-            this.foodGroup[name].timer.label.y = gameObject.y
-            if(this.foodGroup[name].timer.timerEvent){
-                // console.log('wow!!')
-
-                this.foodGroup[name].timer.pause()
+                    this.foodGroup[name].timer.pause()
+                }
             }
+            
         },this);    //寫function 時一定要加這裡的 ,this
 
+        // this.input.on('drop', function (pointer, gameObject, dropZone) {
+        //     if(dropZone.texture.key == "wantedItem"){
+        //         switch(gameObject.texture.key){
+        //             case 'rawFood':
+        //                 this.scoreText.addScore(-10)
+        //                 break
+        //             case 'half':
+        //                 this.scoreText.addScore(5)
+        //                 break
+        //             case 'well':
+        //                 this.scoreText.addScore(10)
+        //                 break
+        //         }
+        //         gameObject.destroy(true,true)
+        //     }
+        // },this);
+
+    }
+    gameover(){
+        this.physics.pause()
+        this.gameOver = true
+    }
+
+    createScoreText(x,y,score){
+        const style = {fontSize:'32px', fill:'#000'}
+        const label = new Score(this,x,y,score,style)
+        this.add.existing(label)
+        return label
     }
 
     createFoodSpot(){
@@ -125,6 +181,8 @@ export default class CookingGame extends Phaser.Scene{
             this.foodGroup[i].timer.update()
         }
         zone.body.debugBodyColor = zone.body.touching.none ? 0x00ffff : 0xffff00
+        this.gameTimer.update()
+
     }
 }
 

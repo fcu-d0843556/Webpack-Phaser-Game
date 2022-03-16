@@ -5,7 +5,7 @@ import DropTimeCounter from "../firstGameSystem/DropTimeCounter"
 import StarsSpawner from "../firstGameSystem/StarsSpawner"
 import GameTimer from "../firstGameSystem/GameTimer"
 import BombSpawner from "../firstGameSystem/BombSpawner"
-
+import ShowMessage from "../firstGameSystem/showMessage"
 
 const BombKey = 'bomb'
 const StarKey = 'star'
@@ -24,6 +24,7 @@ export default class CatchFruitGame extends Phaser.Scene{
         this.bombsGroup = undefined
         this.starsGroup = undefined
         this.gameOver = false
+        this.playerMoveSpeed = 400
     }
 
     preload(){
@@ -32,6 +33,8 @@ export default class CatchFruitGame extends Phaser.Scene{
         this.load.image('background','src/assets/background.png');
         this.load.image('star','src/assets/star.png');
         this.load.image('bomb','src/assets/bomb.png');
+        this.load.image('arrowButton','src/assets/arrowButton.png');
+
         this.load.spritesheet('dude','src/assets/dude.png',{
             frameWidth: 32, frameHeight:48
         });
@@ -40,6 +43,8 @@ export default class CatchFruitGame extends Phaser.Scene{
 
     create(){
         this.add.image(400,300,'background')
+        
+
         this.platforms = this.createPlatform()
         this.player = this.createPlayer()
         this.cursor = this.input.keyboard.createCursorKeys()
@@ -59,21 +64,46 @@ export default class CatchFruitGame extends Phaser.Scene{
         this.physics.add.collider(this.player, this.bombsGroup, this.hitBomb, null, this)
 
         /* related to time*/
-        const timerLabel = this.add.text(16, 54, 'timeLabel : ', {fontSize:32,fill:'#000'})
-        this.starCoolDown = new DropTimeCounter(this,timerLabel)
+        // const timerLabel = this.add.text(16, 90, 'timeLabel : ', {fontSize:32,fill:'#000'})
+        this.starCoolDown = new DropTimeCounter(this,"")
         this.starCoolDown.start(this.handleCountDownFinished.bind(this),500)//5s
 
 
-        const timerLabel2 = this.add.text(16, 90, 'timeLabel2 : ', {fontSize:32,fill:'#000'})
+        const timerLabel2 = this.add.text(16, 54, 'timeLabel2 : ', {fontSize:32,fill:'#000'})
         this.gameTimer = new GameTimer(this,timerLabel2)
         this.gameTimer.start(this.gameover.bind(this),10000)//5s
 
-        /* get now mouse spot*/
-        const MouseLabel = this.add.text(10, 578, 'spot : ', {fontSize:16,fill:'#000'})
-        this.MouseSpot = new getMouseSpot(this, MouseLabel)
-        this.input.on('pointermove',function(pointer){
-            this.MouseSpot.get(pointer)
-        },this)
+
+        this.leftButton = this.physics.add.sprite(70,500,'arrowButton')
+        this.leftButton.alpha = 0.3
+        this.rightButton = this.physics.add.sprite(300,500,'arrowButton').setFlipX(true);
+        this.rightButton.alpha = 0.3
+        this.leftButton.setInteractive({ draggable: true })
+            .on('dragstart', function(pointer, dragX, dragY){
+                this.isMousePress = true
+                this.player.setVelocityX(this.playerMoveSpeed * -1)
+            }, this)
+            .on('drag', function(pointer, dragX, dragY){
+
+                this.player.setVelocityX(this.playerMoveSpeed * -1)
+            }, this)
+            .on('dragend', function(pointer, dragX, dragY, dropped){
+                this.isMousePress = false
+                this.player.setVelocityX(0)
+            }, this);
+
+        this.rightButton.setInteractive({ draggable: true })
+            .on('dragstart', function(pointer, dragX, dragY){
+                this.isMousePress = true
+                this.player.setVelocityX(this.playerMoveSpeed)
+            }, this)
+            .on('drag', function(pointer, dragX, dragY){
+                this.player.setVelocityX(this.playerMoveSpeed)
+            }, this)
+            .on('dragend', function(pointer, dragX, dragY, dropped){
+                this.isMousePress = false
+                this.player.setVelocityX(0)
+            }, this);
     }
 
     handleCountDownFinished(){
@@ -105,7 +135,9 @@ export default class CatchFruitGame extends Phaser.Scene{
 
     collectStar(player,star){
         star.disableBody(true,true)
-        console.log(this.starsSpawner.getNumber())
+        // const timerLabel = this.add.text(16, 90, 'timeLabel : ', {fontSize:32,fill:'#000'})
+        this.getItemMessage = new ShowMessage(this,"Happy！")
+        this.getItemMessage.start(this.getItemMessage.stop(),500)//5s
         this.scoreText.addScore(10)
     }
 
@@ -117,7 +149,7 @@ export default class CatchFruitGame extends Phaser.Scene{
     }
 
     createPlayer(){
-        const player = this.physics.add.sprite(400,515,'dude')
+        const player = this.physics.add.sprite(180,515,'dude')
         player.setCollideWorldBounds(true)
         this.anims.create({
             key: 'goLeft',
@@ -147,12 +179,12 @@ export default class CatchFruitGame extends Phaser.Scene{
         }
 
         if(this.cursor.left.isDown){
-            this.player.setVelocityX(-400)
+            this.player.setVelocityX(this.playerMoveSpeed * -1)
             this.player.anims.play('goLeft',true)
         }else if(this.cursor.right.isDown){
-            this.player.setVelocityX(400)
+            this.player.setVelocityX(this.playerMoveSpeed)
             this.player.anims.play('goRight',true)
-        }else{
+        }else if(!this.isMousePress){
             this.player.setVelocityX(0)
             this.player.anims.play('stop',true)
         }

@@ -15,13 +15,8 @@ export default class StarsSpawner{
         return this.number
     }
     spawn(){
-        // const stars = this.physics.add.group({
-        //     key: 'star',
-        //     repeat: 11,
-        //     setXY:{x:12, y:0, stepX: 70}
-        // })
-        let x = Phaser.Math.Between(100,700)
-        const stars = this.group.create(x, 10,this.key)
+        let x = Phaser.Math.Between(40,300)
+        const stars = this.group.create(x, 10,this.key).setGravity(0, 150);
         this.number++
         return stars
     }
