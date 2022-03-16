@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>選擇遊戲</title>
+
+    <link rel="stylesheet" href="/src/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/static/css/chooseGameStyle.css">
+
+    <script src="/src/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+        let setGameID = function(ID){
+            let text = document.getElementById("getGameID")
+            text.value = ID
+            let form = document.getElementById("submit")
+            form.submit()
+        }
+    </script>
+</head>
+<body>
+    <!-- upper bar V -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/uploadFile">Upload</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- main content -->
+    <div class="main translate-mid center-position">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+
+        <div class="phone-style translate-mid center-position">
+            <form id="submit" method="post" action="/chooseGame">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/src/static/img/cookingTitle.png" onclick="setGameID('cooking')" class="d-block img-center">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/src/static/img/catchFruitTitle.png" onclick="setGameID('catch-fruit')" class="d-block img-center">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/src/static/img/shootingTitle.png" onclick="setGameID('bangbangShooting')" class="d-block img-center">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/src/static/img/chuochuoleTitle.png" onclick="setGameID('chuochuole')" class="d-block img-center">
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" id="getGameID" name="getGameID">
+            </form>
+        </div>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let timer = 5
+        setInterval(goHome,1000)
+        function goHome(){
+            let text = document.getElementById('timer')
+            text.innerHTML = `${timer}`
+            if(timer==0){
+                window.location.href = "/"
+            }
+            timer--
+        }
+
+        // function goHome(secs){
+        //     let timer = document.getElementById('timer')
+
+        //     secs--
+        //     if(secs>0){
+        //         setTimeout(goHome(secs),1000)
+        //     }else{
+        //         // window.location.href = '/index.html'
+        //     }
+        //     console.log(secs)
+        // }
+        goHome(3)
+    </script>
+
+</head>
+
+<body>
+
+    <p>輸出成功，等待 秒後自動跳轉到遊戲</p>
+    <p id="timer">5</p>
+
+
+</body>
+</html>

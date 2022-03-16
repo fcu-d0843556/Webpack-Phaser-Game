@@ -1,14 +1,16 @@
 [
     {
+        "modifyTitle": "遊 戲 背 景",
         "name": "background",
         "type": "png",
         "src": "src/assets/background.png",
         "position": {
             "x": 400,
-            "y": 300
+            "y": 320
         }
     },
     {
+        "modifyTitle": "製 作 桶",
         "name": "foodCan",
         "type": "png",
         "src": "src/assets/foodCan.png",
@@ -18,6 +20,7 @@
         }
     },
     {
+        "modifyTitle": "生 的 食 物",
         "name": "rawFood",
         "type": "png",
         "src": "src/assets/rawFood.png",

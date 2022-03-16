@@ -1,22 +1,12 @@
 [
     {
+        "modifyTitle": "遊 戲 背 景",
         "name": "background",
         "type": "png",
-        "src": "src/assets/background.png"
-    },
-    {
-        "name": "foodCan",
-        "type": "png",
-        "src": "src/assets/foodCan.png"
-    },
-    {
-        "name": "rawFood",
-        "type": "png",
-        "src": "src/assets/rawFood.png"
-    },
-    {
-        "name": "ass",
-        "type": "png",
-        "src": "src/assets/rawFood.png"
+        "src": "src/assets/background.png",
+        "position": {
+            "x": 400,
+            "y": 320
+        }
     }
 ]

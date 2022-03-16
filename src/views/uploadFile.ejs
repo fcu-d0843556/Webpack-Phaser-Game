@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/static/css/uploadFile.css">
+    <link rel="stylesheet" href="/src/static/bootstrap/css/bootstrap.min.css">
+    <script src="/src/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/src/static/js/moblie.js"></script>
+    <script type="text/javascript" src="/src/static/js/upload.js"></script>
+
+    <title>upload</title>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/uploadFile">Upload</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Games1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                        <input id="getUserID" type = "hidden" value = "<%= username%>">
+                        <input id="getGameID" type = "hidden" value = "<%= gameID%>">
+                        <input id="getUserIdz" type = "hidden" value = "<%= userJsonData.items[1].src%>">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <form action="/doUpload" method="post" enctype="multipart/form-data">
+        <!-- right select bar -->
+        <div class="col-5">
+            <div class="bd-link">
+                <form action="/doUpload" id="dataForm" method="post" enctype="multipart/form-data">
+                    
+
+                    <div id="chooseCard2" class="card text-center loginBox" style="background-color: orange;">
+                        <div class="card-header">
+                            <div class="mb-3">
+                                <label class="form-label">遊 戲 背 景</label>
+                                <input type="hidden" name="background_default" id="background_default" class="card-img-top" value="<%= userJsonData.items[0].src%>">
+                                <input class="form-control" type="file" name="background" id="background">
+                            </div>
+                        </div>
+                        <div  class="card-body">
+                        <h5 class="card-title">預覽圖</h5>
+                        <img style="width: 50%; height: 50%;" id="background_image" src="<%= userJsonData.items[0].src%>">
+                        </div>
+                        <div class="card-footer text-muted">
+                        </div>
+                    </div>
+
+                    <div id="allBox">
+
+                        <div id="chooseCardBox1" class="card text-center loginBox" style="background-color: orange; ">
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label class="form-label">道 具 圖 像 1</label>
+                                    <input class="form-control" type="file" name="boxObject_balloons" id="boxObject_balloons">
+                                </div>
+                            </div>
+                            <div  class="card-body">
+                                <h5 class="card-title">預覽圖</h5>
+                                <img style="width: 50%; height: 50%;" id="boxObject_balloons_image" src="<%= userJsonData.items[3].items[0].src%>">
+                            </div>
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                    <input type="text" name="boxObject_balloons_text" id="boxObject_balloons_text" class="card-img-top" value="<%= userJsonData.items[3].items[0].text%>">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p>說明：</p>
+                                <p>當戳到某個盒子時，會出現的文字</p>
+                            </div>
+
+                            <div class="card-footer text-muted">
+                                <button type="button" onclick="switchNextBox('pre')" class="btn btn-dark">上一個</button>
+                                <button type="button" onclick="switchNextBox('next')" class="btn btn-dark">下一個</button>
+                            </div>
+                        </div>
+
+                        <div id="chooseCardBox2" class="card text-center loginBox" style="background-color: orange; display: none; ">
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label class="form-label">道 具 圖 像 2</label>
+                                    <input class="form-control" type="file" name="boxObject_moonYellow" id="boxObject_moonYellow">
+                                </div>
+                            </div>
+                            <div  class="card-body">
+                                <h5 class="card-title">預覽圖</h5>
+                                <img style="width: 50%; height: 50%;" id="boxObject_moonYellow_image" src="<%= userJsonData.items[3].items[1].src%>">
+                            </div>
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                    <input type="text" name="boxObject_moonYellow_text" id="boxObject_moonYellow_text" class="card-img-top" value="<%= userJsonData.items[3].items[1].text%>">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p>說明：</p>
+                                <p>當戳到某個盒子時，會出現的文字</p>
+                            </div>
+
+                            <div class="card-footer text-muted">
+                                <button type="button" onclick="switchNextBox('pre')" class="btn btn-dark">上一個</button>
+                                <button type="button" onclick="switchNextBox('next')" class="btn btn-dark">下一個</button>
+                            </div>
+                        </div>
+
+                        <div id="chooseCardBox3" class="card text-center loginBox" style="background-color: orange; display: none; ">
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label class="form-label">道 具 圖 像 3</label>
+                                    <input class="form-control" type="file" name="boxObject_heartRed" id="boxObject_heartRed">
+                                </div>
+                            </div>
+                            <div  class="card-body">
+                                <h5 class="card-title">預覽圖</h5>
+                                <img style="width: 50%; height: 50%;" id="boxObject_heartRed_image" src="<%= userJsonData.items[3].items[2].src%>">
+                            </div>
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                    <input type="text" name="boxObject_heartRed_text" id="boxObject_heartRed_text" class="card-img-top" value="<%= userJsonData.items[3].items[2].text%>">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p>說明：</p>
+                                <p>當戳到某個盒子時，會出現的文字</p>
+                            </div>
+
+                            <div class="card-footer text-muted">
+                                <button type="button" onclick="switchNextBox('pre')" class="btn btn-dark">上一個</button>
+                                <button type="button" onclick="switchNextBox('next')" class="btn btn-dark">下一個</button>
+                            </div>
+                        </div>
+
+                        <div id="chooseCardBox4" class="card text-center loginBox" style="background-color: orange; display: none; ">
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label class="form-label">道 具 圖 像 4</label>
+                                    <input class="form-control" type="file" name="boxObject_heartYellow" id="boxObject_heartYellow">
+                                </div>
+                            </div>
+                            <div  class="card-body">
+                                <h5 class="card-title">預覽圖</h5>
+                                <img style="width: 50%; height: 50%;" id="boxObject_heartYellow_image" src="<%= userJsonData.items[3].items[3].src%>">
+                            </div>
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                    <input type="text" name="boxObject_heartYellow_text" id="boxObject_heartYellow_text" class="card-img-top" value="<%= userJsonData.items[3].items[3].text%>">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p>說明：</p>
+                                <p>當戳到某個盒子時，會出現的文字</p>
+                            </div>
+
+                            <div class="card-footer text-muted">
+                                <button type="button" onclick="switchNextBox('pre')" class="btn btn-dark">上一個</button>
+                                <button type="button" onclick="switchNextBox('next')" class="btn btn-dark">下一個</button>
+                            </div>
+                        </div>
+
+                        <div id="chooseCardBox5" class="card text-center loginBox" style="background-color: orange; display: none; ">
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label class="form-label">道 具 圖 像 5</label>
+                                    <input class="form-control" type="file" name="boxObject_heartAqua" id="boxObject_heartAqua">
+                                </div>
+                            </div>
+                            <div  class="card-body">
+                                <h5 class="card-title">預覽圖</h5>
+                                <img style="width: 50%; height: 50%;" id="boxObject_heartAqua_image" src="<%= userJsonData.items[3].items[4].src%>">
+                            </div>
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                    <input type="text" name="boxObject_heartAqua_text" id="boxObject_heartAqua_text" class="card-img-top" value="<%= userJsonData.items[3].items[4].text%>">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p>說明：</p>
+                                <p>當戳到某個盒子時，會出現的文字</p>
+                            </div>
+
+                            <div class="card-footer text-muted">
+                                <button type="button" onclick="switchNextBox('pre')" class="btn btn-dark">上一個</button>
+                                <button type="button" onclick="switchNextBox('next')" class="btn btn-dark">下一個</button>
+                            </div>
+                        </div>
+
+                        <div id="chooseCardBox6" class="card text-center loginBox" style="background-color: orange; display: none; ">
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label class="form-label">道 具 圖 像 6</label>
+                                    <input class="form-control" type="file" name="boxObject_heartOrange" id="boxObject_heartOrange">
+                                </div>
+                            </div>
+                            <div  class="card-body">
+                                <h5 class="card-title">預覽圖</h5>
+                                <img style="width: 50%; height: 50%;" id="boxObject_heartOrange_image" src="<%= userJsonData.items[3].items[5].src%>">
+                            </div>
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                    <input type="text" name="boxObject_heartOrange_text" id="boxObject_heartOrange_text" class="card-img-top" value="<%= userJsonData.items[3].items[5].text%>">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p>說明：</p>
+                                <p>當戳到某個盒子時，會出現的文字</p>
+                            </div>
+
+                            <div class="card-footer text-muted">
+                                <button type="button" onclick="switchNextBox('pre')" class="btn btn-dark">上一個</button>
+                                <button type="button" onclick="switchNextBox('next')" class="btn btn-dark">下一個</button>
+                            </div>
+                        </div>
+
+                        <div id="chooseCardBox7" class="card text-center loginBox" style="background-color: orange; display: none; ">
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label class="form-label">道 具 圖 像 7</label>
+                                    <input class="form-control" type="file" name="boxObject_heartPink" id="boxObject_heartPink">
+                                </div>
+                            </div>
+                            <div  class="card-body">
+                                <h5 class="card-title">預覽圖</h5>
+                                <img style="width: 50%; height: 50%;" id="boxObject_heartPink_image" src="<%= userJsonData.items[3].items[6].src%>">
+                            </div>
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                    <input type="text" name="boxObject_heartPink_text" id="boxObject_heartPink_text" class="card-img-top" value="<%= userJsonData.items[3].items[6].text%>">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p>說明：</p>
+                                <p>當戳到某個盒子時，會出現的文字</p>
+                            </div>
+
+                            <div class="card-footer text-muted">
+                                <button type="button" onclick="switchNextBox('pre')" class="btn btn-dark">上一個</button>
+                                <button type="button" onclick="switchNextBox('next')" class="btn btn-dark">下一個</button>
+                            </div>
+                        </div>
+
+                        <div id="chooseCardBox8" class="card text-center loginBox" style="background-color: orange; display: none; ">
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label class="form-label">道 具 圖 像 8</label>
+                                    <input class="form-control" type="file" name="boxObject_starYellow" id="boxObject_starYellow">
+                                </div>
+                            </div>
+                            <div  class="card-body">
+                                <h5 class="card-title">預覽圖</h5>
+                                <img style="width: 50%; height: 50%;" id="boxObject_starYellow_image" src="<%= userJsonData.items[3].items[7].src%>">
+                            </div>
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                    <input type="text" name="boxObject_starYellow_text" id="boxObject_starYellow_text" class="card-img-top" value="<%= userJsonData.items[3].items[7].text%>">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p>說明：</p>
+                                <p>當戳到某個盒子時，會出現的文字</p>
+                            </div>
+
+                            <div class="card-footer text-muted">
+                                <button type="button" onclick="switchNextBox('pre')" class="btn btn-dark">上一個</button>
+                                <button type="button" onclick="switchNextBox('next')" class="btn btn-dark">下一個</button>
+                            </div>
+                        </div>
+
+                        <div id="chooseCardBox9" class="card text-center loginBox" style="background-color: orange; display: none; ">
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label class="form-label">道 具 圖 像 9</label>
+                                    <input class="form-control" type="file" name="boxObject_smile" id="boxObject_smile">
+                                </div>
+                            </div>
+                            <div  class="card-body">
+                                <h5 class="card-title">預覽圖</h5>
+                                <img style="width: 50%; height: 50%;" id="boxObject_smile_image" src="<%= userJsonData.items[3].items[8].src%>">
+                            </div>
+
+                            <div class="card-header">
+                                <div class="mb-3">
+                                    <label for="rawFood" class="form-label">獲 得 道 具 的 文 字</label>
+                                    <input type="text" name="boxObject_smile_text" id="boxObject_smile_text" class="card-img-top" value="<%= userJsonData.items[3].items[8].text%>">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p>說明：</p>
+                                <p>當戳到某個盒子時，會出現的文字</p>
+                            </div>
+
+                            <div class="card-footer text-muted">
+                                <button type="button" onclick="switchNextBox('pre')" class="btn btn-dark">上一個</button>
+                                <button type="button" onclick="switchNextBox('next')" class="btn btn-dark">下一個</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        <button type="submit" onclick="saveFormData()" class="btn btn-dark">提交資料</button>
+                    </div>
+                </form>
+                <button onclick="test()" class="btn btn-dark">clear1</button>
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>

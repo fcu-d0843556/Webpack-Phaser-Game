@@ -25,6 +25,8 @@ export default class CookingGame extends Phaser.Scene{
         this.load.image('flip','src/assets/halfFlipFood.png')
         this.load.image('well','src/assets/wellFood.png')
         this.load.image('panel','src/assets/cookpanel.png')
+        this.load.image('blackBlock','src/assets/blackBlock.png')
+
         this.load.image('cookSpot','src/assets/cookSpot.png')
         this.load.image('maskMan','src/assets/maskMan.png')
         this.load.image('maskManSmile','src/assets/maskManSmile.png')
@@ -47,8 +49,9 @@ export default class CookingGame extends Phaser.Scene{
 
         
 
-        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background').setScale(1.1)
+        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background')    
         this.add.image(400,480,'panel')
+        this.add.image(400,620,'blackBlock')
 
         this.scoreText = this.createScoreText(16,16,0)
         const timerLabel2 = this.add.text(16, 54, 'Time : ', {fontSize:32,fill:'#000'})

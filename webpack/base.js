@@ -46,7 +46,7 @@ module.exports = {
     setup(app) {
       app.set('views', './src/views')
       app.engine("html", ejs.__express)
-      app.set("view engine", "html")
+      app.set("view engine", "ejs")
 
       app.use(express.urlencoded({
         extended: false

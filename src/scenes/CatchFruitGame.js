@@ -42,7 +42,7 @@ export default class CatchFruitGame extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(400,300,'background')
+        this.add.image(400,320,'background')
         
 
         this.platforms = this.createPlatform()
@@ -144,6 +144,7 @@ export default class CatchFruitGame extends Phaser.Scene{
     createPlatform(){
         const platforms = this.physics.add.staticGroup()
         platforms.create(400,568,'ground').setScale(2).refreshBody()
+        platforms.create(400,620,'ground').setScale(2).refreshBody()
 
         return platforms
     }

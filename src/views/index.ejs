@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Phaser3 + Parceljs Template</title>
+
+
+
+    <!-- bootstrap function and css style -->
+    <link rel="stylesheet" href="/src/static/bootstrap/css/bootstrap.min.css">
+    <script src="/src/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- this html css style -->
+	<link rel="stylesheet" href="/src/static/css/game.css">
+
+    <!-- upload and modify function -->
+    <script type="text/javascript" src="/src/static/js/upload.js"></script>
+    <script type="text/javascript" src="/src/static/js/preloadImage.js"></script>
+
+    <!-- Loading Game  -->
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+
+</head>
+<body style="background-color: orange;">
+
+
+    <div id="root"></div>
+
+	<!-- upper bar V -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/uploadFile">Upload</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <input id="getUserID" type = "hidden" value = "<%= username%>">
+                    <input id="getGameID" type = "hidden" value = "<%= gameID%>">
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+
+        <!-- left game bar -->
+        <div class="phone-style">
+            <div class="phone" id="phaser-app"></div>
+        </div>
+        <div class="row justify-content-end right-select-bar">
+            <div class="col-4"></div>
+
+            <!-- middle detail form -->
+            <div class="col-8">
+                <div class="row">
+
+                    <!-- middle red show bar -->
+                    <div id="detailCard" class="overflow col-7">
+                        <h2 style="text-align:center;">使用預設圖片</h1>
+                        <div>
+                            <div class="row row-cols-1 row-cols-md-2 g-4 " >
+
+                                <div class="col">
+                                    <div id="defaultCard1" class="card">
+                                        <img id="defaultPic1" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                                                        
+                    <!-- right select bar -->
+                    <div class="col-5">
+                        <div class="bd-link">
+                            <form action="/doUpload" id="dataForm" method="post" enctype="multipart/form-data">
+                                
+                                <% for(let i=0; i< userJsonData.items.length; i++) { %>
+                                    <% if(userJsonData.items[i].items){ %>
+                                        <div id="allBox">
+                                            <% for(let s=0; s < userJsonData.items[i].items.length; s++) { %>
+                                                <% if(s==0){ %>
+                                                    <div id=<%= "chooseCardBox" + (s+1) %> class="card text-center loginBox" style="background-color: orange;">
+                                                <% } else { %>
+                                                    <div id=<%= "chooseCardBox" + (s+1) %> class="card text-center loginBox" style="background-color: orange; display: none;">
+                                                <% } %>
+                                                        <div class="card-header">
+                                                            <div class="mb-3">
+                                                                <button type="button" onclick="switchNextBox('pre')" style="float:left" class="btn btn-dark">上一個</button>
+                                                                <label class="form-label"><%= userJsonData.items[i].items[s].modifyTitle%></label>
+                                                                <button type="button" onclick="switchNextBox('next')" style="float:right" class="btn btn-dark">下一個</button>  
+                                                                <input class="form-control" type="file" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%>>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">預覽圖</h5>
+                                                            <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_image" %> src=<%= userJsonData.items[i].items[s].src%>>
+                                                        </div>
+                
+                                                        <div class="card-header">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">獲 得 道 具 的 文 字</label>
+                                                                <input type="text" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_text" %> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_text" %> class="card-img-top" value=<%= userJsonData.items[i].items[s].text%>>
+                                                            </div>
+                                                        </div>
+                
+                                                        <div class="card-body">
+                                                            <p>說明：</p>
+                                                            <p>當戳到某個盒子時，會出現的文字</p>
+                                                        </div>
+                
+                                                        <div class="card-footer text-muted">
+                                                        </div>
+
+                                                    </div>
+                                            <% } %>
+                                        </div>
+
+                                    <% }else if(userJsonData.items[i].name){ %>
+                                        <div id=<%= "chooseCard" + (i+1) %> class="card text-center loginBox" style="background-color: orange;">
+                                            <div class="card-header">
+                                                <div class="mb-3">
+                                                    <label class="form-label"><%= userJsonData.items[i].modifyTitle%></label>
+                                                    <input type="hidden" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].src%>">
+                                                    <input class="form-control" type="file" name=<%= userJsonData.items[i].name %> id=<%= userJsonData.items[i].name %>>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label class="form-label">生成的X位置</label>
+                                                        <input class="form-control" type="number" name=<%= userJsonData.items[i].name + "_position_x" %> id=<%= userJsonData.items[i].name + "_position_x" %> value=<%= userJsonData.items[i].position.x %> />
+                                                    </div>
+                                                    <div class="col">
+                                                        <label class="form-label">生成的Y位置</label>
+                                                        <input class="form-control" type="number" name=<%= userJsonData.items[i].name + "_position_y" %> id=<%= userJsonData.items[i].name + "_position_y" %> value=<%= userJsonData.items[i].position.y %> />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div  class="card-body">
+                                                <h5 class="card-title">預覽圖</h5>
+                                                <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_image" %> src="<%= userJsonData.items[i].src%>">
+                                            </div>
+
+                                            <div class="card-footer text-muted">
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% } %>
+                                
+
+                                
+
+                                <div class="card-footer text-muted">
+                                    <button type="submit" onclick="saveFormData()" class="btn btn-dark">提交資料</button>
+                                    <button type="button" onclick="test()" class="btn btn-dark">回到默認資料</button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+        </div>
+
+    </div>
+
+
+    <!-- 載入 React。 -->
+    <!-- 注意：在發佈應用程式前，請把「development.js」替換成「production.min.js」。 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <!-- 載入我們的 React component。-->
+    <script type="text/babel" src="/src/static/js/renderModifyBox.js"></script>
+</body>
+</html>
