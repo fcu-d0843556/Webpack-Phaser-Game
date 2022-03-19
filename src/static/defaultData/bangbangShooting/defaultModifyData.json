@@ -8,5 +8,29 @@
             "x": 400,
             "y": 320
         }
+    },
+    {
+        "name": "boxObject",
+        "items": [{
+            "modifyTitle": "氣 球 1",
+            "name": "balloon1",
+            "src": "src/assets/balloon1.png"
+        }, {
+            "modifyTitle": "氣 球 2",
+            "name": "balloon2",
+            "src": "src/assets/balloon2.png"
+        }, {
+            "modifyTitle": "氣 球 3",
+            "name": "balloon3",
+            "src": "src/assets/balloon3.png"
+        }, {
+            "modifyTitle": "氣 球 4",
+            "name": "balloon4",
+            "src": "src/assets/balloon4.png"
+        }, {
+            "modifyTitle": "氣 球 5",
+            "name": "balloon5",
+            "src": "src/assets/balloon5.png"
+        }]
     }
 ]

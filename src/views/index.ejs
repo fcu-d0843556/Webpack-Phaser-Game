@@ -117,20 +117,23 @@
                         <div class="bd-link">
                             <form action="/doUpload" id="dataForm" method="post" enctype="multipart/form-data">
                                 <div id="allCards">
+                                <% let cardNum=0 %>
+                                <% let groupNum=0 %>
                                 <% for(let i=0; i< userJsonData.items.length; i++) { %>
                                     <% if(userJsonData.items[i].items){ %>
-                                        <div id="allBox">
+                                        <div id=<%= "cardGroup" + (groupNum+1) %>>
+                                            <% groupNum++ %>
                                             <% for(let s=0; s < userJsonData.items[i].items.length; s++) { %>
                                                 <% if(s==0){ %>
-                                                    <div id=<%= "chooseCardBox" + (s+1) %> class="card text-center loginBox" style="background-color: orange;">
+                                                    <div id=<%= "chooseCardGroup" + (s+1) %> class="card text-center loginBox" style="background-color: orange;">
                                                 <% } else { %>
-                                                    <div id=<%= "chooseCardBox" + (s+1) %> class="card text-center loginBox" style="background-color: orange; display: none;">
+                                                    <div id=<%= "chooseCardGroup" + (s+1) %> class="card text-center loginBox" style="background-color: orange; display: none;">
                                                 <% } %>
                                                         <div class="card-header">
                                                             <div class="mb-3">
-                                                                <button type="button" onclick="switchNextBox('pre')" style="float:left" class="btn btn-dark">上一個</button>
+                                                                <button type="button" onclick="switchNextBox('pre', <%= groupNum %>)" style="float:left" class="btn btn-dark">上一個</button>
                                                                 <label class="form-label"><%= userJsonData.items[i].items[s].modifyTitle%></label>
-                                                                <button type="button" onclick="switchNextBox('next')" style="float:right" class="btn btn-dark">下一個</button>  
+                                                                <button type="button" onclick="switchNextBox('next', <%= groupNum %>)" style="float:right" class="btn btn-dark">下一個</button>  
                                                                 <input class="form-control" type="file" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%>>
                                                             </div>
                                                         </div>
@@ -153,7 +156,7 @@
                                                         </div>
                 
                                                         <div class="card-footer text-muted">
-                                                            <button type="button" onclick="defaultPicShow(<%= userJsonData.items[i].items.name %>)" class="btn btn-dark">使用其他提供的圖片</button>
+                                                            <button type="button" onclick="defaultPicShowGroup('<%= groupNum %>')" class="btn btn-dark">使用其他提供的圖片</button>
                                                         </div>
 
                                                     </div>
@@ -161,7 +164,8 @@
                                         </div>
 
                                     <% }else if(userJsonData.items[i].name){ %>
-                                        <div id=<%= "chooseCard" + (i+1) %> class="card text-center loginBox" style="background-color: orange;">
+                                        <% cardNum++ %>
+                                        <div id=<%= "chooseCard" + cardNum %> class="card text-center loginBox" style="background-color: orange;">
                                             <div class="card-header">
                                                 <div class="mb-3">
                                                     <label class="form-label"><%= userJsonData.items[i].modifyTitle%></label>
@@ -187,8 +191,8 @@
                                             </div>
 
                                             <div class="card-footer text-muted">
-                                                <button type="button" onclick="defaultPicShow('<%= userJsonData.items[i].name %>')" class="btn btn-dark">使用其他提供的圖片</button>
-                                            </div
+                                                <button type="button" onclick="defaultPicShowCard('<%= "chooseCard" + cardNum %>')" class="btn btn-dark">使用其他提供的圖片</button>
+                                            </div>
                                         </div>
                                     <% } %>
                                 <% } %>

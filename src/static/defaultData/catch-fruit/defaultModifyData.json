@@ -8,5 +8,15 @@
             "x": 400,
             "y": 320
         }
+    },
+    {
+        "modifyTitle": "掉 落 物 件",
+        "name": "star",
+        "type": "png",
+        "src": "src/assets/star.png",
+        "position": {
+            "x": 400,
+            "y": 320
+        }
     }
 ]

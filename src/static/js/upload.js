@@ -3,50 +3,50 @@ const uploadList = {
 }
 let cardSpot = 0
 let boxSpot = 0
-let chooseCardBoxs = []
-
+let allGroup = {}
+let allCard = {}
+let highlightItem
 window.addEventListener("load",function(){
-    let allCards = document.getElementById("allCards");
-    
-    const chooseCard1 = document.getElementById("chooseCard1");
-    const chooseCard2 = document.getElementById("chooseCard2");
-    const chooseCard3 = document.getElementById("chooseCard3");
 
-    for(let v=1;v<10;v++){
-        let chooseCardBox = document.getElementById("chooseCardBox" + v);
-        chooseCardBoxs.push(chooseCardBox)
+    for(let v=1;;v++){
+        let chooseCard = document.getElementById("chooseCard" + v);
+        if(!chooseCard){
+            break
+        }
+        allCard[chooseCard.id] = chooseCard
     }
+    
+    let saveId 
+    let groupNum = 1
+    let cardGroup = []
+    for(let v=1;;v++){
+        let chooseCardGroup = document.getElementById("chooseCardGroup" + v);
+        if(!chooseCardGroup){
+            let s = {
+                items: cardGroup,
+                count: 0
+            }
+            allGroup["cardGroup" + groupNum] = s
+            break
+        }
+        console.log(chooseCardGroup)
 
+        if(saveId == chooseCardGroup.id){
+            let s = {
+                items: cardGroup,
+                count: 0
+            }
+            allGroup["cardGroup" + groupNum] = s
+            groupNum++
+            cardGroup = []
+        }else{
+            saveId = chooseCardGroup.id
+            cardGroup.push(chooseCardGroup)
+        }
+    }   
 
-
-    const defaultCard1 = document.getElementById("defaultCard1");
-
-    const foodCan = document.getElementById("foodCan");
-    const rawFood = document.getElementById("rawFood");
     const background = document.getElementById("background");
-    const boxObject_balloons = document.getElementById("boxObject_balloons");
-    const boxObject_heartRed = document.getElementById("boxObject_heartRed");
-    const boxObject_heartAqua = document.getElementById("boxObject_heartAqua");
 
-
-    // chooseCard1.addEventListener('click',function(){
-    //     highlightCard(chooseCard1);
-    //     chooseCard2.style.border = "";
-    //     chooseCard3.style.border = "";
-    // })
-
-
-    // chooseCard2.addEventListener('click',function(){
-    //     highlightCard(chooseCard2);
-    //     chooseCard1.style.border = "";
-    //     chooseCard3.style.border = "";
-    // })
-
-    // chooseCard3.addEventListener('click',function(){
-    //     highlightCard(chooseCard3);
-    //     chooseCard1.style.border = "";
-    //     chooseCard2.style.border = "";
-    // })
     defaultCard1.addEventListener('click',function(){
         if(defaultCard1.style.border == ""){
             defaultCard1.style.border = "5px #0d6efd solid";
@@ -84,65 +84,52 @@ window.addEventListener("load",function(){
         }
     })
 
-    if(foodCan){
-        foodCan.addEventListener("change",function(event){
-            console.log(event)
-            showPicFile(event,"foodCan")
-        })
-    }
-
-    if(rawFood){
-        rawFood.addEventListener("change",function(event){
-            showPicFile(event,"rawFood")
-        })
-    }
-
-    console.log(boxObject_balloons)
-    console.log(boxObject_heartRed)
-
-    console.log(boxObject_heartAqua)
-
     if(background){
         background.addEventListener("change",function(event){
             showPicFile(event,"background")
         })
     }
 
-    if(boxObject_balloons){
-        boxObject_balloons.addEventListener("change",function(event){
-            showPicFile(event,"boxObject_balloons")
-        })
-    }
-
-    if(boxObject_heartRed){
-        boxObject_heartRed.addEventListener("change",function(event){
-            showPicFile(event,"boxObject_heartRed")
-        })
-    }
-
-    if(boxObject_heartAqua){
-        boxObject_heartAqua.addEventListener("change",function(event){
-            showPicFile(event,"boxObject_heartAqua")
-        })
-    }
 })
-
-const defaultPicShow = function(key){
-    
+//highlightCard
+const highlightCard = function(item){
+    if(item.style.border == ""){
+        if(highlightItem){
+            highlightItem.style.border = "";
+        }        
+        item.style.border = "5px #0d6efd solid";
+        detailCard.style.visibility = "visible";
+        detailCard.style.backgroundColor = "red";
+    }else{
+        highlightItem.style.border = "5px #0d6efd solid";
+        item.style.border = "";
+        detailCard.style.visibility = "hidden";
+        detailCard.style.backgroundColor = "";
+    }
+    highlightItem = item
 }
 
-const switchNextBox = function(type){
-    
-    if(type == 'next' && boxSpot<8){
-        chooseCardBoxs[boxSpot].style.display = 'none'
-        chooseCardBoxs[boxSpot+1].style.display = 'block'
-        boxSpot++
-    }else if(type == 'pre' && boxSpot>0){
-        chooseCardBoxs[boxSpot].style.display = 'none'
-        chooseCardBoxs[boxSpot-1].style.display = 'block'
-        boxSpot--
-    }
+const defaultPicShowCard = function(key){
+    highlightCard(allCard[key]);
+}
 
+const defaultPicShowGroup = function(key){
+    let spot = allGroup['cardGroup' + key].count
+    highlightCard(allGroup['cardGroup' + key].items[spot]);
+}
+//highlightCard end
+
+const switchNextBox = function(type,num){
+    let spot = allGroup['cardGroup' + num].count
+    if(type == 'next' && spot<allGroup['cardGroup' + num].items.length-1){
+        allGroup['cardGroup' + num].items[spot].style.display = 'none'
+        allGroup['cardGroup' + num].items[spot+1].style.display = 'block'
+        allGroup['cardGroup' + num].count++
+    }else if(type == 'pre' && spot>0){
+        allGroup['cardGroup' + num].items[spot].style.display = 'none'
+        allGroup['cardGroup' + num].items[spot-1].style.display = 'block'
+        allGroup['cardGroup' + num].count--
+    }
 }
 
 const showPicFile = function(event, keyword){
@@ -168,31 +155,7 @@ const showPicDefault = function(src , keyword){
     }
 }
 
-const highlightCard = function(item){
-    if(item.style.border == ""){
-        defaultCard1.style.border = "5px #0d6efd solid";
-        item.style.border = "5px #0d6efd solid";
-        detailCard.style.visibility = "visible";
-        detailCard.style.backgroundColor = "red";
-    }else{
-        item.style.border = "";
-        detailCard.style.visibility = "hidden";
-        detailCard.style.backgroundColor = "";
-    }
 
-    defaultCard1.style.border = "";
-    if(item == chooseCard1){
-        cardSpot = 1
-        defaultPic1.src = "/src/static/img/view1.png"
-    }else if(item == chooseCard2){
-        cardSpot = 2
-        defaultPic1.src = "/src/static/img/view2.png"
-    }else if(item == chooseCard3){
-        cardSpot = 3
-        defaultPic1.src = "/src/static/img/view3.png"
-    }
-
-}
 
 const saveFormData = function(){
     console.log("hello!")
