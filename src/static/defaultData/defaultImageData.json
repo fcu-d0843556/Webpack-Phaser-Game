@@ -1,0 +1,220 @@
+{
+    "background": {
+        "modifyTitle": "遊 戲 背 景",
+        "name": "background",
+        "items": [
+            {
+                "type": "png",
+                "description": "sky",
+                "src": "src/assets/background.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "bat",
+                "src": "src/assets/view1.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "ghost and skull",
+                "src": "src/assets/view2.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "pumpkin",
+                "src": "src/assets/view3.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            }
+        ]
+    },
+    "balloon": {
+        "modifyTitle": "氣 球",
+        "name": "balloon",
+        "items": [
+            {
+                "type": "png",
+                "description": "balloon1",
+                "src": "src/assets/balloon1.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "balloon2",
+                "src": "src/assets/balloon2.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "balloon3",
+                "src": "src/assets/balloon3.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "balloon4",
+                "src": "src/assets/balloon4.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "balloon5",
+                "src": "src/assets/balloon5.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "foodCan",
+                "src": "src/assets/foodCan.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            }
+        ]
+    },
+    "rawFood": {
+        "modifyTitle": "食 物(生的)",
+        "name": "rawFood",
+        "items": [
+            {
+                "type": "png",
+                "description": "rawFood",
+                "src": "src/assets/rawFood.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "heartRed",
+                "src": "src/assets/heartRed.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "heartYellow",
+                "src": "src/assets/heartYellow.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            }
+        ]
+    },
+    "foodCan": {
+        "modifyTitle": "製 作 桶",
+        "name": "foodCan",
+        "type": "single",
+        "items": [
+            {
+                "type": "png",
+                "description": "foodCan",
+                "src": "src/assets/foodCan.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "tissue",
+                "src": "src/assets/tissue.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            }
+        ]
+    },
+    "boxObject": {
+        "modifyTitle": "戳 戳 樂 物 體",
+        "name": "boxObject",
+        "type": "group",
+        "items": [
+            {
+                "type": "png",
+                "description": "lipstick",
+                "src": "src/assets/girlfriend/lipstick.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "heartYellow",
+                "src": "src/assets/girlfriend/cake.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "smile",
+                "src": "src/assets/girlfriend/smile.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            }
+        ]
+    },
+    "star": {
+        "modifyTitle": "掉 落 物 件",
+        "name": "star",
+        "items": [
+            {
+                "type": "png",
+                "description": "star",
+                "src": "src/assets/star.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "bomb",
+                "src": "src/assets/bomb.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            }
+        ]
+    }
+}

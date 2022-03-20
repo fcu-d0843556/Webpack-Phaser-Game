@@ -25,13 +25,18 @@ export default class CatchFruitGame extends Phaser.Scene{
         this.starsGroup = undefined
         this.gameOver = false
         this.playerMoveSpeed = 400
+        this.allJsonData = []
+
     }
 
     preload(){
+        this.jsonData = this.cache.json.get('jsonData');
+        console.log("find jsonData")
+        console.log(this.jsonData)
 
         this.load.image('ground','src/assets/platform.png');
-        this.load.image('background','src/assets/background.png');
-        this.load.image('star','src/assets/star.png');
+        // this.load.image('background','src/assets/background.png');
+        // this.load.image('star','src/assets/star.png');
         this.load.image('bomb','src/assets/bomb.png');
         this.load.image('arrowButton','src/assets/arrowButton.png');
 
@@ -39,16 +44,38 @@ export default class CatchFruitGame extends Phaser.Scene{
             frameWidth: 32, frameHeight:48
         });
 
+
+        const items = this.jsonData.items
+        console.log("all items = ")
+        console.log(items)
+
+        for(let t=0; t<items.length; t++){
+            if(items[t].items){
+                for(let s=0; s<items[t].items.length; s++){
+                    this.load.image(items[t].items[s].name, items[t].items[s].src)
+                }
+                this.allJsonData[items[t].name] = items[t]
+            }else{
+                if(items[t].src){
+                    this.load.image(items[t].name, items[t].src)
+                }
+                this.allJsonData[items[t].name] = items[t]
+            }
+            
+        }
+
+        console.log("all allJsonData = ")
+        console.log(this.allJsonData)
     }
 
     create(){
-        this.add.image(400,320,'background')
+        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background').setScale(this.allJsonData.background.size/100)
         
 
         this.platforms = this.createPlatform()
         this.player = this.createPlayer()
         this.cursor = this.input.keyboard.createCursorKeys()
-        this.starsSpawner = new StarsSpawner(this,StarKey)
+        this.starsSpawner = new StarsSpawner(this,this.allJsonData.star.name,this.allJsonData.star)
         this.starsGroup = this.starsSpawner.group
         this.bombSpawner = new BombSpawner(this,BombKey)
         this.bombsGroup = this.bombSpawner.groupA
@@ -136,7 +163,7 @@ export default class CatchFruitGame extends Phaser.Scene{
     collectStar(player,star){
         star.disableBody(true,true)
         // const timerLabel = this.add.text(16, 90, 'timeLabel : ', {fontSize:32,fill:'#000'})
-        this.getItemMessage = new ShowMessage(this,"Happy！")
+        this.getItemMessage = new ShowMessage(this,this.allJsonData.star.text)
         this.getItemMessage.start(this.getItemMessage.stop(),500)//5s
         this.scoreText.addScore(10)
     }

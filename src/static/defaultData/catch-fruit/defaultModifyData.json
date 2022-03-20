@@ -7,16 +7,19 @@
         "position": {
             "x": 400,
             "y": 320
-        }
+        },
+        "size": 100
     },
     {
         "modifyTitle": "掉 落 物 件",
         "name": "star",
         "type": "png",
+        "text": "Happy!",
         "src": "src/assets/star.png",
         "position": {
             "x": 400,
             "y": 320
-        }
+        },
+        "size": 100
     }
 ]

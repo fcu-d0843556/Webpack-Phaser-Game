@@ -4,11 +4,7 @@ export default class ShowMessage {
         this.text = text
     }
 
-
-
-    
     start(callback,duration){
-        
         this.textTimer = this.scene.add.text(20,130,this.text,{fontSize:25,fill:'#fff',backgroundColor:'rgba(0,255,0,0.25)'})
         this.disapperTimerEvent = this.scene.time.addEvent({
             delay: duration,

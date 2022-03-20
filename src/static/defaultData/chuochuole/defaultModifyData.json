@@ -7,7 +7,8 @@
         "position": {
             "x": 400,
             "y": 320
-        }
+        },
+        "size": 100
     },
     {
         "name": "boxObject",
@@ -15,47 +16,56 @@
             "modifyTitle": "左 上 方 塊",
             "name": "balloons",
             "text": "你獲得了balloons！",
-            "src": "src/assets/balloons.png"
+            "src": "src/assets/balloons.png",
+            "size": 100
         }, {
             "modifyTitle": "中 上 方 塊",
             "name": "moonYellow",
             "text": "你獲得了moonYellow！",
-            "src": "src/assets/moonYellow.png"
+            "src": "src/assets/moonYellow.png",
+            "size": 100
         }, {
             "modifyTitle": "右 上 方 塊",
             "name": "heartRed",
             "text": "你獲得了heartRed！",
-            "src": "src/assets/heartRed.png"
+            "src": "src/assets/heartRed.png",
+            "size": 100
         }, {
             "modifyTitle": "左 中 方 塊",
             "name": "heartYellow",
             "text": "你獲得了heartYellow！",
-            "src": "src/assets/heartYellow.png"
+            "src": "src/assets/heartYellow.png",
+            "size": 100
         }, {
             "modifyTitle": "正 中 方 塊",
             "name": "heartAqua",
             "text": "你獲得了heartAqua！",
-            "src": "src/assets/heartAqua.png"
+            "src": "src/assets/heartAqua.png",
+            "size": 100
         }, {
             "modifyTitle": "右 中 方 塊",
             "name": "heartOrange",
             "text": "你獲得了heartOrange！",
-            "src": "src/assets/heartOrange.png"
+            "src": "src/assets/heartOrange.png",
+            "size": 100
         }, {
             "modifyTitle": "左 下 方 塊",
             "name": "heartPink",
             "text": "你獲得了heartPink！",
-            "src": "src/assets/heartPink.png"
+            "src": "src/assets/heartPink.png",
+            "size": 100
         }, {
             "modifyTitle": "中 下 方 塊",
             "name": "starYellow",
             "text": "你獲得了starYellow！",
-            "src": "src/assets/starYellow.png"
+            "src": "src/assets/starYellow.png",
+            "size": 100
         }, {
             "modifyTitle": "右 下 方 塊",
             "name": "smile",
             "text": "你獲得了smile！",
-            "src": "src/assets/smile.png"
+            "src": "src/assets/smile.png",
+            "size": 100
         }]
     }
 ]

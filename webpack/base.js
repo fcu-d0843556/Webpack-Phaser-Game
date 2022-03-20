@@ -134,16 +134,20 @@ module.exports = {
       })
 
       app.get("/index",function(req,res){
-        // console.log("userJsonData is : ")
-        // console.log(req.body)
-        // console.log(tools.readUserJsonFiles(req.session.username,req.session.gameID))
+
         res.render("index",{
           username: req.session.username,
           gameID: req.session.gameID,
-          userJsonData: tools.readUserJsonFiles(req.session.username,req.session.gameID)
+          userJsonData: tools.readUserJsonFiles(req.session.username,req.session.gameID),
+          userImageData: tools.readDefaultImageJsonFiles(req.session.gameID)
         })
       })
 
+      app.get("/clear",function(req,res){
+        tools.deleteJsonData(userID,req.session.gameID)
+        tools.createDefaultJsonFile(userID,req.session.gameID)
+        res.redirect('/index')
+      })
       app.post("/doLogin",function(req,res){
         // console.debug(req.body)
 

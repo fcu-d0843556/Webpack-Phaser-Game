@@ -35,21 +35,33 @@ export default class CookingGame extends Phaser.Scene{
         this.load.image('wantedItem','src/assets/wantedItem.png')
 
         const items = this.jsonData.items
-        console.log("items =")
+        console.log("all items = ")
         console.log(items)
 
         for(let t=0; t<items.length; t++){
-            this.load.image(items[t].name, items[t].src)
-            this.allJsonData[items[t].name] = items[t]
+            if(items[t].items){
+                for(let s=0; s<items[t].items.length; s++){
+                    this.load.image(items[t].items[s].name, items[t].items[s].src)
+                }
+                this.allJsonData[items[t].name] = items[t]
+            }else{
+                if(items[t].src){
+                    this.load.image(items[t].name, items[t].src)
+                }
+                this.allJsonData[items[t].name] = items[t]
+            }
+            
         }
+
+        console.log("all allJsonData = ")
+        console.log(this.allJsonData)
     }
 
 
     create(){
 
         
-
-        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background')    
+        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background').setScale(this.allJsonData.background.size/100)
         this.add.image(400,480,'panel')
         this.add.image(400,620,'blackBlock')
 
@@ -71,7 +83,7 @@ export default class CookingGame extends Phaser.Scene{
         var id = 0
         this.foodGroup = []
         this.cookGroup = this.createFoodSpot()
-        this.foodCan = this.physics.add.sprite(this.allJsonData.foodCan.position.x,this.allJsonData.foodCan.position.y,'foodCan')
+        this.foodCan = this.physics.add.sprite(this.allJsonData.foodCan.position.x,this.allJsonData.foodCan.position.y,'foodCan').setScale(this.allJsonData.foodCan.size/100)
         this.foodCan.setInteractive().on('pointerdown',function(){
             this.food = new foodSpawner(this, 'rawFood', id, this.allJsonData.rawFood)
             this.foodGroup.push(this.food)
@@ -122,23 +134,6 @@ export default class CookingGame extends Phaser.Scene{
             }
             
         },this);    //寫function 時一定要加這裡的 ,this
-
-        // this.input.on('drop', function (pointer, gameObject, dropZone) {
-        //     if(dropZone.texture.key == "wantedItem"){
-        //         switch(gameObject.texture.key){
-        //             case 'rawFood':
-        //                 this.scoreText.addScore(-10)
-        //                 break
-        //             case 'half':
-        //                 this.scoreText.addScore(5)
-        //                 break
-        //             case 'well':
-        //                 this.scoreText.addScore(10)
-        //                 break
-        //         }
-        //         gameObject.destroy(true,true)
-        //     }
-        // },this);
 
     }
     gameover(){

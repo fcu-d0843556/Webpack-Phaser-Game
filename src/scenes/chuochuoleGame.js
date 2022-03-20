@@ -46,7 +46,7 @@ export default class chuochuole extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background')
+        this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background')    
         this.add.image(180,400,'box')
         this.add.text(20,70,'選個洞戳戳看有什麼獎品吧！',{fontSize:25,fill:'#fff',backgroundColor:'rgba(0,255,0,0.25)'})
 

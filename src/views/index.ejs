@@ -66,51 +66,31 @@
             <div class="col-8">
                 <div class="row">
 
+
                     <!-- middle red show bar -->
                     <div id="detailCard" class="overflow col-7">
                         <h2 style="text-align:center;">使用預設圖片</h1>
                         <div>
-                            <div class="row row-cols-1 row-cols-md-2 g-4 " >
-
-                                <div class="col">
-                                    <div id="defaultCard1" class="card">
-                                        <img id="defaultPic1" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
+                            <% let defaultGroupNum = 0 %>
+                            <% let allDefaultNum = 0 %>
+                            <% for (const [key, value] of Object.entries(userImageData)) { %>
+                                <% defaultGroupNum++ %>
+                                <div id=<%= key + '_default_image' %> key=<%= allDefaultNum+1 %> style="display:none" class="row row-cols-1 row-cols-md-2 g-4 " >
+                                    <% for(let i=0;i<value.items.length;i++) { %>
+                                        <% allDefaultNum++ %>
+                                        <div id=<%= value.items[i].name %> class="col">
+                                            <div id=<%= "defaultCard" + (allDefaultNum) %> class="card">
+                                                <img id=<%= "defaultPic" + (allDefaultNum) %> text="<%= value.items[i].src %>" src=<%= value.items[i].src %> class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><%= value.items[i].description %></h5>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <% } %>
                                 </div>
-
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="/src/static/img/exPic.png" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <% } %>
                         </div>
                     </div>
-                    
                                                         
                     <!-- right select bar -->
                     <div class="col-5">
@@ -121,17 +101,19 @@
                                 <% let groupNum=0 %>
                                 <% for(let i=0; i< userJsonData.items.length; i++) { %>
                                     <% if(userJsonData.items[i].items){ %>
+                                        <!-- This is card Group spot -->
                                         <div id=<%= "cardGroup" + (groupNum+1) %>>
                                             <% groupNum++ %>
                                             <% for(let s=0; s < userJsonData.items[i].items.length; s++) { %>
                                                 <% if(s==0){ %>
-                                                    <div id=<%= "chooseCardGroup" + (s+1) %> class="card text-center loginBox" style="background-color: orange;">
+                                                    <div id=<%= "chooseCardGroup" + (s+1) %> type="group" name=<%= userJsonData.items[i].name%> class="card text-center loginBox" style="background-color: orange;">
                                                 <% } else { %>
-                                                    <div id=<%= "chooseCardGroup" + (s+1) %> class="card text-center loginBox" style="background-color: orange; display: none;">
+                                                    <div id=<%= "chooseCardGroup" + (s+1) %> type="group" name=<%= userJsonData.items[i].name%> class="card text-center loginBox" style="background-color: orange; display: none;">
                                                 <% } %>
                                                         <div class="card-header">
                                                             <div class="mb-3">
                                                                 <button type="button" onclick="switchNextBox('pre', <%= groupNum %>)" style="float:left" class="btn btn-dark">上一個</button>
+                                                                <input type="text" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].items[s].src %>">
                                                                 <label class="form-label"><%= userJsonData.items[i].items[s].modifyTitle%></label>
                                                                 <button type="button" onclick="switchNextBox('next', <%= groupNum %>)" style="float:right" class="btn btn-dark">下一個</button>  
                                                                 <input class="form-control" type="file" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%>>
@@ -142,19 +124,21 @@
                                                             <h5 class="card-title">預覽圖</h5>
                                                             <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_image" %> src=<%= userJsonData.items[i].items[s].src%>>
                                                         </div>
-                
-                                                        <div class="card-header">
-                                                            <div class="mb-3">
-                                                                <label class="form-label">獲 得 道 具 的 文 字</label>
-                                                                <input type="text" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_text" %> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_text" %> class="card-img-top" value=<%= userJsonData.items[i].items[s].text%>>
+
+                                                        <% if(userJsonData.items[i].items[s].text){ %>
+                                                            <div class="card-header">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">獲 得 道 具 的 文 字</label>
+                                                                    <input type="text" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_text" %> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_text" %> class="card-img-top" value=<%= userJsonData.items[i].items[s].text%>>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                
-                                                        <div class="card-body">
-                                                            <p>說明：</p>
-                                                            <p>當戳到某個盒子時，會出現的文字</p>
-                                                        </div>
-                
+                    
+                                                            <div class="card-body">
+                                                                <p>說明：</p>
+                                                                <p>當戳到某個盒子時，會出現的文字</p>
+                                                            </div>
+                                                        <% } %>
+
                                                         <div class="card-footer text-muted">
                                                             <button type="button" onclick="defaultPicShowGroup('<%= groupNum %>')" class="btn btn-dark">使用其他提供的圖片</button>
                                                         </div>
@@ -165,30 +149,56 @@
 
                                     <% }else if(userJsonData.items[i].name){ %>
                                         <% cardNum++ %>
-                                        <div id=<%= "chooseCard" + cardNum %> class="card text-center loginBox" style="background-color: orange;">
+                                        <!-- This is card spot -->
+
+                                        <div id=<%= "chooseCard" + cardNum %> type="single" name=<%= userJsonData.items[i].name %> class="card text-center loginBox" style="background-color: orange;">
                                             <div class="card-header">
                                                 <div class="mb-3">
                                                     <label class="form-label"><%= userJsonData.items[i].modifyTitle%></label>
-                                                    <input type="hidden" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].src%>">
+                                                    <input type="text" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].src%>">
                                                     <input class="form-control" type="file" name=<%= userJsonData.items[i].name %> id=<%= userJsonData.items[i].name %>>
                                                 </div>
-
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <label class="form-label">生成的X位置</label>
-                                                        <input class="form-control" type="number" name=<%= userJsonData.items[i].name + "_position_x" %> id=<%= userJsonData.items[i].name + "_position_x" %> value=<%= userJsonData.items[i].position.x %> />
+                                                                <!-- hidden -->
+                                                <% if(userJsonData.items[i].position){ %>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label class="form-label">生成的X位置</label>
+                                                            <input class="form-control" type="number" name=<%= userJsonData.items[i].name + "_position_x" %> id=<%= userJsonData.items[i].name + "_position_x" %> value=<%= userJsonData.items[i].position.x %> />
+                                                        </div>
+                                                        <div class="col">
+                                                            <label class="form-label">生成的Y位置</label>
+                                                            <input class="form-control" type="number" name=<%= userJsonData.items[i].name + "_position_y" %> id=<%= userJsonData.items[i].name + "_position_y" %> value=<%= userJsonData.items[i].position.y %> />
+                                                        </div>
                                                     </div>
-                                                    <div class="col">
-                                                        <label class="form-label">生成的Y位置</label>
-                                                        <input class="form-control" type="number" name=<%= userJsonData.items[i].name + "_position_y" %> id=<%= userJsonData.items[i].name + "_position_y" %> value=<%= userJsonData.items[i].position.y %> />
+                                                <% } %>
+                                                <% if(userJsonData.items[i].size){ %>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label class="form-label">圖片的縮放</label>
+                                                            <input class="form-control" type="number" name=<%= userJsonData.items[i].name + "_size" %> id=<%= userJsonData.items[i].name + "_size" %> value=<%= userJsonData.items[i].size %> />
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                <% } %>
                                             </div>
 
                                             <div  class="card-body">
                                                 <h5 class="card-title">預覽圖</h5>
                                                 <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_image" %> src="<%= userJsonData.items[i].src%>">
                                             </div>
+
+                                            <% if(userJsonData.items[i].text){ %>
+                                                <div class="card-header">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">獲 得 道 具 的 文 字</label>
+                                                        <input type="text" name=<%= userJsonData.items[i].name + "_text" %> id=<%= userJsonData.items[i].name + "_text" %> class="card-img-top" value=<%= userJsonData.items[i].text%>>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="card-body">
+                                                    <p>說明：</p>
+                                                    <p>當戳到某個盒子時，會出現的文字</p>
+                                                </div>
+                                            <% } %>
 
                                             <div class="card-footer text-muted">
                                                 <button type="button" onclick="defaultPicShowCard('<%= "chooseCard" + cardNum %>')" class="btn btn-dark">使用其他提供的圖片</button>
@@ -202,7 +212,7 @@
 
                                 <div class="card-footer text-muted">
                                     <button type="submit" onclick="saveFormData()" class="btn btn-dark">提交資料</button>
-                                    <button type="button" onclick="test()" class="btn btn-dark">回到默認資料</button>
+                                    <button type="button" onclick="clearAllData()" class="btn btn-dark">回到默認資料</button>
                                 </div>
                             </form>
                             

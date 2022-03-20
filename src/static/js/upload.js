@@ -1,3 +1,4 @@
+
 const uploadList = {
 
 }
@@ -6,8 +7,12 @@ let boxSpot = 0
 let allGroup = {}
 let allCard = {}
 let highlightItem
+let highlightItemNum = 0
+let highlightDefaultItem
+let saveDefaultHighlight
 window.addEventListener("load",function(){
-
+    // console.log(background_defaultCard1)
+    
     for(let v=1;;v++){
         let chooseCard = document.getElementById("chooseCard" + v);
         if(!chooseCard){
@@ -29,7 +34,6 @@ window.addEventListener("load",function(){
             allGroup["cardGroup" + groupNum] = s
             break
         }
-        console.log(chooseCardGroup)
 
         if(saveId == chooseCardGroup.id){
             let s = {
@@ -47,42 +51,15 @@ window.addEventListener("load",function(){
 
     const background = document.getElementById("background");
 
-    defaultCard1.addEventListener('click',function(){
-        if(defaultCard1.style.border == ""){
-            defaultCard1.style.border = "5px #0d6efd solid";
-            switch(cardSpot){
-                case 1:
-                    showPicDefault("/src/static/img/view1.png", "foodCan")
-                    break
-                case 2:
-                    showPicDefault("/src/static/img/view2.png", "background")
-                    break
-                case 3:
-                    showPicDefault("/src/static/img/view3.png", "rawFood")
-                    break
-                default:
-                    console.log("default")
-                    break
-            }
-
-        }else{
-            defaultCard1.style.border = "";
-            switch(cardSpot){
-                case 1:
-                    showPicDefault("", "foodCan")
-                    break
-                case 2:
-                    showPicDefault("", "background")
-                    break
-                case 3:
-                    showPicDefault("", "rawFood")
-                    break
-                default:
-                    console.log("default")
-                    break
-            }
+    for(let v=1;;v++){
+        let defaultCard = document.getElementById("defaultCard" + v);
+        if(!defaultCard){
+            break    
         }
-    })
+        defaultCard.addEventListener('click',function(){
+            highlightDefaultCard(this)
+        })
+    }
 
     if(background){
         background.addEventListener("change",function(event){
@@ -91,6 +68,33 @@ window.addEventListener("load",function(){
     }
 
 })
+
+//highlightDefaultCard
+const highlightDefaultCard = function(item){
+    let getName = highlightItem.getAttribute('name')
+    if(highlightItem.getAttribute('type') == 'group'){
+        let find = document.getElementsByName( getName + "_default" )
+        let findImg = item.querySelector("img")
+        find[highlightItemNum].value = findImg.getAttribute('text')
+    }else if(highlightItem.getAttribute('type') == 'single'){
+        let find = document.getElementById( getName + "_default" )
+        let findImg = item.querySelector("img")
+        find.value = findImg.getAttribute('text')
+    }
+    
+    if(item.style.border == ""){
+        if(highlightDefaultItem){
+            highlightDefaultItem.style.border = "";
+        }
+        item.style.border = "5px #0d6efd solid";
+    }else{
+        highlightDefaultItem.style.border = "5px #0d6efd solid";
+        item.style.border = "";
+    }
+    highlightDefaultItem = item
+}
+//highlightDefaultCard end
+
 //highlightCard
 const highlightCard = function(item){
     if(item.style.border == ""){
@@ -98,11 +102,21 @@ const highlightCard = function(item){
             highlightItem.style.border = "";
         }        
         item.style.border = "5px #0d6efd solid";
+        // console.log(item.getAttribute('name'))
+        let find = document.getElementById(item.getAttribute('name') + '_default_image')
+        // console.log(find)
+        if(saveDefaultHighlight){
+            saveDefaultHighlight.style.display = "none"
+        }
+        find.style.display = "flex"
+        saveDefaultHighlight = find
+
         detailCard.style.visibility = "visible";
         detailCard.style.backgroundColor = "red";
     }else{
         highlightItem.style.border = "5px #0d6efd solid";
         item.style.border = "";
+        
         detailCard.style.visibility = "hidden";
         detailCard.style.backgroundColor = "";
     }
@@ -110,11 +124,14 @@ const highlightCard = function(item){
 }
 
 const defaultPicShowCard = function(key){
+    // console.log(allCard)
+    highlightItemNum = 0
     highlightCard(allCard[key]);
 }
 
 const defaultPicShowGroup = function(key){
     let spot = allGroup['cardGroup' + key].count
+    highlightItemNum = spot
     highlightCard(allGroup['cardGroup' + key].items[spot]);
 }
 //highlightCard end
@@ -161,8 +178,7 @@ const saveFormData = function(){
     console.log("hello!")
 }
 
-const test = function(){
-    console.log("test: ")
-    console.log(uploadList)
+const clearAllData = function(){
+    location.href = "clear"
 }
 

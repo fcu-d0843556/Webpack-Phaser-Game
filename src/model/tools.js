@@ -102,35 +102,51 @@ let tools = {
 
         //可用預設圖片的覆蓋
         for (let num = 0; num < defaultData.length; num++) {
-            // console.debug(defaultData[num].name);
+
+
+            //使用預設的圖片
             if (inputData[defaultData[num].name + "_default"] && inputData[defaultData[num].name + "_default"] != "") {
-                // console.debug("find " + defaultData[num].name + "_default");
-                user.items[num].src = inputData[defaultData[num].name + "_default"]
+                if(typeof(inputData[defaultData[num].name + "_default"]) == "string"){
+
+                    user.items[num].src = inputData[defaultData[num].name + "_default"]
+
+                }else if(typeof(inputData[defaultData[num].name + "_default"]) == "object"){
+
+                    for(let i=0;i<inputData[defaultData[num].name + "_default"].length;i++){
+                        user.items[num].items[i].src = inputData[defaultData[num].name + "_default"][i]
+                    }
+
+                }
+                
             }
 
+            //修改xy軸位置
             if (inputData[defaultData[num].name + "_position_x"]) {
+                // console.log("x");
                 user.items[num].position.x = parseInt(inputData[defaultData[num].name + "_position_x"], 10)
-            } else if (inputData[defaultData[num].name + "_position_y"]) {
+            }
+            if (inputData[defaultData[num].name + "_position_y"]) {
+                // console.log("y");
                 user.items[num].position.y = parseInt(inputData[defaultData[num].name + "_position_y"], 10)
             }
+            if (inputData[defaultData[num].name + "_size"]) {
+                // console.log("_size");
+                user.items[num].size = parseInt(inputData[defaultData[num].name + "_size"], 10)
+            }
 
-            if(defaultData[num].items){
+            //修改文字
+            if(inputData[defaultData[num].name + '_text']){
+                user.items[num].text = inputData[defaultData[num].name + "_text"]
+            }else if(defaultData[num].items){
                 for(let numG=0 ;numG < defaultData[num].items.length;numG++){
                     if (inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]) {
-                        console.log("find texttext!")
                         user.items[num].items[numG].text = inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]
-                        console.log(user.items[num].text)
                     }
                 }
             }
             
             
         }
-        // console.debug("defaultData");
-        // console.debug(defaultData);
-
-        // console.log("hihi uploadFiles")
-        // console.log(uploadFiles)
 
         //上傳檔案的覆蓋
         for (const [key, value] of Object.entries(uploadFiles)) {
@@ -181,6 +197,16 @@ let tools = {
         return jsonData
     },
 
+    readDefaultImageJsonFiles: function (gameID) {
+        // console.log("load readImage gameID : " + gameID)
+        let imageData
+        imageData = fs.readFileSync(`./src/static/defaultData/defaultImageData.json`)
+        let userDataTurn = imageData.toString()
+        let jsonData = JSON.parse(userDataTurn)
+
+        return jsonData
+    },
+
     createDefaultJsonFile: function (userID, gameID) {
         console.log("createDefaultJsonFile")
         try {
@@ -220,6 +246,13 @@ let tools = {
         }
 
 
+    },
+
+    deleteJsonData : function (userID, gameID) {
+        fs.unlinkSync(`./src/static/upload/${userID}/${gameID}/userModifyData.json`,function(err){
+            if (err) throw err;
+        })
+        console.log("ok!")
     }
 }
 

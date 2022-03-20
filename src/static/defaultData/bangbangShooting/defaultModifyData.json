@@ -7,30 +7,41 @@
         "position": {
             "x": 400,
             "y": 320
-        }
+        },
+        "size": 100
     },
     {
-        "name": "boxObject",
+        "name": "balloon",
         "items": [{
             "modifyTitle": "氣 球 1",
             "name": "balloon1",
-            "src": "src/assets/balloon1.png"
+            "text": "祝你天天開心！",
+            "src": "src/assets/balloon1.png",
+            "size": 100
         }, {
             "modifyTitle": "氣 球 2",
             "name": "balloon2",
-            "src": "src/assets/balloon2.png"
+            "text": "祝你事事順利！",
+            "src": "src/assets/balloon2.png",
+            "size": 100
         }, {
             "modifyTitle": "氣 球 3",
             "name": "balloon3",
-            "src": "src/assets/balloon3.png"
+            "text": "祝你身體健康！",
+            "src": "src/assets/balloon3.png",
+            "size": 100
         }, {
             "modifyTitle": "氣 球 4",
             "name": "balloon4",
-            "src": "src/assets/balloon4.png"
+            "text": "永遠愛你！",
+            "src": "src/assets/balloon4.png",
+            "size": 100
         }, {
             "modifyTitle": "氣 球 5",
             "name": "balloon5",
-            "src": "src/assets/balloon5.png"
+            "text": "（づ￣3￣）づ╭❤～",
+            "src": "src/assets/balloon5.png",
+            "size": 100
         }]
     }
 ]
