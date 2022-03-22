@@ -11,25 +11,18 @@ let highlightItemNum = 0
 let highlightDefaultItem
 let saveDefaultHighlight
 window.addEventListener("load",function(){
-    
-    //single
+
     for(let v=1;;v++){
         let chooseCard = document.getElementById("chooseCard" + v);
         if(!chooseCard){
             break
         }
         allCard[chooseCard.id] = chooseCard
-
-        let fileButton = document.getElementById(chooseCard.getAttribute("name"));
-        fileButton.addEventListener('change',function(){
-            showPicFile(this,chooseCard.getAttribute("name"))
-        })
     }
     
     let saveId 
     let groupNum = 1
     let cardGroup = []
-    //Group
     for(let v=1;;v++){
         let chooseCardGroup = document.getElementById("chooseCardGroup" + v);
         if(!chooseCardGroup){
@@ -38,15 +31,6 @@ window.addEventListener("load",function(){
                 count: 0
             }
             allGroup["cardGroup" + groupNum] = s
-
-            let fileButton = document.getElementById(saveId);
-            if(fileButton){
-                console.log(fileButton);
-                fileButton.addEventListener('change',function(){
-                    console.log("change end");
-                })
-            }
-            
             break
         }
 
@@ -59,22 +43,13 @@ window.addEventListener("load",function(){
             groupNum++
             cardGroup = []
         }else{
-            // find file button.
-            console.log(saveId);
-            let fileButton = document.getElementById(saveId);
-
-            if(fileButton){
-                console.log(fileButton);
-                fileButton.addEventListener('change',function(){
-                    console.log("change");
-                })
-            }
             saveId = chooseCardGroup.id
             cardGroup.push(chooseCardGroup)
         }
     }   
 
-    //default
+    const background = document.getElementById("background");
+
     for(let v=1;;v++){
         let defaultCard = document.getElementById("defaultCard" + v);
         if(!defaultCard){
@@ -82,6 +57,12 @@ window.addEventListener("load",function(){
         }
         defaultCard.addEventListener('click',function(){
             highlightDefaultCard(this)
+        })
+    }
+
+    if(background){
+        background.addEventListener("change",function(event){
+            showPicFile(event,"background")
         })
     }
 
@@ -94,14 +75,15 @@ const highlightDefaultCard = function(item){
         let find = document.getElementsByName( getName + "_default" )
         let findImg = item.querySelector("img")
         find[highlightItemNum].value = findImg.getAttribute('text')
+        console.log(find[highlightItemNum],getName);
         showPicDefault(find[highlightItemNum].value,getName)
-
+        
     }else if(highlightItem.getAttribute('type') == 'single'){
         let find = document.getElementById( getName + "_default" )
         let findImg = item.querySelector("img")
         find.value = findImg.getAttribute('text')
         showPicDefault(find.value,getName)
-
+        // console.log(find.value,getName);
     }
     
     if(item.style.border == ""){
@@ -119,14 +101,13 @@ const highlightDefaultCard = function(item){
 
 //highlightCard
 const highlightCard = function(item){
-    if(item.style.border == ""){
+    
+    if(item.style.border == ""||item==highlightItem){
         if(highlightItem){
             highlightItem.style.border = "";
         }        
         item.style.border = "5px #0d6efd solid";
-        // console.log(item.getAttribute('name'))
         let find = document.getElementById(item.getAttribute('name') + '_default_image')
-        // console.log(find)
         if(saveDefaultHighlight){
             saveDefaultHighlight.style.display = "none"
         }
@@ -134,7 +115,6 @@ const highlightCard = function(item){
         saveDefaultHighlight = find
 
         detailCard.style.visibility = "visible";
-        detailCard.style.backgroundColor = "red";
     }else{
         highlightItem.style.border = "5px #0d6efd solid";
         item.style.border = "";
@@ -146,7 +126,6 @@ const highlightCard = function(item){
 }
 
 const defaultPicShowCard = function(key){
-    // console.log(allCard)
     highlightItemNum = 0
     highlightCard(allCard[key]);
 }
@@ -173,11 +152,10 @@ const switchNextBox = function(type,num){
 
 const showPicFile = function(event, keyword){
     console.log("showPic type " + keyword)
-    const file = event.files[0];
-    console.log(file);
-    const pic = document.getElementById( keyword + "_image");
+    const file = event.target.files;
 
-    pic.src = URL.createObjectURL(file)
+    const pic = document.getElementById( keyword + "_image");
+    pic[highlightItemNum].src = URL.createObjectURL(file[0])
     uploadList[keyword] = pic.src
 }
 
@@ -186,7 +164,6 @@ const showPicDefault = function(src , keyword){
     const defaultText = document.getElementById( keyword + "_default" )
     defaultText.value = src;
     const pic = document.getElementsByName( keyword + "_image")
-
     pic[highlightItemNum].src = src
 
     if(uploadList[keyword]&&src == ""){

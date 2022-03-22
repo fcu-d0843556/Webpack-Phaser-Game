@@ -58,6 +58,7 @@ export default class chuochuole extends Phaser.Scene{
                 let smallBox = this.physics.add.sprite(x,y,'smallBox')
                 smallBox.setData('text',this.allJsonData.boxObject.items[smallBoxsTimes].text)
                 smallBox.setData('name',this.allJsonData.boxObject.items[smallBoxsTimes].name)
+                smallBox.setData('size',this.allJsonData.boxObject.items[smallBoxsTimes].size)
                 smallBoxs.add(smallBox)
                 smallBoxsTimes++
             }   
@@ -67,20 +68,11 @@ export default class chuochuole extends Phaser.Scene{
             child.setInteractive()
             child.on('pointerdown',function(){
                 console.log('you distroy ' + child.texture.key)
-                this.getItemTimer = new WordDisappearTimer(this,child.getData('text'),child,child.getData('name'))
+                this.getItemTimer = new WordDisappearTimer(this,child)
                 this.getItemTimer.fingerStart(this.getItemTimer.fingerStop(),1000)
                 child.disableInteractive()
             },this)
         }, this)
-
-
-
-        /* get now mouse spot*/
-        // const MouseLabel = this.add.text(10, 578, 'spot : ', {fontSize:16,fill:'#000'})
-        // this.MouseSpot = new getMouseSpot(this, MouseLabel)
-        // this.input.on('pointermove',function(pointer){
-        //     this.MouseSpot.get(pointer)
-        // },this)
     }
 
 

@@ -103,49 +103,64 @@ let tools = {
         //可用預設圖片的覆蓋
         for (let num = 0; num < defaultData.length; num++) {
 
+            //Group
+            if(defaultData[num].items){
 
-            //使用預設的圖片
-            if (inputData[defaultData[num].name + "_default"] && inputData[defaultData[num].name + "_default"] != "") {
-                if(typeof(inputData[defaultData[num].name + "_default"]) == "string"){
-
-                    user.items[num].src = inputData[defaultData[num].name + "_default"]
-
-                }else if(typeof(inputData[defaultData[num].name + "_default"]) == "object"){
-
-                    for(let i=0;i<inputData[defaultData[num].name + "_default"].length;i++){
-                        user.items[num].items[i].src = inputData[defaultData[num].name + "_default"][i]
-                    }
-
-                }
-                
-            }
-
-            //修改xy軸位置
-            if (inputData[defaultData[num].name + "_position_x"]) {
-                // console.log("x");
-                user.items[num].position.x = parseInt(inputData[defaultData[num].name + "_position_x"], 10)
-            }
-            if (inputData[defaultData[num].name + "_position_y"]) {
-                // console.log("y");
-                user.items[num].position.y = parseInt(inputData[defaultData[num].name + "_position_y"], 10)
-            }
-            if (inputData[defaultData[num].name + "_size"]) {
-                // console.log("_size");
-                user.items[num].size = parseInt(inputData[defaultData[num].name + "_size"], 10)
-            }
-
-            //修改文字
-            if(inputData[defaultData[num].name + '_text']){
-                user.items[num].text = inputData[defaultData[num].name + "_text"]
-            }else if(defaultData[num].items){
+                //修改文字
                 for(let numG=0 ;numG < defaultData[num].items.length;numG++){
                     if (inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]) {
                         user.items[num].items[numG].text = inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]
                     }
                 }
+                console.log("inputData[defaultData[num].name + _default]");
+
+                console.log(inputData[defaultData[num].name + "_default"]);
+                //使用預設的圖片
+                if (inputData[defaultData[num].name + "_default"] && inputData[defaultData[num].name + "_default"] != "") {
+                    for(let i=0;i<inputData[defaultData[num].name + "_default"].length;i++){
+                        user.items[num].items[i].src = inputData[defaultData[num].name + "_default"][i]
+                    }
+                }
+
+                console.log("inputData[defaultData[num].name + _size]");
+                console.log(inputData[defaultData[num].name + "_size"]);
+
+
+                for(let numG=0 ;numG < defaultData[num].items.length;numG++){
+                    if (inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_size"]) {
+
+                        user.items[num].items[numG].size = inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_size"]
+                    }
+                }
+
+            //Single
+            }else{ 
+                //修改xy軸位置
+                if (inputData[defaultData[num].name + "_position_x"]) {
+                    console.log("x");
+                    user.items[num].position.x = parseInt(inputData[defaultData[num].name + "_position_x"], 10)
+                }
+                if (inputData[defaultData[num].name + "_position_y"]) {
+                    console.log("y");
+                    user.items[num].position.y = parseInt(inputData[defaultData[num].name + "_position_y"], 10)
+                }
+                console.log(inputData[defaultData[num].name + "_size"]);
+                console.log(defaultData[num].name);
+                if (inputData[defaultData[num].name + "_size"]) {
+                    console.log("_size");
+                    user.items[num].size = parseInt(inputData[defaultData[num].name + "_size"], 10)
+                }
+
+                //使用預設的圖片
+                if (inputData[defaultData[num].name + "_default"] && inputData[defaultData[num].name + "_default"] != "") {
+                    user.items[num].src = inputData[defaultData[num].name + "_default"]
+                }
+
+                //修改文字
+                if(inputData[defaultData[num].name + '_text']){
+                    user.items[num].text = inputData[defaultData[num].name + "_text"]
+                }
             }
-            
-            
         }
 
         //上傳檔案的覆蓋

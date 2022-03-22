@@ -81,10 +81,6 @@ module.exports = {
         })
       })
 
-      app.get("/uploadFile", function (req, res) {
-        res.render("uploadFile")
-      })
-
       app.get("/register", function (req, res) {
         res.render("register")
       })
@@ -109,7 +105,7 @@ module.exports = {
                 }
                 console.debug("註冊成功")
               })
-              res.render("success")
+              res.redirect("/")
             }else{
 
             }
@@ -133,8 +129,17 @@ module.exports = {
         res.redirect('/index')
       })
 
-      app.get("/index",function(req,res){
 
+      app.get("/uploadFile", function (req, res) {
+        res.render("uploadFile",{
+          username: req.session.username,
+          gameID: req.session.gameID,
+          userJsonData: tools.readUserJsonFiles(req.session.username,req.session.gameID),
+          userImageData: tools.readDefaultImageJsonFiles(req.session.gameID)
+        })
+      })
+
+      app.get("/index",function(req,res){
         res.render("index",{
           username: req.session.username,
           gameID: req.session.gameID,
@@ -175,10 +180,6 @@ module.exports = {
         name: 'pic2',
         maxCount: 8
       }])
-
-      app.post("/modifyFile", cpUpload, function (req, res) {
-        res.render("success")
-      })
 
       app.get('/uploadFile', function (req, res) {
         res.render("uploadFile")

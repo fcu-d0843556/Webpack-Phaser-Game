@@ -37,7 +37,18 @@
                 "position": {
                     "x": 400,
                     "y": 320
-                }
+                },
+                "size": 145
+            },
+            {
+                "type": "jpg",
+                "description": "night_sky",
+                "src": "src/assets/night_sky.jpg",
+                "position": {
+                    "x": 300,
+                    "y": 320
+                },
+                "size": 145
             }
         ]
     },
@@ -92,8 +103,8 @@
             },
             {
                 "type": "png",
-                "description": "foodCan",
-                "src": "src/assets/foodCan.png",
+                "description": "heartRed",
+                "src": "src/assets/heartRed.png",
                 "position": {
                     "x": 400,
                     "y": 320
@@ -171,7 +182,8 @@
                 "position": {
                     "x": 400,
                     "y": 320
-                }
+                },
+                "size": 100
             },
             {
                 "type": "png",

@@ -57,7 +57,11 @@ body{
     position: sticky !important;
     top: 0;
     right: 0;
-    z-index: 2000;
+    z-index: 20;
+}
+
+.detailCard{
+    z-index: 1051;
 }
 
 .phone-style{

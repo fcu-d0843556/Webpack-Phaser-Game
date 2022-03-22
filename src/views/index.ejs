@@ -39,10 +39,10 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/uploadFile">Upload</a>
+                        <a class="nav-link" href="/uploadFile">Upload</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index">Games</a>
+                        <a class="nav-link active" href="/index">Games</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>
@@ -68,7 +68,8 @@
 
 
                     <!-- middle red show bar -->
-                    <div id="detailCard" class="overflow col-7">
+                    <div id="detailCard" class="overflow card col-7">
+                        <button type="button" style="float: right;" class="btn-close" aria-label="Close"></button>
                         <h2 style="text-align:center;">使用預設圖片</h1>
                         <div>
                             <% let defaultGroupNum = 0 %>
@@ -118,11 +119,20 @@
                                                                 <button type="button" onclick="switchNextBox('next', <%= groupNum %>)" style="float:right" class="btn btn-dark">下一個</button>  
                                                                 <input class="form-control" type="file" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%>>
                                                             </div>
+                                                            
+                                                            <% if(userJsonData.items[i].items[s].size){ %>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <label class="form-label">圖片的縮放</label>
+                                                                        <input class="form-control" type="number" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_size" %> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_size" %> value=<%= userJsonData.items[i].items[s].size %> />
+                                                                    </div>
+                                                                </div>
+                                                            <% } %>
                                                         </div>
 
                                                         <div class="card-body">
                                                             <h5 class="card-title">預覽圖</h5>
-                                                            <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name + "_image" %> src=<%= userJsonData.items[i].items[s].src%>>
+                                                            <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_image" %> name=<%= userJsonData.items[i].name + "_image" %> src=<%= userJsonData.items[i].items[s].src%>>
                                                         </div>
 
                                                         <% if(userJsonData.items[i].items[s].text){ %>
@@ -183,7 +193,7 @@
 
                                             <div  class="card-body">
                                                 <h5 class="card-title">預覽圖</h5>
-                                                <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_image" %> src="<%= userJsonData.items[i].src%>">
+                                                <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_image" %> name=<%= userJsonData.items[i].name + "_image" %> src="<%= userJsonData.items[i].src%>">
                                             </div>
 
                                             <% if(userJsonData.items[i].text){ %>
