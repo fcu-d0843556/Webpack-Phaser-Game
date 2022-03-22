@@ -4,19 +4,23 @@ let OK = false
 
 
 export default class Loading extends Phaser.Scene{
-    constructor(userID,gameID){
+    constructor(userID,gameID,appSpot){
         super('loading')
         this.userID = userID
         this.gameID = gameID
+        this.appSpot = appSpot
         console.log("loading userID : " + this.userID)
         console.log("loading gameID : " + this.gameID)
+        console.log("loading appSpot : " + this.appSpot)
 
 
 
     }
 
     preload(){
-        this.load.json('jsonData',`src/static/upload/${this.userID}/${this.gameID}/userModifyData.json`)
+
+        this.load.json('jsonData', this.appSpot + `src/static/upload/${this.userID}/${this.gameID}/userModifyData.json`)
+
     }
 
     create(){

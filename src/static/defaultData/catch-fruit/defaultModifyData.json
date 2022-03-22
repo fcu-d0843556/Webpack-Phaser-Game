@@ -16,10 +16,6 @@
         "type": "png",
         "text": "Happy!",
         "src": "src/assets/star.png",
-        "position": {
-            "x": 400,
-            "y": 320
-        },
         "size": 100
     }
 ]

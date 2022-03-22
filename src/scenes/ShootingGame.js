@@ -6,10 +6,11 @@ import ballonSpawner from "../firstGameSystem/ballonSpawner"
 import DropTimeCounter from "../firstGameSystem/DropTimeCounter"
 
 export default class ShootingGame extends Phaser.Scene{
-    constructor(userID){
+    constructor(userID,appSpot){
         super("bangbangShooting")
         this.userID = userID
         this.allJsonData = []
+        this.appSpot = appSpot
 
     }
 
@@ -19,10 +20,10 @@ export default class ShootingGame extends Phaser.Scene{
         console.log("find jsonData")
         console.log(this.jsonData)
 
-        this.load.image('gun','src/assets/gun.png')
-        this.load.image('target','src/assets/targetS.png')
-        this.load.image('hitbox','src/assets/targetS.png')
-        this.load.spritesheet('dude','src/assets/dude.png',{
+        this.load.image('gun',this.appSpot + 'src/assets/gun.png')
+        this.load.image('target',this.appSpot + 'src/assets/targetS.png')
+        this.load.image('hitbox',this.appSpot + 'src/assets/targetS.png')
+        this.load.spritesheet('dude',this.appSpot + 'src/assets/dude.png',{
             frameWidth: 32, frameHeight:48
         });
 
@@ -33,12 +34,12 @@ export default class ShootingGame extends Phaser.Scene{
         for(let t=0; t<items.length; t++){
             if(items[t].items){
                 for(let s=0; s<items[t].items.length; s++){
-                    this.load.image(items[t].items[s].name, items[t].items[s].src)
+                    this.load.image(items[t].items[s].name, this.appSpot + items[t].items[s].src)
                 }
                 this.allJsonData[items[t].name] = items[t]
             }else{
                 if(items[t].src){
-                    this.load.image(items[t].name, items[t].src)
+                    this.load.image(items[t].name, this.appSpot + items[t].src)
                 }
                 this.allJsonData[items[t].name] = items[t]
             }

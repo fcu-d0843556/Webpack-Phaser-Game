@@ -177,7 +177,7 @@
         "items": [
             {
                 "type": "png",
-                "description": "lipstick",
+                "description": "口紅",
                 "src": "src/assets/girlfriend/lipstick.png",
                 "position": {
                     "x": 400,
@@ -196,8 +196,71 @@
             },
             {
                 "type": "png",
-                "description": "smile",
+                "description": "笑臉",
                 "src": "src/assets/girlfriend/smile.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "便當",
+                "src": "src/assets/food/bentou.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "咖喱",
+                "src": "src/assets/food/curry.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "草莓牛奶",
+                "src": "src/assets/food/drink_milk.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "餃子",
+                "src": "src/assets/food/jiaozi.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "泡麵",
+                "src": "src/assets/food/paomian.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "拉麵",
+                "src": "src/assets/food/ramen.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "壽司",
+                "src": "src/assets/food/sushi.png",
                 "position": {
                     "x": 400,
                     "y": 320

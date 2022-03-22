@@ -14,9 +14,11 @@ const StarKey = 'star'
 export default class CatchFruitGame extends Phaser.Scene{
 
 
-    constructor(userID){
+    constructor(userID,appSpot){
         super("catch-fruit")
         this.userID = userID
+        this.appSpot = appSpot
+
         this.player = undefined
         this.cursor = undefined
         this.stars = undefined
@@ -34,13 +36,11 @@ export default class CatchFruitGame extends Phaser.Scene{
         console.log("find jsonData")
         console.log(this.jsonData)
 
-        this.load.image('ground','src/assets/platform.png');
-        // this.load.image('background','src/assets/background.png');
-        // this.load.image('star','src/assets/star.png');
-        this.load.image('bomb','src/assets/bomb.png');
-        this.load.image('arrowButton','src/assets/arrowButton.png');
+        this.load.image('ground', this.appSpot + 'src/assets/platform.png');
+        this.load.image('bomb',this.appSpot + 'src/assets/bomb.png');
+        this.load.image('arrowButton',this.appSpot + 'src/assets/arrowButton.png');
 
-        this.load.spritesheet('dude','src/assets/dude.png',{
+        this.load.spritesheet('dude',this.appSpot + 'src/assets/dude.png',{
             frameWidth: 32, frameHeight:48
         });
 
@@ -52,12 +52,12 @@ export default class CatchFruitGame extends Phaser.Scene{
         for(let t=0; t<items.length; t++){
             if(items[t].items){
                 for(let s=0; s<items[t].items.length; s++){
-                    this.load.image(items[t].items[s].name, items[t].items[s].src)
+                    this.load.image(items[t].items[s].name, this.appSpot + items[t].items[s].src)
                 }
                 this.allJsonData[items[t].name] = items[t]
             }else{
                 if(items[t].src){
-                    this.load.image(items[t].name, items[t].src)
+                    this.load.image(items[t].name, this.appSpot + items[t].src)
                 }
                 this.allJsonData[items[t].name] = items[t]
             }

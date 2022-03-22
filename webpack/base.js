@@ -30,6 +30,7 @@ module.exports = {
   },
   entry: {
     index: './src/index.js'
+    // game: './src/index.js'
     // change: './src/static/js/change.js',
     // click: './src/static/js/clicked.js',
     // tools: './src/model/tools.js',
@@ -143,6 +144,7 @@ module.exports = {
         res.render("index",{
           username: req.session.username,
           gameID: req.session.gameID,
+          password: false,
           userJsonData: tools.readUserJsonFiles(req.session.username,req.session.gameID),
           userImageData: tools.readDefaultImageJsonFiles(req.session.gameID)
         })
@@ -173,14 +175,6 @@ module.exports = {
       })
 
 
-      let cpUpload = tools.multer().fields([{
-        name: 'pic1',
-        maxCount: 1
-      }, {
-        name: 'pic2',
-        maxCount: 8
-      }])
-
       app.get('/uploadFile', function (req, res) {
         res.render("uploadFile")
       })
@@ -190,6 +184,18 @@ module.exports = {
         res.redirect('/index');
       })
 
+      app.get('/game/:name/:gameID' , function(req,res){
+        let name = req.params.name
+        let gameID = req.params.gameID
+        
+        res.render("game",{
+          username: name,
+          gameID: gameID,
+          password: true,
+          userJsonData: tools.readUserJsonFiles(name,gameID),
+          userImageData: tools.readDefaultImageJsonFiles(name.gameID)
+        })
+      })
     }
   },
   module: {

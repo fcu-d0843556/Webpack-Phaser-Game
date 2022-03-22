@@ -7,6 +7,11 @@ export default class WordDisappearTimer {
         this.size = this.child.getData('size')/100
         this.x = child.x
         this.y = child.y
+        this.objectX = this.child.getData('x')
+        this.objectY = this.child.getData('y')
+        console.log(this.child.getData('x'));
+        console.log(this.objectY);
+
     }
 
 
@@ -40,9 +45,9 @@ export default class WordDisappearTimer {
     breakStart(callback,duration){
         
 
-        this.heart = this.scene.physics.add.image(this.x,this.y,this.image).setScale(this.size)
+        this.heart = this.scene.physics.add.image(this.objectX,this.objectY,this.image).setScale(this.size)
 
-        this.scene.physics.moveToObject(this.heart, {x:this.x,y:this.y-10}, 50);
+        this.scene.physics.moveToObject(this.heart, {x:this.objectX,y:0}, 50);
 
         this.textTimer = this.scene.add.text(20,130,this.text,{fontSize:25,fill:'#fff',backgroundColor:'rgba(0,255,0,0.25)'})
         this.BreakTimerEvent = this.scene.time.addEvent({

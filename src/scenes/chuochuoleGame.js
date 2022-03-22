@@ -3,10 +3,12 @@ import getMouseSpot from "../firstGameSystem/getMouseSpot"
 import WordDisappearTimer from '../firstGameSystem/WordDisappearTimer';
 
 export default class chuochuole extends Phaser.Scene{
-    constructor(userID){
+    constructor(userID,appSpot){
         super('chuochuole')
         this.userID = userID
         this.allJsonData = []
+        this.appSpot = appSpot
+
     }
 
     preload(){
@@ -14,12 +16,11 @@ export default class chuochuole extends Phaser.Scene{
         console.log("find jsonData")
         console.log(this.jsonData)
 
-        // this.load.image('background', 'src/assets/background.png')
-        this.load.image('box','src/assets/chuochuobox.png')
-        this.load.image('smallBox','src/assets/smallBox.png')
-        this.load.image('smallBoxBreak','src/assets/smallBoxBreak.png')
-        this.load.image('finger','src/assets/finger.png')
-        this.load.image('heart','src/assets/heart.png')
+        this.load.image('box',this.appSpot + 'src/assets/chuochuobox.png')
+        this.load.image('smallBox',this.appSpot + 'src/assets/smallBox.png')
+        this.load.image('smallBoxBreak',this.appSpot + 'src/assets/smallBoxBreak.png')
+        this.load.image('finger',this.appSpot + 'src/assets/finger.png')
+        this.load.image('heart',this.appSpot + 'src/assets/heart.png')
 
         const items = this.jsonData.items
         console.log("all items = ")
@@ -28,12 +29,12 @@ export default class chuochuole extends Phaser.Scene{
         for(let t=0; t<items.length; t++){
             if(items[t].items){
                 for(let s=0; s<items[t].items.length; s++){
-                    this.load.image(items[t].items[s].name, items[t].items[s].src)
+                    this.load.image(items[t].items[s].name, this.appSpot + items[t].items[s].src)
                 }
                 this.allJsonData[items[t].name] = items[t]
             }else{
                 if(items[t].src){
-                    this.load.image(items[t].name, items[t].src)
+                    this.load.image(items[t].name, this.appSpot + items[t].src)
                 }
                 this.allJsonData[items[t].name] = items[t]
             }
@@ -59,6 +60,8 @@ export default class chuochuole extends Phaser.Scene{
                 smallBox.setData('text',this.allJsonData.boxObject.items[smallBoxsTimes].text)
                 smallBox.setData('name',this.allJsonData.boxObject.items[smallBoxsTimes].name)
                 smallBox.setData('size',this.allJsonData.boxObject.items[smallBoxsTimes].size)
+                smallBox.setData('x',this.allJsonData.boxObject.items[smallBoxsTimes].position.x)
+                smallBox.setData('y',this.allJsonData.boxObject.items[smallBoxsTimes].position.y)
                 smallBoxs.add(smallBox)
                 smallBoxsTimes++
             }   

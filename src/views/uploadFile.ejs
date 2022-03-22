@@ -39,6 +39,8 @@
                         <a class="nav-link" href="/login">Login</a>
                         <input id="getUserID" type = "hidden" value = "<%= username%>">
                         <input id="getGameID" type = "hidden" value = "<%= gameID%>">
+                        <input id="password" type = "hidden" value = "<%= password%>">
+
                     </li>
                 </ul>
             </div>
@@ -114,7 +116,18 @@
                                             <button type="button" onclick="switchNextBox('next', <%= groupNum %>)" style="float:right" class="btn btn-dark">下一個</button>  
                                             <input class="form-control" type="file" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%>>
                                         </div>
-
+                                        <% if(userJsonData.items[i].items[s].position){ %>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label class="form-label">生成的X位置</label>
+                                                    <input class="form-control" type="number" name=<%= userJsonData.items[i].items[s].name + "_position_x" %> id=<%= userJsonData.items[i].items[s].name + "_position_x" %> value=<%= userJsonData.items[i].items[s].position.x %> />
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label">生成的Y位置</label>
+                                                    <input class="form-control" type="number" name=<%= userJsonData.items[i].items[s].name + "_position_y" %> id=<%= userJsonData.items[i].items[s].name + "_position_y" %> value=<%= userJsonData.items[i].items[s].position.y %> />
+                                                </div>
+                                            </div>
+                                        <% } %>
                                         <% if(userJsonData.items[i].items[s].size){ %>
                                             <div class="row">
                                                 <div class="col">
@@ -215,7 +228,8 @@
 
             <div class="card-footer text-muted">
                 <button type="submit" onclick="saveFormData()" class="btn btn-dark">提交資料</button>
-                <button type="button" onclick="clearAllData()" class="btn btn-dark">回到默認資料</button>
+                <button type="button" onclick="clearAllData()" class="btn btn-danger">回到默認資料</button>
+                <button type="button" class="btn btn-primary">生成遊戲</button>
             </div>
         </form>
     </div>

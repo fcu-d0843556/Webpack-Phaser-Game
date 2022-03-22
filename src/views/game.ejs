@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Game</title>
+
+    <!-- this html css style -->
+	<link rel="stylesheet" href="/src/static/css/game.css">
+
+
+    <!-- Loading Game  -->
+    <script type="text/javascript" src="../../index.js"></script>
+
+</head>
+
+<body style="background-color: orange;">
+    <input id="getUserID" type = "hidden" value = "<%= username%>">
+    <input id="getGameID" type = "hidden" value = "<%= gameID%>">
+    <input id="password" type = "hidden" value = "<%= password%>">
+    <!-- left game bar -->
+    <div class="phone-style">
+        <div class="phone" id="phaser-app"></div>
+    </div>
+</body>
+</html>

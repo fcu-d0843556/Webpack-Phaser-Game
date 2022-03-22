@@ -7,9 +7,11 @@ import Score from "../firstGameSystem/ScoreText"
 var zone
 
 export default class CookingGame extends Phaser.Scene{
-    constructor(userID){
+    constructor(userID,appSpot){
         super('cooking')
         this.userID = userID
+        this.appSpot = appSpot
+
         this.food = undefined
         this.allJsonData = []
         this.scoreText = undefined
@@ -21,18 +23,18 @@ export default class CookingGame extends Phaser.Scene{
         console.log("find jsonData")
         console.log(this.jsonData)
 
-        this.load.image('half','src/assets/halfFood.png')
-        this.load.image('flip','src/assets/halfFlipFood.png')
-        this.load.image('well','src/assets/wellFood.png')
-        this.load.image('panel','src/assets/cookpanel.png')
-        this.load.image('blackBlock','src/assets/blackBlock.png')
+        this.load.image('half',this.appSpot + 'src/assets/halfFood.png')
+        this.load.image('flip',this.appSpot + 'src/assets/halfFlipFood.png')
+        this.load.image('well',this.appSpot + 'src/assets/wellFood.png')
+        this.load.image('panel',this.appSpot + 'src/assets/cookpanel.png')
+        this.load.image('blackBlock',this.appSpot + 'src/assets/blackBlock.png')
 
-        this.load.image('cookSpot','src/assets/cookSpot.png')
-        this.load.image('maskMan','src/assets/maskMan.png')
-        this.load.image('maskManSmile','src/assets/maskManSmile.png')
-        this.load.image('maskManAngry','src/assets/maskManAngry.png')
+        this.load.image('cookSpot',this.appSpot + 'src/assets/cookSpot.png')
+        this.load.image('maskMan',this.appSpot + 'src/assets/maskMan.png')
+        this.load.image('maskManSmile',this.appSpot + 'src/assets/maskManSmile.png')
+        this.load.image('maskManAngry',this.appSpot + 'src/assets/maskManAngry.png')
 
-        this.load.image('wantedItem','src/assets/wantedItem.png')
+        this.load.image('wantedItem',this.appSpot + 'src/assets/wantedItem.png')
 
         const items = this.jsonData.items
         console.log("all items = ")
@@ -41,12 +43,12 @@ export default class CookingGame extends Phaser.Scene{
         for(let t=0; t<items.length; t++){
             if(items[t].items){
                 for(let s=0; s<items[t].items.length; s++){
-                    this.load.image(items[t].items[s].name, items[t].items[s].src)
+                    this.load.image(items[t].items[s].name, this.appSpot + items[t].items[s].src)
                 }
                 this.allJsonData[items[t].name] = items[t]
             }else{
                 if(items[t].src){
-                    this.load.image(items[t].name, items[t].src)
+                    this.load.image(items[t].name, this.appSpot + items[t].src)
                 }
                 this.allJsonData[items[t].name] = items[t]
             }

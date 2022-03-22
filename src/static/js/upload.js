@@ -41,9 +41,8 @@ window.addEventListener("load",function(){
 
             let fileButton = document.getElementById(saveId);
             if(fileButton){
-                console.log(fileButton);
                 fileButton.addEventListener('change',function(){
-                    console.log("change end");
+                    showPicFile(this,chooseCard.getAttribute("name"))
                 })
             }
             
@@ -60,13 +59,11 @@ window.addEventListener("load",function(){
             cardGroup = []
         }else{
             // find file button.
-            console.log(saveId);
             let fileButton = document.getElementById(saveId);
 
             if(fileButton){
-                console.log(fileButton);
                 fileButton.addEventListener('change',function(){
-                    console.log("change");
+                    showPicFile(this,chooseCard.getAttribute("name"))
                 })
             }
             saveId = chooseCardGroup.id
@@ -194,7 +191,11 @@ const showPicDefault = function(src , keyword){
     }
 }
 
-
+const closeDetailCard = function(){
+    detailCard.style.visibility = "hidden";
+    detailCard.style.backgroundColor = "";
+    highlightItem.style.border = "";
+}
 
 const saveFormData = function(){
     console.log("hello!")
@@ -204,3 +205,6 @@ const clearAllData = function(){
     location.href = "clear"
 }
 
+const createGame = function(){
+    location.href = "game"
+}

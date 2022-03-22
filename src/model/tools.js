@@ -106,12 +106,7 @@ let tools = {
             //Group
             if(defaultData[num].items){
 
-                //修改文字
-                for(let numG=0 ;numG < defaultData[num].items.length;numG++){
-                    if (inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]) {
-                        user.items[num].items[numG].text = inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]
-                    }
-                }
+                
                 console.log("inputData[defaultData[num].name + _default]");
 
                 console.log(inputData[defaultData[num].name + "_default"]);
@@ -122,14 +117,27 @@ let tools = {
                     }
                 }
 
-                console.log("inputData[defaultData[num].name + _size]");
-                console.log(inputData[defaultData[num].name + "_size"]);
-
-
+               
                 for(let numG=0 ;numG < defaultData[num].items.length;numG++){
-                    if (inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_size"]) {
 
+                    //修改文字
+                    if (inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]) {
+                        user.items[num].items[numG].text = inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]
+                    }
+
+                    //修改大小
+                    if (inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_size"]) {
                         user.items[num].items[numG].size = inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_size"]
+                    }
+
+                    //修改x
+                    if (inputData[defaultData[num].items[numG].name + "_position_x"]) {
+                        user.items[num].items[numG].position.x = parseInt(inputData[defaultData[num].items[numG].name + "_position_x"],10)
+                    }
+
+                    //修改y
+                    if (inputData[defaultData[num].items[numG].name + "_position_y"]) {
+                        user.items[num].items[numG].position.y = parseInt(inputData[defaultData[num].items[numG].name + "_position_y"],10)
                     }
                 }
 
