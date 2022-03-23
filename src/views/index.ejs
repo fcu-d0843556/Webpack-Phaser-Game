@@ -38,15 +38,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/uploadFile">Upload</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/index">Games</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
+                    
+                    
+                    <% if(username){ %>
+                        <li class="nav-item mobile">
+                            <a class="nav-link" href="/uploadFile">Upload</a>
+                        </li>
+                        <li class="nav-item mobile">
+                            <a class="nav-link active" href="/index">Games</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link">您好, <%= username%></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">登出</a>
+                        </li>
+                        
+                        
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                    <% } %>
+
                     <input id="getUserID" type = "hidden" value = "<%= username%>">
                     <input id="getGameID" type = "hidden" value = "<%= gameID%>">
                     <input id="password" type = "hidden" value = "<%= password%>">
@@ -116,7 +131,8 @@
                                                         <div class="card-header">
                                                             <div class="mb-3">
                                                                 <button type="button" onclick="switchNextBox('pre', <%= groupNum %>)" style="float:left" class="btn btn-dark">上一個</button>
-                                                                <input type="text" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].items[s].src %>">
+                                                                <input type="hidden" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].items[s].src %>">
+                                                                <!-- hidden -->
                                                                 <label class="form-label"><%= userJsonData.items[i].items[s].modifyTitle%></label>
                                                                 <button type="button" onclick="switchNextBox('next', <%= groupNum %>)" style="float:right" class="btn btn-dark">下一個</button>  
                                                                 <input class="form-control" type="file" name=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%> id=<%= userJsonData.items[i].name + "_" + userJsonData.items[i].items[s].name%>>
@@ -178,7 +194,7 @@
                                             <div class="card-header">
                                                 <div class="mb-3">
                                                     <label class="form-label"><%= userJsonData.items[i].modifyTitle%></label>
-                                                    <input type="text" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].src%>">
+                                                    <input type="hidden" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].src%>">
                                                     <input class="form-control" type="file" name=<%= userJsonData.items[i].name %> id=<%= userJsonData.items[i].name %>>
                                                 </div>
                                                                 <!-- hidden -->
@@ -219,7 +235,7 @@
         
                                                 <div class="card-body">
                                                     <p>說明：</p>
-                                                    <p>當戳到某個盒子時，會出現的文字</p>
+                                                    <p>當接到、擊破道具時會出現的文字</p>
                                                 </div>
                                             <% } %>
 
@@ -234,9 +250,9 @@
                                 
 
                                 <div class="card-footer text-muted">
-                                    <button type="submit" onclick="saveFormData()" class="btn btn-dark">提交資料</button>
+                                    <button type="submit" onclick="saveFormData()" class="btn btn-warning">提交資料</button>
                                     <button type="button" onclick="clearAllData()" class="btn btn-danger">回到默認資料</button>
-                                    <button type="button" class="btn btn-primary">生成遊戲</button>
+                                    <button type="button" onclick="createGame()" class="btn btn-primary">生成遊戲</button>
                                 </div>
                             </form>
                             

@@ -20,21 +20,21 @@
             let get = document.getElementById('square' + num)
             get.style.backgroundColor = 'white'
             get = document.getElementById('squareImage')
-            get.src = './src/static/img/view' + num + '.png'
             nowSquareSpot = num
+            get.src = changeImage(nowSquareSpot)
         }
         function nextSquare(num){
             let origin = document.getElementById('square' + nowSquareSpot)
             origin.style.backgroundColor = 'rgb(160, 72, 0)'
             if(num==1){
-                if(nowSquareSpot==3){
+                if(nowSquareSpot==4){
                     nowSquareSpot=1
                 }else{
                     nowSquareSpot++
                 }
             }else if(num==-1){
                 if(nowSquareSpot==1){
-                    nowSquareSpot=3
+                    nowSquareSpot=4
                 }else{
                     nowSquareSpot--
                 }
@@ -42,12 +42,12 @@
             let get = document.getElementById('square' + nowSquareSpot)
             get.style.backgroundColor = 'white'
             get = document.getElementById('squareImage')
-            get.src = './src/static/img/view' + nowSquareSpot + '.png'
+            get.src = changeImage(nowSquareSpot)
         }
         function next(){
             let origin = document.getElementById('square' + nowSquareSpot)
             origin.style.backgroundColor = 'rgb(160, 72, 0)'
-            if(nowSquareSpot==3){
+            if(nowSquareSpot==4){
                 nowSquareSpot=1
             }else{
                 nowSquareSpot++
@@ -55,7 +55,20 @@
             let get = document.getElementById('square' + nowSquareSpot)
             get.style.backgroundColor = 'white'
             get = document.getElementById('squareImage')
-            get.src = './src/static/img/view' + nowSquareSpot + '.png'
+            get.src = changeImage(nowSquareSpot)
+        }
+        function changeImage(num){
+            switch(num){
+                case 1:
+                    return './src/static/img/catchFruitTitle.png'
+                case 2:
+                    return './src/static/img/chuochuoleTitle.png'
+                case 3:
+                    return './src/static/img/cookingTitle.png'
+                case 4:
+                    return './src/static/img/shootingTitle.png'
+            }
+
         }
     </script>
 </head>
@@ -71,12 +84,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/chooseGame">chooseGame</a>
-                    </li>
+                    <% if(username){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/chooseGame">chooseGame</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">您好, <%= username%></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">登出</a>
+                        </li>
+                        
+                        
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                    <% } %>
+
+                    
                 </ul>
             </div>
         </div>
@@ -95,13 +121,13 @@
     <h2 style="background-color: rgb(255, 255, 255); padding: 20px; margin:0px; border: 10px orange groove;">Picture</h2>
 
     <div style="display: flex;">
-        <div style="width: 35%; background-color: rgb(0, 0, 0); color: white;">
+        <div style="width: 60%; background-color: rgb(0, 0, 0); color: white;">
             <h1 style="text-align: center;">Catch Fruit Game:</h1>
             <p style="text-align: center;">.......</p>
         </div>
-        <div style="width: 65%;">
+        <div style="width: 40%;">
             <div class="preview" style="opacity: 0.9; background-color: black;">
-                <img style="width: 100%;" id="squareImage" src="./src/static/img/view1.png">
+                <img style="width: 100%;" id="squareImage" src="./src/static/img/catchFruitTitle.png">
             </div>
 
             <div class="select" style="background-color: rgb(160, 72, 0);">
@@ -117,6 +143,7 @@
                     <span id="square1" class="square" style="background-color:white" onclick="changeSquare(1)"></span>
                     <span id="square2" class="square" onclick="changeSquare(2)"></span>
                     <span id="square3" class="square" onclick="changeSquare(3)"></span>
+                    <span id="square4" class="square" onclick="changeSquare(4)"></span>
                 </div>
             </div>
         </div>

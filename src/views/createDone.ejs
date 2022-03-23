@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Phaser3 + Parceljs Template</title>
+
+
+
+    <!-- bootstrap function and css style -->
+    <link rel="stylesheet" href="/src/static/bootstrap/css/bootstrap.min.css">
+    <script src="/src/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- this html css style -->
+	<link rel="stylesheet" href="/src/static/css/createDone.css">
+
+</head>
+<body style="background-color: orange;">
+
+    
+	<!-- upper bar V -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Button trigger modal -->
+    <button type="button" style="display: none;" id="autoClick" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.39);">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content" style="background-color: rgb(235, 152, 0);">
+            <div class="modal-header" >
+                <h5 class="modal-title" id="staticBackdropLabel">完 成！</h5>
+            </div>
+            <div class="modal-body" style="background-color: orange;" >
+                <div class="card-body">
+                    <p class="card-text">您已經完成遊戲的製作了</p>
+                    <p class="card-text">趕快分享給對方遊玩吧！！</p>
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">這個是生成出來的鏈接：</label>
+                        <!-- <button type="button" style="float: right;" onclick="copy()" class="btn-primary" data-bs-original-title="Copy to clipboard">複製網址</button> -->
+                        <fieldset disabled>
+                            <input id="hrefText" type = "text" value = "<%= '/' + username + '/' + gameID %>" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color: rgb(235, 152, 0);">
+                <button type="button" onclick="goBack()" class="btn btn-primary">回首頁</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        let get = document.getElementById('autoClick')
+        get.click()
+        let getHref = (window.location.href).split('createDone')[0]
+        console.log(getHref);
+
+
+        let getText = document.getElementById('hrefText')
+
+        getText.value  = getHref + 'game'+ getText.value 
+        console.log(getText);
+
+        function goBack(){
+            location.href = '/'
+        }
+
+        function copy(){
+            getText.select();
+            getText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(getText.value);
+        }
+    </script>
+</body>
+</html>

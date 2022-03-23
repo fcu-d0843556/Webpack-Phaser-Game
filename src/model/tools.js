@@ -246,24 +246,24 @@ let tools = {
                 console.log('createDefaultJsonFile successfully!');
             });
 
-            fs.readFile(`./src/static/defaultData/${gameID}/defaultModifyData.json`, function (err, files) {
-                let defaultData = JSON.parse(files)
+            let read = fs.readFileSync(`./src/static/defaultData/${gameID}/defaultModifyData.json`)
+            let defaultData = JSON.parse(read)
 
-                const user = {
-                    userName: userID,
-                    items: defaultData
+            const user = {
+                userName: userID,
+                items: defaultData
+            }
+
+            let JSONObject = JSON.stringify(user)
+
+            fs.writeFile(`./src/static/upload/${userID}/${gameID}/userModifyData.json`, JSONObject, function (err) {
+                if (err) {
+                    console.error(err)
                 }
-
-                let JSONObject = JSON.stringify(user)
-
-                fs.writeFile(`./src/static/upload/${userID}/${gameID}/userModifyData.json`, JSONObject, function (err) {
-                    if (err) {
-                        console.error(err)
-                    }
-                    console.log("OKOK")
-                })
-
+                console.log("OKOK")
             })
+
+            
             console.log('createDefaultJsonFile end!');
 
         }

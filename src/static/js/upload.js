@@ -206,5 +206,5 @@ const clearAllData = function(){
 }
 
 const createGame = function(){
-    location.href = "game"
+    location.href = "createDone"
 }

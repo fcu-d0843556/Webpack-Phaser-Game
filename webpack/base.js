@@ -70,6 +70,7 @@ module.exports = {
         rolling:true               //在每次請求時強行設置 cookie, 這將重置 cookie 過期時間（默認：false）
       }))
 
+      //首頁
       app.get("/", function (req, res) {
         if(req.session.username){
           console.debug("user is : " + req.session.username)
@@ -78,15 +79,22 @@ module.exports = {
         }
 
         res.render("home",{
-          username: tools.getUserId()
+          username: req.session.username
+        })
+      })
+      
+      app.get("/logout",function(req,res){
+        req.session.username = ""
+        res.redirect("/")
+      })
+      //點擊註冊按鈕
+      app.get("/register", function (req, res) {
+        res.render("register",{
+          username: req.session.username
         })
       })
 
-      app.get("/register", function (req, res) {
-        res.render("register")
-      })
-
-
+      //使用註冊時
       app.post("/doRegister", async function (req, res) {
 
         Models.userModel.findOne().
@@ -106,6 +114,9 @@ module.exports = {
                 }
                 console.debug("註冊成功")
               })
+
+              userID = req.body.username
+              req.session.username = userID
               res.redirect("/")
             }else{
 
@@ -113,14 +124,19 @@ module.exports = {
           })
       })
 
+      //點擊登入功能
       app.get("/login", function (req, res) {
         res.render("login")
       })
 
+      //點擊chooseGame按鈕
       app.get("/chooseGame",function(req,res){
-        res.render("chooseGame")
+        res.render("chooseGame",{
+          username: req.session.username
+        })
       })
 
+      //點擊chooseGame中的任意遊戲
       app.post("/chooseGame",function(req,res){
         console.log("chooseGame!")
         console.log(req.body)
@@ -130,16 +146,18 @@ module.exports = {
         res.redirect('/index')
       })
 
-
+      //手機版編輯遊戲
       app.get("/uploadFile", function (req, res) {
         res.render("uploadFile",{
           username: req.session.username,
           gameID: req.session.gameID,
+          password: false,
           userJsonData: tools.readUserJsonFiles(req.session.username,req.session.gameID),
           userImageData: tools.readDefaultImageJsonFiles(req.session.gameID)
         })
       })
-
+      
+      //電腦版編輯遊戲+遊玩，手機版遊玩
       app.get("/index",function(req,res){
         res.render("index",{
           username: req.session.username,
@@ -150,11 +168,15 @@ module.exports = {
         })
       })
 
+
+      //點擊回到默認
       app.get("/clear",function(req,res){
         tools.deleteJsonData(userID,req.session.gameID)
         tools.createDefaultJsonFile(userID,req.session.gameID)
         res.redirect('/index')
       })
+
+      //點擊登入
       app.post("/doLogin",function(req,res){
         // console.debug(req.body)
 
@@ -173,16 +195,14 @@ module.exports = {
           }
         })
       })
+      
 
-
-      app.get('/uploadFile', function (req, res) {
-        res.render("uploadFile")
-      })
-
+      //點擊上傳按鈕後
       app.post('/doUpload',tools.multer().any() ,function (req, res) {
         tools.writeJSONFile(req.session.username,req.session.gameID,req.files,req.body);
         res.redirect('/index');
       })
+
 
       app.get('/game/:name/:gameID' , function(req,res){
         let name = req.params.name
@@ -195,6 +215,13 @@ module.exports = {
           userJsonData: tools.readUserJsonFiles(name,gameID),
           userImageData: tools.readDefaultImageJsonFiles(name.gameID)
         })
+      })
+
+      app.get('/createDone',tools.multer().any() ,function (req, res) {
+        res.render('createDone',{
+          username: req.session.username,
+          gameID: req.session.gameID
+        });
       })
     }
   },

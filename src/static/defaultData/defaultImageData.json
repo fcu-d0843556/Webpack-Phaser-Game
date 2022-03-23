@@ -161,8 +161,17 @@
             },
             {
                 "type": "png",
-                "description": "tissue",
-                "src": "src/assets/tissue.png",
+                "description": "裝蛋的桶子",
+                "src": "src/assets/food/egg_bucket.png",
+                "position": {
+                    "x": 400,
+                    "y": 320
+                }
+            },
+            {
+                "type": "png",
+                "description": "水桶",
+                "src": "src/assets/food/water_bucket.png",
                 "position": {
                     "x": 400,
                     "y": 320

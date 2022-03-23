@@ -12,17 +12,24 @@ let highlightDefaultItem
 let saveDefaultHighlight
 window.addEventListener("load",function(){
 
+    //single
     for(let v=1;;v++){
         let chooseCard = document.getElementById("chooseCard" + v);
         if(!chooseCard){
             break
         }
         allCard[chooseCard.id] = chooseCard
+
+        let fileButton = document.getElementById(chooseCard.getAttribute("name"));
+        fileButton.addEventListener('change',function(){
+            showPicFile(this,chooseCard.getAttribute("name"))
+        })
     }
     
     let saveId 
     let groupNum = 1
     let cardGroup = []
+    //Group
     for(let v=1;;v++){
         let chooseCardGroup = document.getElementById("chooseCardGroup" + v);
         if(!chooseCardGroup){
@@ -31,6 +38,14 @@ window.addEventListener("load",function(){
                 count: 0
             }
             allGroup["cardGroup" + groupNum] = s
+
+            let fileButton = document.getElementById(saveId);
+            if(fileButton){
+                fileButton.addEventListener('change',function(){
+                    showPicFile(this,chooseCard.getAttribute("name"))
+                })
+            }
+            
             break
         }
 
@@ -43,13 +58,21 @@ window.addEventListener("load",function(){
             groupNum++
             cardGroup = []
         }else{
+            // find file button.
+            let fileButton = document.getElementById(saveId);
+
+            if(fileButton){
+                fileButton.addEventListener('change',function(){
+                    showPicFile(this,chooseCard.getAttribute("name"))
+                })
+            }
             saveId = chooseCardGroup.id
             cardGroup.push(chooseCardGroup)
         }
-    }   
+    } 
 
-    const background = document.getElementById("background");
 
+    //default
     for(let v=1;;v++){
         let defaultCard = document.getElementById("defaultCard" + v);
         if(!defaultCard){
@@ -60,11 +83,6 @@ window.addEventListener("load",function(){
         })
     }
 
-    if(background){
-        background.addEventListener("change",function(event){
-            showPicFile(event,"background")
-        })
-    }
 
 })
 
@@ -152,10 +170,11 @@ const switchNextBox = function(type,num){
 
 const showPicFile = function(event, keyword){
     console.log("showPic type " + keyword)
-    const file = event.target.files;
-
+    const file = event.files[0];
+    console.log(file);
     const pic = document.getElementById( keyword + "_image");
-    pic[highlightItemNum].src = URL.createObjectURL(file[0])
+
+    pic.src = URL.createObjectURL(file)
     uploadList[keyword] = pic.src
 }
 
@@ -181,3 +200,6 @@ const clearAllData = function(){
     location.href = "clear"
 }
 
+const createGame = function(){
+    location.href = "createDone"
+}
