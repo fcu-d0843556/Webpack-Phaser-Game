@@ -1,11 +1,11 @@
 import Phaser, { Math } from "phaser"
-import getMouseSpot from "../firstGameSystem/getMouseSpot"
-import Score from "../firstGameSystem/ScoreText"
-import DropTimeCounter from "../firstGameSystem/DropTimeCounter"
-import StarsSpawner from "../firstGameSystem/StarsSpawner"
-import GameTimer from "../firstGameSystem/GameTimer"
-import BombSpawner from "../firstGameSystem/BombSpawner"
-import ShowMessage from "../firstGameSystem/showMessage"
+import getMouseSpot from "../firstGameSystem/objects/getMouseSpot"
+import Score from "../firstGameSystem/objects/ScoreText"
+import DropTimeCounter from "../firstGameSystem/objects/DropTimeCounter"
+import StarsSpawner from "../firstGameSystem/catch-fruit/StarsSpawner"
+import GameTimer from "../firstGameSystem/objects/GameTimer"
+import BombSpawner from "../firstGameSystem/catch-fruit/BombSpawner"
+import ShowMessage from "../firstGameSystem/objects/showMessage"
 
 const BombKey = 'bomb'
 const StarKey = 'star'
@@ -39,6 +39,7 @@ export default class CatchFruitGame extends Phaser.Scene{
         this.load.image('ground', this.appSpot + 'src/assets/platform.png');
         this.load.image('bomb',this.appSpot + 'src/assets/bomb.png');
         this.load.image('arrowButton',this.appSpot + 'src/assets/arrowButton.png');
+        this.load.image('box',this.appSpot + 'src/assets/textbox.png')
 
         this.load.spritesheet('dude',this.appSpot + 'src/assets/dude.png',{
             frameWidth: 32, frameHeight:48
@@ -98,7 +99,7 @@ export default class CatchFruitGame extends Phaser.Scene{
 
         const timerLabel2 = this.add.text(16, 54, 'timeLabel2 : ', {fontSize:32,fill:'#000'})
         this.gameTimer = new GameTimer(this,timerLabel2)
-        this.gameTimer.start(this.gameover.bind(this),10000)//5s
+        this.gameTimer.start(this.gameover.bind(this),1500)//5s
 
 
         this.leftButton = this.physics.add.sprite(70,500,'arrowButton')
@@ -143,6 +144,8 @@ export default class CatchFruitGame extends Phaser.Scene{
         this.player.setTint(0xff0000)
         this.player.anims.play('stop')
         this.gameOver = true
+        this.add.image(180,330,'box')
+        this.add.text(180,300,"遊戲結束",{fontSize:'32px', fill:'#000'})
     }
 
     disableBody(hit,disablePart){   //碰撞後決定消失的物件（右邊）

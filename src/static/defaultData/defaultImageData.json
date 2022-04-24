@@ -196,7 +196,7 @@
             },
             {
                 "type": "png",
-                "description": "heartYellow",
+                "description": "蛋糕",
                 "src": "src/assets/girlfriend/cake.png",
                 "position": {
                     "x": 400,

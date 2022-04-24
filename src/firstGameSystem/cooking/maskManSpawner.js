@@ -14,7 +14,8 @@ export default class maskManSpawner{
         this.hitBox.setInteractive()
         this.hitBox.input.dropZone = true
 
-        this.maskMan = this.scene.physics.add.sprite(250,250,this.key).setScale(0.7)
+        this.maskMan = this.scene.physics.add.sprite(250,350,this.key).setScale(0.5)
+        // this.maskMan = this.scene.physics.add.sprite(250,250,this.key).setScale(0.7)
 
         this.scene.input.on('drop', function (pointer, gameObject, dropZone) {
             if(dropZone.texture.key == "wantedItem"){
@@ -36,7 +37,7 @@ export default class maskManSpawner{
             }
         },this);
         
-        this.scene.physics.add.sprite(150,160,'well');
+        this.scene.physics.add.sprite(150,160,'well').setScale(0.15);
 
 
 

@@ -1,5 +1,5 @@
 import Phaser from "phaser"
-import ShowMessage from "../firstGameSystem/showMessage"
+import ShowMessage from "../objects/showMessage"
 
 export default class ballonSpawner{
     constructor(scene,score,data) {
@@ -20,7 +20,7 @@ export default class ballonSpawner{
         let type = Phaser.Math.Between(1,5)
         let speed = Phaser.Math.Between(-150,-300)
         
-        let balloonChild = this.scene.physics.add.sprite(x,700,'balloon'+type ).setScale(0.55,0.55).setGravity(0, speed);
+        let balloonChild = this.scene.physics.add.sprite(x,700,'balloon'+type ).setScale(this.data.items[type-1].size/100).setGravity(0, speed);
         balloonChild.setInteractive().on('pointerdown',function(){
             balloonChild.setData('text',this.data.items[type-1].text)
             this.getItemMessage = new ShowMessage(this.scene,balloonChild.getData('text'))

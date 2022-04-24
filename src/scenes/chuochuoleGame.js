@@ -1,6 +1,6 @@
 import Phaser from "phaser";
-import getMouseSpot from "../firstGameSystem/getMouseSpot"
-import WordDisappearTimer from '../firstGameSystem/WordDisappearTimer';
+import getMouseSpot from "../firstGameSystem/objects/getMouseSpot"
+import WordDisappearTimer from '../firstGameSystem/chuochuole/WordDisappearTimer';
 
 export default class chuochuole extends Phaser.Scene{
     constructor(userID,appSpot){
@@ -49,7 +49,8 @@ export default class chuochuole extends Phaser.Scene{
     create(){
         this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background')    
         this.add.image(180,400,'box')
-        this.add.text(20,70,'選個洞戳戳看有什麼獎品吧！',{fontSize:25,fill:'#fff',backgroundColor:'rgba(0,255,0,0.25)'})
+        // this.add.text(20,70,'選個洞戳戳看有什麼獎品吧！',{fontSize:25,fill:'#fff',backgroundColor:'rgba(0,255,0,0.25)'})
+        this.add.text(20,70,'選個洞戳戳看要吃什麼！',{fontSize:25,fill:'#fff',backgroundColor:'rgba(0,255,0,0.25)'})
 
 
         let smallBoxs = this.physics.add.group()

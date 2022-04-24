@@ -1,0 +1,38 @@
+{
+    "userName": "Lin",
+    "items": [
+        {
+            "modifyTitle": "遊 戲 背 景",
+            "name": "background",
+            "type": "png",
+            "src": "src/assets/background.png",
+            "position": {
+                "x": 400,
+                "y": 320
+            },
+            "size": 100
+        },
+        {
+            "modifyTitle": "製 作 桶",
+            "name": "foodCan",
+            "type": "png",
+            "src": "src/assets/foodCan.png",
+            "position": {
+                "x": 130,
+                "y": 340
+            },
+            "size": 100
+        },
+        {
+            "modifyTitle": "生 的 食 物",
+            "name": "rawFood",
+            "type": "png",
+            "src": "src/assets/rawFood.png",
+            "position": {
+                "x": 200,
+                "y": 350
+            },
+            "size": 100
+        }
+    ]
+}

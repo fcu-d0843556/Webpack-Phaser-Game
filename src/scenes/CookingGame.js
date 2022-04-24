@@ -1,8 +1,8 @@
 import Phaser from "phaser"
-import maskManSpawner from "../firstGameSystem/maskManSpawner"
-import foodSpawner from "../firstGameSystem/foodSpawner"
-import GameTimer from "../firstGameSystem/GameTimer"
-import Score from "../firstGameSystem/ScoreText"
+import maskManSpawner from "../firstGameSystem/cooking/maskManSpawner"
+import foodSpawner from "../firstGameSystem/cooking/foodSpawner"
+import GameTimer from "../firstGameSystem/objects/GameTimer"
+import Score from "../firstGameSystem/objects/ScoreText"
 
 var zone
 
@@ -25,12 +25,12 @@ export default class CookingGame extends Phaser.Scene{
 
         this.load.image('half',this.appSpot + 'src/assets/halfFood.png')
         this.load.image('flip',this.appSpot + 'src/assets/halfFlipFood.png')
-        this.load.image('well',this.appSpot + 'src/assets/wellFood.png')
+        this.load.image('well',this.appSpot + 'src/assets/firedRice.png')
         this.load.image('panel',this.appSpot + 'src/assets/cookpanel.png')
         this.load.image('blackBlock',this.appSpot + 'src/assets/blackBlock.png')
 
         this.load.image('cookSpot',this.appSpot + 'src/assets/cookSpot.png')
-        this.load.image('maskMan',this.appSpot + 'src/assets/maskMan.png')
+        this.load.image('maskMan',this.appSpot + 'src/assets/mother.png')
         this.load.image('maskManSmile',this.appSpot + 'src/assets/maskManSmile.png')
         this.load.image('maskManAngry',this.appSpot + 'src/assets/maskManAngry.png')
 
@@ -49,6 +49,7 @@ export default class CookingGame extends Phaser.Scene{
             }else{
                 if(items[t].src){
                     this.load.image(items[t].name, this.appSpot + items[t].src)
+
                 }
                 this.allJsonData[items[t].name] = items[t]
             }
@@ -64,7 +65,7 @@ export default class CookingGame extends Phaser.Scene{
 
         
         this.add.image(this.allJsonData.background.position.x, this.allJsonData.background.position.y ,'background').setScale(this.allJsonData.background.size/100)
-        this.add.image(400,480,'panel')
+        this.add.image(400,480,'panel').setDepth(1);
         this.add.image(400,620,'blackBlock')
 
         this.scoreText = this.createScoreText(16,16,0)
@@ -85,7 +86,7 @@ export default class CookingGame extends Phaser.Scene{
         var id = 0
         this.foodGroup = []
         this.cookGroup = this.createFoodSpot()
-        this.foodCan = this.physics.add.sprite(this.allJsonData.foodCan.position.x,this.allJsonData.foodCan.position.y,'foodCan').setScale(this.allJsonData.foodCan.size/100)
+        this.foodCan = this.physics.add.sprite(this.allJsonData.foodCan.position.x,this.allJsonData.foodCan.position.y,'foodCan').setScale(this.allJsonData.foodCan.size/100).setDepth(2);
         this.foodCan.setInteractive().on('pointerdown',function(){
             this.food = new foodSpawner(this, 'rawFood', id, this.allJsonData.rawFood)
             this.foodGroup.push(this.food)

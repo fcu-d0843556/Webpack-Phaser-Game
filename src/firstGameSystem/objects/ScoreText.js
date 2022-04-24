@@ -21,4 +21,8 @@ export default class Score extends Phaser.GameObjects.Text{
     showScore(){
         this.setText(formatScore(this.score))
     }
+
+    getScore(){
+        return this.score
+    }
 }

@@ -19,7 +19,7 @@ export default class foodSpawner{
         return this.timer
     }
     spawn(){
-        this.food = this.scene.add.sprite(this.data.position.x,this.data.position.y,'rawFood').setScale(this.data.size/100)
+        this.food = this.scene.add.sprite(this.data.position.x,this.data.position.y,'rawFood').setScale(this.data.size/100).setDepth(2);    
         this.food.setInteractive()
         this.scene.input.setDraggable(this.food)
         this.food.setName(this.id)

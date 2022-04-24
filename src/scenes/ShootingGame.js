@@ -1,9 +1,11 @@
 import Phaser from "phaser"
-import getMouseSpot from "../firstGameSystem/getMouseSpot"
-import GameTimer from "../firstGameSystem/GameTimer"
-import Score from "../firstGameSystem/ScoreText"
-import ballonSpawner from "../firstGameSystem/ballonSpawner"
-import DropTimeCounter from "../firstGameSystem/DropTimeCounter"
+import getMouseSpot from "../firstGameSystem/objects/getMouseSpot"
+import GameTimer from "../firstGameSystem/objects/GameTimer"
+import ScoreText from "../firstGameSystem/objects/ScoreText"
+import ballonSpawner from "../firstGameSystem/bangbangShooting/ballonSpawner"
+import DropTimeCounter from "../firstGameSystem/objects/DropTimeCounter"
+import GameoverMessage from "../firstGameSystem/objects/GameOverMessage"
+import TimeBar from "../firstGameSystem/objects/timeBar"
 
 export default class ShootingGame extends Phaser.Scene{
     constructor(userID,appSpot){
@@ -23,9 +25,8 @@ export default class ShootingGame extends Phaser.Scene{
         this.load.image('gun',this.appSpot + 'src/assets/gun.png')
         this.load.image('target',this.appSpot + 'src/assets/targetS.png')
         this.load.image('hitbox',this.appSpot + 'src/assets/targetS.png')
-        this.load.spritesheet('dude',this.appSpot + 'src/assets/dude.png',{
-            frameWidth: 32, frameHeight:48
-        });
+        this.load.image('gameover',this.appSpot + 'src/assets/gameover/gameoverLabel.png')
+        this.load.image('playAgain',this.appSpot + 'src/assets/gameover/playAgainButton.png')
 
         const items = this.jsonData.items
         console.log("all items = ")
@@ -56,12 +57,10 @@ export default class ShootingGame extends Phaser.Scene{
         this.cursor = this.input.keyboard.createCursorKeys()
         this.add.image(170,550,'gun').setScale(0.21,0.21).setDepth(1);
 
-        
-
         this.scoreText = this.createScoreText(16,16,0)
         const timerLabel2 = this.add.text(16, 54, 'Time : ', {fontSize:32,fill:'#000'})
         this.gameTimer = new GameTimer(this,timerLabel2)
-        this.gameTimer.start(this.gameover.bind(this),10000)//5s
+        this.gameTimer.start(this.gameover.bind(this),1500)//5s
 
         this.balloon = new ballonSpawner(this,this.scoreText,this.allJsonData.balloon) 
 
@@ -70,10 +69,8 @@ export default class ShootingGame extends Phaser.Scene{
  
 
         // const moveSpotLabel = this.add.text(10,580,'moveSpot: ',{fontSize:12,fill:'#000'})
-        // const clickSpotLabel = this.add.text(10,550,'clickSpot: ',{fontSize:12,fill:'#000'})
 
         this.mouseSpot = new getMouseSpot(this,"")
-        this.clickMouseSpot = new getMouseSpot(this,"")
 
 
 
@@ -84,24 +81,30 @@ export default class ShootingGame extends Phaser.Scene{
             this.mouseSpot.get(pointer)
             this.target.x = pointer.x
             this.target.y = pointer.y
+            this.clickMouseSpot.get(pointer)
         },this)
 
-        // this.input.on('pointerdown',function(pointer){
-        //     this.clickMouseSpot.get(pointer)
 
-        // },this)
+        const clickSpotLabel = this.add.text(10,600,'clickSpot: ',{fontSize:12,fill:'#000'}).setDepth(1);
+        this.clickMouseSpot = new getMouseSpot(this,clickSpotLabel)
 
+        this.input.on('pointerdown',function(pointer){
+            this.clickMouseSpot.get(pointer)
+            
+        },this)
 
     }
 
     gameover(){
         this.physics.pause()
         this.gameOver = true
+        let gameoverMessage = new GameoverMessage(this,this.scoreText.getScore())
+        gameoverMessage.create()
     }
 
     createScoreText(x,y,score){
         const style = {fontSize:'32px', fill:'#000'}
-        const label = new Score(this,x,y,score,style)
+        const label = new ScoreText(this,x,y,score,style)
         this.add.existing(label)
         return label
     }
@@ -111,7 +114,8 @@ export default class ShootingGame extends Phaser.Scene{
     }
 
     update(){
-        this.gameTimer.update()
+        // this.gameTimer.update()
+        this.test.update()
     }
 
 }

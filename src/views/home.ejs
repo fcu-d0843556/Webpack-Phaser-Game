@@ -112,7 +112,11 @@
     <header class="intro-container">
         <h1 class="intro-container-text">HELLO!</h1>
         <p>In this website, you can make your own games!</p>
-        <p onclick="location.href='/login';" class="startbutton">Let's Start !</p>
+        <% if(username){ %>
+            <p onclick="location.href='/chooseGame';" class="startbutton">Let's Start !</p>
+        <% } else { %>
+            <p onclick="location.href='/login';" class="startbutton">Let's Start !</p>
+        <% } %>
     </header>
 
 

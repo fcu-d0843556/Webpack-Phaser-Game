@@ -74,7 +74,7 @@ let tools = {
     writeJSONFile: function (userID, gameID, uploadFiles, inputData) {
 
         console.log(inputData)
-        fs.mkdir(`./src/static/upload/${userID}/${gameID}`, {
+        fs.mkdirSync(`./src/static/upload/${userID}/${gameID}`, {
             recursive: true
         }, (err) => {
             if (err) {
@@ -256,7 +256,7 @@ let tools = {
 
             let JSONObject = JSON.stringify(user)
 
-            fs.writeFile(`./src/static/upload/${userID}/${gameID}/userModifyData.json`, JSONObject, function (err) {
+            fs.writeFileSync(`./src/static/upload/${userID}/${gameID}/userModifyData.json`, JSONObject, function (err) {
                 if (err) {
                     console.error(err)
                 }
