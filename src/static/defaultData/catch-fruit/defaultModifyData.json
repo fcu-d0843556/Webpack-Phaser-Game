@@ -14,8 +14,40 @@
         "modifyTitle": "掉 落 物 件",
         "name": "star",
         "type": "png",
-        "text": "Happy!",
+        "text": {
+            "content": "Happy!",
+            "style": {
+                "fontSize": 32,
+                "fill": "#000"
+            }
+        },
         "src": "src/assets/star.png",
         "size": 100
+    },
+    {
+        "modifyTitle": "計 分 板",
+        "name": "scoreText",
+        "text": {
+            "content": "score : ",
+            "style": {
+                "fontSize": 32,
+                "fill": "#000"
+            },
+            "x": 16,
+            "y": 16
+        }
+    },
+    {
+        "modifyTitle": "時 間 文 字 方 塊",
+        "name": "timeText",
+        "text": {
+            "content": "time : ",
+            "style": {
+                "fontSize": 32,
+                "fill": "#000"
+            },
+            "x": 16,
+            "y": 54
+        }
     }
 ]

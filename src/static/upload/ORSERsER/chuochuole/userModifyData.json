@@ -1,0 +1,110 @@
+{
+    "userName": "ORSERsER",
+    "items": [{
+        "modifyTitle": "遊 戲 背 景",
+        "name": "background",
+        "type": "png",
+        "src": "src/assets/background.png",
+        "position": {
+            "x": 400,
+            "y": 320
+        },
+        "size": 100
+    }, {
+        "name": "boxObject",
+        "items": [{
+            "modifyTitle": "左 上 方 塊",
+            "name": "balloons",
+            "text": "你獲得了sushi！",
+            "src": "src/assets/food/ramen.png",
+            "position": {
+                "x": 80,
+                "y": 300
+            },
+            "size": "100"
+        }, {
+            "modifyTitle": "中 上 方 塊",
+            "name": "moonYellow",
+            "text": "你獲得了cake！",
+            "src": "src/assets/girlfriend/cake.png",
+            "position": {
+                "x": 180,
+                "y": 300
+            },
+            "size": "100"
+        }, {
+            "modifyTitle": "右 上 方 塊",
+            "name": "heartRed",
+            "text": "你獲得了bentou！",
+            "src": "src/assets/food/bentou.png",
+            "position": {
+                "x": 280,
+                "y": 300
+            },
+            "size": "100"
+        }, {
+            "modifyTitle": "左 中 方 塊",
+            "name": "heartYellow",
+            "text": "你獲得了curry！",
+            "src": "src/assets/food/curry.png",
+            "position": {
+                "x": 80,
+                "y": 400
+            },
+            "size": "100"
+        }, {
+            "modifyTitle": "正 中 方 塊",
+            "name": "heartAqua",
+            "text": "你獲得了ramen！",
+            "src": "src/assets/food/ramen.png",
+            "position": {
+                "x": 180,
+                "y": 400
+            },
+            "size": "100"
+        }, {
+            "modifyTitle": "右 中 方 塊",
+            "name": "heartOrange",
+            "text": "你獲得了soup！",
+            "src": "src/assets/heartOrange.png",
+            "position": {
+                "x": 280,
+                "y": 400
+            },
+            "size": "100"
+        }, {
+            "modifyTitle": "左 下 方 塊",
+            "name": "heartPink",
+            "text": "你獲得了HotDog！",
+            "src": "src/static/upload/ORSERsER/chuochuole/boxObject_heartPink.png",
+            "position": {
+                "x": 80,
+                "y": 500
+            },
+            "size": "100",
+            "type": "png"
+        }, {
+            "modifyTitle": "中 下 方 塊",
+            "name": "starYellow",
+            "text": "你獲得了pizza！",
+            "src": "src/static/upload/ORSERsER/chuochuole/boxObject_starYellow.png",
+            "position": {
+                "x": 180,
+                "y": 500
+            },
+            "size": "100",
+            "type": "png"
+        }, {
+            "modifyTitle": "右 下 方 塊",
+            "name": "smile",
+            "text": "你獲得了pie！",
+            "src": "src/static/upload/ORSERsER/chuochuole/boxObject_smile.png",
+            "position": {
+                "x": 280,
+                "y": 500
+            },
+            "size": "100",
+            "type": "png"
+        }]
+    }]
+}

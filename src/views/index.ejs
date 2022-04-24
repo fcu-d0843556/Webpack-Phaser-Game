@@ -119,7 +119,8 @@
                                 <% let groupNum=0 %>
                                 <% for(let i=0; i< userJsonData.items.length; i++) { %>
                                     <% if(userJsonData.items[i].items){ %>
-                                        <!-- This is card Group spot -->
+                                        <!-- This is card Group spot 組織 -->
+
                                         <div id=<%= "cardGroup" + (groupNum+1) %>>
                                             <% groupNum++ %>
                                             <% for(let s=0; s < userJsonData.items[i].items.length; s++) { %>
@@ -188,14 +189,17 @@
 
                                     <% }else if(userJsonData.items[i].name){ %>
                                         <% cardNum++ %>
-                                        <!-- This is card spot -->
+                                        <!-- This is card spot 單體 -->
 
                                         <div id=<%= "chooseCard" + cardNum %> type="single" name=<%= userJsonData.items[i].name %> class="card text-center loginBox" style="background-color: orange;">
                                             <div class="card-header">
                                                 <div class="mb-3">
                                                     <label class="form-label"><%= userJsonData.items[i].modifyTitle%></label>
-                                                    <input type="hidden" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].src%>">
-                                                    <input class="form-control" type="file" name=<%= userJsonData.items[i].name %> id=<%= userJsonData.items[i].name %>>
+
+                                                    <% if(userJsonData.items[i].src){ %>
+                                                        <input type="hidden" name=<%= userJsonData.items[i].name + "_default" %> id=<%= userJsonData.items[i].name + "_default" %> class="card-img-top" value="<%= userJsonData.items[i].src%>">
+                                                        <input class="form-control" type="file" name=<%= userJsonData.items[i].name %> id=<%= userJsonData.items[i].name %>>
+                                                    <% } %>
                                                 </div>
                                                                 <!-- hidden -->
                                                 <% if(userJsonData.items[i].position){ %>
@@ -210,7 +214,7 @@
                                                         </div>
                                                     </div>
                                                 <% } %>
-                                                <% if(userJsonData.items[i].size){ %>
+                                                <% if(userJsonData.items[i].size && userJsonData.items[i].src){ %>
                                                     <div class="row">
                                                         <div class="col">
                                                             <label class="form-label">圖片的縮放</label>
@@ -220,16 +224,19 @@
                                                 <% } %>
                                             </div>
 
-                                            <div  class="card-body">
-                                                <h5 class="card-title">預覽圖</h5>
-                                                <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_image" %> name=<%= userJsonData.items[i].name + "_image" %> src="<%= userJsonData.items[i].src%>">
-                                            </div>
+                                            <% if(userJsonData.items[i].src){ %>
+
+                                                <div  class="card-body">
+                                                    <h5 class="card-title">預覽圖</h5>
+                                                    <img style="width: 50%; height: 50%;" id=<%= userJsonData.items[i].name + "_image" %> name=<%= userJsonData.items[i].name + "_image" %> src="<%= userJsonData.items[i].src%>">
+                                                </div>
+                                            <% } %>
 
                                             <% if(userJsonData.items[i].text){ %>
                                                 <div class="card-header">
                                                     <div class="mb-3">
-                                                        <label class="form-label">獲 得 道 具 的 文 字</label>
-                                                        <input type="text" name=<%= userJsonData.items[i].name + "_text" %> id=<%= userJsonData.items[i].name + "_text" %> class="card-img-top" value=<%= userJsonData.items[i].text%>>
+                                                        <label class="form-label">獲 得 道 具 的 文 字 </label>
+                                                        <input type="text" name=<%= userJsonData.items[i].name + "_text" %> id=<%= userJsonData.items[i].name + "_text" %> class="card-img-top" value=<%= userJsonData.items[i].text.content%>>
                                                     </div>
                                                 </div>
         

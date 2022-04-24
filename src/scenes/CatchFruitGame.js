@@ -82,8 +82,8 @@ export default class CatchFruitGame extends Phaser.Scene{
         this.bombsGroup = this.bombSpawner.groupA
 
         this.starsSpawner.spawn()
-        this.scoreText = this.createScoreText(16,16,0)
-
+        this.scoreText = this.createScoreText(this.allJsonData.scoreText.text.x,this.allJsonData.scoreText.text.y,0)
+        this.scoreText.showScore()
         /* related to collider between objects */
         this.physics.add.collider(this.player,this.platforms)
         this.physics.add.overlap(this.player, this.starsGroup, this.collectStar,null,this)
@@ -97,9 +97,9 @@ export default class CatchFruitGame extends Phaser.Scene{
         this.starCoolDown.start(this.handleCountDownFinished.bind(this),500)//5s
 
 
-        const timerLabel2 = this.add.text(16, 54, 'timeLabel2 : ', {fontSize:32,fill:'#000'})
+        const timerLabel2 = this.add.text(this.allJsonData.timeText.text.x, this.allJsonData.timeText.text.y, this.allJsonData.timeText.text.content, this.allJsonData.timeText.text.style)
         this.gameTimer = new GameTimer(this,timerLabel2)
-        this.gameTimer.start(this.gameover.bind(this),1500)//5s
+        this.gameTimer.start(this.gameover.bind(this),8500)//5s
 
 
         this.leftButton = this.physics.add.sprite(70,500,'arrowButton')
@@ -157,8 +157,11 @@ export default class CatchFruitGame extends Phaser.Scene{
     }
 
     createScoreText(x,y,score){
-        const style = {fontSize:'32px', fill:'#000'}
-        const label = new Score(this,x,y,score,style)
+        const style = this.allJsonData.scoreText.text.style
+        console.log("this.text.content");
+        console.log(score);
+
+        const label = new Score(this,this.allJsonData.scoreText.text.x, this.allJsonData.scoreText.text.y,this.allJsonData.scoreText.text.content,score,style)
         this.add.existing(label)
         return label
     }
@@ -166,7 +169,7 @@ export default class CatchFruitGame extends Phaser.Scene{
     collectStar(player,star){
         star.disableBody(true,true)
         // const timerLabel = this.add.text(16, 90, 'timeLabel : ', {fontSize:32,fill:'#000'})
-        this.getItemMessage = new ShowMessage(this,this.allJsonData.star.text)
+        this.getItemMessage = new ShowMessage(this,this.allJsonData.star.text.content)
         this.getItemMessage.start(this.getItemMessage.stop(),500)//5s
         this.scoreText.addScore(10)
     }

@@ -122,7 +122,7 @@ let tools = {
 
                     //修改文字
                     if (inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]) {
-                        user.items[num].items[numG].text = inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]
+                        user.items[num].items[numG].text.content = inputData[defaultData[num].name + '_' + defaultData[num].items[numG].name + "_text"]
                     }
 
                     //修改大小
@@ -166,7 +166,7 @@ let tools = {
 
                 //修改文字
                 if(inputData[defaultData[num].name + '_text']){
-                    user.items[num].text = inputData[defaultData[num].name + "_text"]
+                    user.items[num].text.content = inputData[defaultData[num].name + "_text"]
                 }
             }
         }

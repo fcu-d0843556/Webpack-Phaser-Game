@@ -13,7 +13,7 @@ export default class ShootingGame extends Phaser.Scene{
         this.userID = userID
         this.allJsonData = []
         this.appSpot = appSpot
-
+        
     }
 
 
@@ -114,8 +114,7 @@ export default class ShootingGame extends Phaser.Scene{
     }
 
     update(){
-        // this.gameTimer.update()
-        this.test.update()
+        this.gameTimer.update()
     }
 
 }

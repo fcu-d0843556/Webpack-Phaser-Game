@@ -1,0 +1,1 @@
+{"userName":"1","items":[{"modifyTitle":"遊 戲 背 景","name":"background","type":"png","src":"src/assets/night_sky.jpg","position":{"x":600,"y":250},"size":200},{"modifyTitle":"掉 落 物 件","name":"star","type":"png","text":"!!!surprise","src":"src/assets/star.png","size":200}]}

@@ -1,0 +1,1 @@
+{"userName":"toy","items":[{"modifyTitle":"遊 戲 背 景","name":"background","type":"png","src":"src/static/upload/toy/catch-fruit/background.png","position":{"x":180,"y":270},"size":55},{"modifyTitle":"掉 落 物 件","name":"star","type":"png","text":"最新的機器人玩具送給你！","src":"src/static/upload/toy/catch-fruit/star.png","size":10}]}
