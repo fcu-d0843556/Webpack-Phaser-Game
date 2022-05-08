@@ -235,6 +235,8 @@ let tools = {
         try {
             fs.readFileSync(`./src/static/upload/${userID}/${gameID}/userModifyData.json`)
             console.log("found save json!")
+
+            return false
         } catch {
             console.log("not found save json")
             fs.mkdirSync(`./src/static/upload/${userID}/${gameID}`, {
@@ -263,9 +265,8 @@ let tools = {
                 console.log("OKOK")
             })
 
-            
             console.log('createDefaultJsonFile end!');
-
+            return true
         }
 
 

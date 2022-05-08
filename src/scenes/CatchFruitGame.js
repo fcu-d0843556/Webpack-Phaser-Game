@@ -1,6 +1,6 @@
 import Phaser, { Math } from "phaser"
 import getMouseSpot from "../firstGameSystem/objects/getMouseSpot"
-import Score from "../firstGameSystem/objects/ScoreText"
+import Score from "../firstGameSystem/objects/Score"
 import DropTimeCounter from "../firstGameSystem/objects/DropTimeCounter"
 import StarsSpawner from "../firstGameSystem/catch-fruit/StarsSpawner"
 import GameTimer from "../firstGameSystem/objects/GameTimer"
@@ -82,8 +82,11 @@ export default class CatchFruitGame extends Phaser.Scene{
         this.bombsGroup = this.bombSpawner.groupA
 
         this.starsSpawner.spawn()
-        this.scoreText = this.createScoreText(this.allJsonData.scoreText.text.x,this.allJsonData.scoreText.text.y,0)
-        this.scoreText.showScore()
+
+        const scoreTextLabel = this.add.text(this.allJsonData.scoreText.text.x,this.allJsonData.scoreText.text.y, this.allJsonData.scoreText.text.content, this.allJsonData.scoreText.text.style)
+        this.scoreText = new Score(this,scoreTextLabel,this.allJsonData.scoreText.text.content,0)
+        this.scoreText.showScoreText()
+
         /* related to collider between objects */
         this.physics.add.collider(this.player,this.platforms)
         this.physics.add.overlap(this.player, this.starsGroup, this.collectStar,null,this)
@@ -98,7 +101,7 @@ export default class CatchFruitGame extends Phaser.Scene{
 
 
         const timerLabel2 = this.add.text(this.allJsonData.timeText.text.x, this.allJsonData.timeText.text.y, this.allJsonData.timeText.text.content, this.allJsonData.timeText.text.style)
-        this.gameTimer = new GameTimer(this,timerLabel2)
+        this.gameTimer = new GameTimer(this,timerLabel2,this.allJsonData.timeText.text.content)
         this.gameTimer.start(this.gameover.bind(this),8500)//5s
 
 
@@ -154,16 +157,6 @@ export default class CatchFruitGame extends Phaser.Scene{
 
     hitBomb(player,bomb){
         // bomb.disableBody(true,true)
-    }
-
-    createScoreText(x,y,score){
-        const style = this.allJsonData.scoreText.text.style
-        console.log("this.text.content");
-        console.log(score);
-
-        const label = new Score(this,this.allJsonData.scoreText.text.x, this.allJsonData.scoreText.text.y,this.allJsonData.scoreText.text.content,score,style)
-        this.add.existing(label)
-        return label
     }
 
     collectStar(player,star){

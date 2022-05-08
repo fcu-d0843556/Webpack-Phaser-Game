@@ -2,10 +2,10 @@ import Phaser from 'phaser'
 
 
 export default {
-	type: Phaser.AUTO,
+	type: Phaser.CANVAS,
 	parent: 'phaser-app',
-	width: 360, //800
-	height: 640, //600
+	width:  window.innerWidth * window.devicePixelRatio, //800
+	height: window.innerHeight * window.devicePixelRatio, //600
 	backgroundColor: '#000111',
 	dom: {
 	  createContainer: true,

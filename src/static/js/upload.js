@@ -21,9 +21,12 @@ window.addEventListener("load",function(){
         allCard[chooseCard.id] = chooseCard
 
         let fileButton = document.getElementById(chooseCard.getAttribute("name"));
-        fileButton.addEventListener('change',function(){
-            showPicFile(this,chooseCard.getAttribute("name"))
-        })
+        if(fileButton !== null){
+            fileButton.addEventListener('change',function(){
+                showPicFile(this,chooseCard.getAttribute("name"))
+            })
+        }
+        
     }
     
     let saveId 
@@ -131,13 +134,11 @@ const highlightCard = function(item){
         saveDefaultHighlight = find
 
         detailCard.style.visibility = "visible";
-        detailCard.style.backgroundColor = "red";
     }else{
         highlightItem.style.border = "5px #0d6efd solid";
         item.style.border = "";
         
         detailCard.style.visibility = "hidden";
-        detailCard.style.backgroundColor = "";
     }
     highlightItem = item
 }
@@ -169,9 +170,9 @@ const switchNextBox = function(type,num){
 }
 
 const showPicFile = function(event, keyword){
-    console.log("showPic type " + keyword)
+    // console.log("showPic type " + keyword)
     const file = event.files[0];
-    console.log(file);
+    // console.log(file);
     const pic = document.getElementById( keyword + "_image");
 
     pic.src = URL.createObjectURL(file)

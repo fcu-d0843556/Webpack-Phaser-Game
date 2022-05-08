@@ -56,9 +56,6 @@ body{
     z-index         : 10;
 }
 
-.phone{
-    /* background-color: tomato; */
-}
 
 .mobile{
     display: none;
@@ -71,15 +68,36 @@ body{
     z-index: 20;
 }
 
-.detailCard{
-    z-index: 1051;
+#detailCard{
+    background-color: red;
 }
+
+
+#guideMark{
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    cursor: pointer;
+}
+
+#guideMark:hover svg{
+    width: 75px;
+    height: 75px;
+}
+
+#guideMark svg{
+    width: 70px;
+    height: 70px;
+}
+
+
 
 .phone-style{
     background-image: url("../img/phonestyleDis.svg");
     width: 410px;
     height: 740px;
     position: fixed;
+    /* z-index         : 1000; */
 }
 
 .md{

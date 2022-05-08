@@ -16,9 +16,10 @@ export default class GameTimer {
     */
 
 
-    constructor(scene,label){
+    constructor(scene,label,text){
         this.scene = scene
         this.label = label
+        this.text = text
     }
 
     start(callback, duration = 10000){ //10s 預設值
@@ -59,7 +60,7 @@ export default class GameTimer {
         const elapsed = this.timerEvent.getElapsed()  //從0開始，計算過程中跑的時間   碼錶
         const remaining = this.duration - elapsed   //反著來 等於 設定時間 - 經過時間 倒數計時
         const seconds = remaining / 1000            //把 毫秒 換算為 秒
-        this.label.text = 'time  : ' + seconds.toFixed(0)        //到小數點 2 位數
+        this.label.text = this.text + " : " + seconds.toFixed(0)        //到小數點 2 位數
     }
 
 }

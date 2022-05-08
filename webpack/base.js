@@ -29,7 +29,7 @@ module.exports = {
     fs: "empty"
   },
   entry: {
-    index: './src/index.js'
+    index: './src/index.js',
     // game: './src/index.js'
     // change: './src/static/js/change.js',
     // click: './src/static/js/clicked.js',
@@ -138,11 +138,11 @@ module.exports = {
 
       //點擊chooseGame中的任意遊戲
       app.post("/chooseGame",function(req,res){
-        console.log("chooseGame!")
-        console.log(req.body)
+        // console.log("chooseGame!")
+        // console.log(req.body)
         req.session.gameID = req.body.getGameID
-        tools.createDefaultJsonFile(userID,req.session.gameID)
-        console.log("lookme")
+        req.session.guide = tools.createDefaultJsonFile(userID,req.session.gameID)
+        // console.log("lookme")
         res.redirect('/index')
       })
 
@@ -152,6 +152,7 @@ module.exports = {
           username: req.session.username,
           gameID: req.session.gameID,
           password: false,
+          guide: req.session.guide,
           userJsonData: tools.readUserJsonFiles(req.session.username,req.session.gameID),
           userImageData: tools.readDefaultImageJsonFiles(req.session.gameID)
         })
@@ -163,6 +164,7 @@ module.exports = {
           username: req.session.username,
           gameID: req.session.gameID,
           password: false,
+          guide: req.session.guide,
           userJsonData: tools.readUserJsonFiles(req.session.username,req.session.gameID),
           userImageData: tools.readDefaultImageJsonFiles(req.session.gameID)
         })
@@ -208,9 +210,10 @@ module.exports = {
         let name = req.params.name
         let gameID = req.params.gameID
         
-        res.render("game",{
+        res.render("playgame",{
           username: name,
           gameID: gameID,
+          release: true,
           password: true,
           userJsonData: tools.readUserJsonFiles(name,gameID),
           userImageData: tools.readDefaultImageJsonFiles(name.gameID)

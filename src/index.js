@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import config from './config';
+import loadPhaserGameConfig from './loadPhaserGameConfig'
 import ShootingGame from './scenes/ShootingGame'
 import Loading from './scenes/Loading'
 import CatchFruitGame from './scenes/CatchFruitGame'
@@ -11,6 +12,7 @@ window.addEventListener("load",function(){
   let findGetUserID = document.getElementById("getUserID")
   let findGameID = document.getElementById("getGameID")
   let findPassword = document.getElementById("password")
+  
   let userID
   let gameID
   let password
@@ -51,7 +53,13 @@ window.addEventListener("load",function(){
 
 class Game extends Phaser.Game {
   constructor() {
-    super(config);
+    let find = document.getElementById("release")
+    if(find){
+      super(loadPhaserGameConfig);
+    }else{
+      super(config);
+    }
+    
   }
 
 }

@@ -14,8 +14,11 @@
 
     <!-- this html css style -->
 	<link rel="stylesheet" href="/src/static/css/index.css">
+	<link rel="stylesheet" href="/src/static/css/guide.css">
+
 
     <!-- upload and modify function -->
+    <script type="text/javascript" src="/src/static/js/guide.js"></script>
     <script type="text/javascript" src="/src/static/js/upload.js"></script>
     <script type="text/javascript" src="/src/static/js/preloadImage.js"></script>
 
@@ -27,12 +30,34 @@
 <body style="background-color: orange;">
 
 
+    <div id="guideMark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+        </svg>
+    </div>
+
     <div id="root"></div>
+
+    <!-- 黑色圖層 -->
+    <div id="mask"></div>
+
+    <div id="searchTip">
+        <div class="stepA"><a>NEXT</a><p>歡迎使用遊戲編輯器，這裡將引導您如何使用相關的功能</p><span title="X">X</span></div>
+        <div class="stepB"><a>NEXT</a><p>左半邊的為遊戲的實際畫面，您修改後的輸出結果將會顯示在這個畫面上</p><span title="X">X</span></div>
+        <div class="stepC"><a style="display: none;">NEXT</a><p>右邊可以進行遊戲上的客製化，您可以調整遊戲中的數據，您也可以點選上傳文檔去上傳自己的圖片。<br>現在，請點選"使用其他提供的圖片"按鈕</p><span title="X">X</span></div>
+        <div class="stepD"><a>NEXT</a><p>點擊後，將會展開我們提供的預設圖片，您可以使用這些圖片來直接替換當前的物件</p><span title="X">X</span></div>
+        <div class="stepE"><a>NEXT</a><p>這裡有很多可以進行客製化的物件，當您已經完成修改，請滑到最下方並點擊"提交資料"按鈕。<br>這樣遊戲預覽畫面就會進行更新</p></div>
+        <div class="stepE"><a>NEXT</a><p>當您想要回到默認的遊戲畫面，請點擊"回到默認資料"按鈕</p></div>
+        <div class="stepE"><a>NEXT</a><p>當您已經完成了所有的修改並想要傳給對方，請點選"生成遊戲"按鈕。<br>遊戲編輯器將會生成遊戲網址</p></div>
+        
+    </div>
 
 	<!-- upper bar V -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Home</a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -65,13 +90,15 @@
                     <input id="getUserID" type = "hidden" value = "<%= username%>">
                     <input id="getGameID" type = "hidden" value = "<%= gameID%>">
                     <input id="password" type = "hidden" value = "<%= password%>">
+                    <input id="guide" type = "text" value = "<%= guide%>">
+                    
                     
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container-fluid">
-
+    
         <!-- left game bar -->
         <div class="phone-style">
             <div class="phone" id="phaser-app"></div>
@@ -111,7 +138,7 @@
                     </div>
                                                         
                     <!-- right select bar -->
-                    <div class="col-5">
+                    <div class="col-5" id="allCards">
                         <div class="bd-link">
                             <form action="/doUpload" id="dataForm" method="post" enctype="multipart/form-data">
                                 <div id="allCards">

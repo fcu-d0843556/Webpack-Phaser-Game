@@ -2,7 +2,7 @@ import Phaser from "phaser"
 import maskManSpawner from "../firstGameSystem/cooking/maskManSpawner"
 import foodSpawner from "../firstGameSystem/cooking/foodSpawner"
 import GameTimer from "../firstGameSystem/objects/GameTimer"
-import Score from "../firstGameSystem/objects/ScoreText"
+import Score from "../firstGameSystem/objects/Score"
 
 var zone
 
@@ -68,9 +68,13 @@ export default class CookingGame extends Phaser.Scene{
         this.add.image(400,480,'panel').setDepth(1);
         this.add.image(400,620,'blackBlock')
 
-        this.scoreText = this.createScoreText(16,16,0)
-        const timerLabel2 = this.add.text(16, 54, 'Time : ', {fontSize:32,fill:'#000'})
-        this.gameTimer = new GameTimer(this,timerLabel2)
+        const scoreTextLabel = this.add.text(this.allJsonData.scoreText.text.x,this.allJsonData.scoreText.text.y, this.allJsonData.scoreText.text.content, this.allJsonData.scoreText.text.style)
+        this.scoreText = new Score(this,scoreTextLabel,this.allJsonData.scoreText.text.content,0)
+        this.scoreText.showScoreText()
+
+        console.log(this.allJsonData.timeText.text.content);
+        const timerLabel2 = this.add.text(this.allJsonData.timeText.text.x, this.allJsonData.timeText.text.y, this.allJsonData.timeText.text.content, this.allJsonData.timeText.text.style)
+        this.gameTimer = new GameTimer(this,timerLabel2,this.allJsonData.timeText.text.content)
         this.gameTimer.start(this.gameover.bind(this),10000)//5s
 
 
@@ -142,13 +146,6 @@ export default class CookingGame extends Phaser.Scene{
     gameover(){
         this.physics.pause()
         this.gameOver = true
-    }
-
-    createScoreText(x,y,score){
-        const style = {fontSize:'32px', fill:'#000'}
-        const label = new Score(this,x,y,score,style)
-        this.add.existing(label)
-        return label
     }
 
     createFoodSpot(){
