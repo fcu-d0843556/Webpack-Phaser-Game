@@ -6,6 +6,7 @@ import Loading from './scenes/Loading'
 import CatchFruitGame from './scenes/CatchFruitGame'
 import CookingGame from './scenes/CookingGame'
 import chuochuoleGame from './scenes/chuochuoleGame'
+import QuizGame from './scenes/QuizGame'
 import test from './scenes/Test'
 
 window.addEventListener("load",function(){
@@ -42,6 +43,7 @@ window.addEventListener("load",function(){
   game.scene.add('catch-fruit',new CatchFruitGame(userID,appSpot))
   game.scene.add('bangbangShooting',new ShootingGame(userID,appSpot))
   game.scene.add('chuochuole',new chuochuoleGame(userID,appSpot))
+  game.scene.add('quiz',new QuizGame(userID,appSpot))
   game.scene.add('test',new test(userID,appSpot))
 
   game.scene.start('loading')

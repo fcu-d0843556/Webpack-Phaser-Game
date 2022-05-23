@@ -1,0 +1,1 @@
+{"userName":"3","items":[{"modifyTitle":"遊 戲 背 景","name":"background","type":"png","src":"src/assets/background.png","position":{"x":400,"y":320},"size":100},{"name":"boxObject","items":[{"modifyTitle":"左 上 方 塊","name":"balloons","text":"你獲得了balloons！","src":"src/assets/balloons.png","position":{"x":80,"y":300},"size":100}]}]}
