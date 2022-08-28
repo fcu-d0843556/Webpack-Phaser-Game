@@ -180,11 +180,9 @@ const showPicFile = function(event, keyword){
 }
 
 const showPicDefault = function(src , keyword){
-    console.log("showPic type " + keyword)
-    const defaultText = document.getElementById( keyword + "_default" )
-    defaultText.value = src;
+    // console.log("showPic type " + keyword)
     const pic = document.getElementsByName( keyword + "_image")
-
+    // console.log(highlightItemNum);
     pic[highlightItemNum].src = src
 
     if(uploadList[keyword]&&src == ""){

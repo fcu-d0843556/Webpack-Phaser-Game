@@ -25,12 +25,12 @@ export default class CookingGame extends Phaser.Scene{
 
         this.load.image('half',this.appSpot + 'src/assets/halfFood.png')
         this.load.image('flip',this.appSpot + 'src/assets/halfFlipFood.png')
-        this.load.image('well',this.appSpot + 'src/assets/firedRice.png')
+        this.load.image('well',this.appSpot + 'src/assets/wellFood.png')
         this.load.image('panel',this.appSpot + 'src/assets/cookpanel.png')
         this.load.image('blackBlock',this.appSpot + 'src/assets/blackBlock.png')
 
         this.load.image('cookSpot',this.appSpot + 'src/assets/cookSpot.png')
-        this.load.image('maskMan',this.appSpot + 'src/assets/mother.png')
+        this.load.image('maskMan',this.appSpot + 'src/assets/maskMan.png')
         this.load.image('maskManSmile',this.appSpot + 'src/assets/maskManSmile.png')
         this.load.image('maskManAngry',this.appSpot + 'src/assets/maskManAngry.png')
 

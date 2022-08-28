@@ -43,5 +43,31 @@
             "src": "src/assets/balloon5.png",
             "size": 55
         }]
+    },
+    {
+        "modifyTitle": "計 分 板",
+        "name": "scoreText",
+        "text": {
+            "content": "score",
+            "style": {
+                "fontSize": 32,
+                "fill": "#000"
+            },
+            "x": 16,
+            "y": 16
+        }
+    },
+    {
+        "modifyTitle": "時 間 文 字 方 塊",
+        "name": "timeText",
+        "text": {
+            "content": "time",
+            "style": {
+                "fontSize": 32,
+                "fill": "#000"
+            },
+            "x": 16,
+            "y": 54
+        }
     }
 ]

@@ -90,7 +90,7 @@
                     <input id="getUserID" type = "hidden" value = "<%= username%>">
                     <input id="getGameID" type = "hidden" value = "<%= gameID%>">
                     <input id="password" type = "hidden" value = "<%= password%>">
-                    <input id="guide" type = "text" value = "<%= guide%>">
+                    <input id="guide" type = "hidden" value = "<%= guide%>">
                     
                     
                 </ul>
@@ -152,7 +152,7 @@
                                             <% groupNum++ %>
                                             <% for(let s=0; s < userJsonData.items[i].items.length; s++) { %>
                                                 <% if(s==0){ %>
-                                                    <div id=<%= "chooseCardGroup" + (s+1) %> type="group" name=<%= userJsonData.items[i].name%> class="card text-center loginBox" style="background-color: orange;">
+                                                    <div id=<%= "chooseCardGroup1" %> type="group" name=<%= userJsonData.items[i].name%> class="card text-center loginBox" style="background-color: orange;">
                                                 <% } else { %>
                                                     <div id=<%= "chooseCardGroup" + (s+1) %> type="group" name=<%= userJsonData.items[i].name%> class="card text-center loginBox" style="background-color: orange; display: none;">
                                                 <% } %>

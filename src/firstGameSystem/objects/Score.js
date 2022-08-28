@@ -28,4 +28,8 @@ export default class Score{
     showScoreText(){
         this.label.text = this.text + " : " + this.score
     }
+
+    getScore(){
+        return this.score
+    }
 }
